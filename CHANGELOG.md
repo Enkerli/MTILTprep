@@ -128,3 +128,20 @@ actual PDFs rather than from search results changed three entries and added thre
   different provenance, different curation. 72 DOIs, 93 verified.
 - `tools/openalex-citations.sh` — the full sweep, for a terminal that can reach
   OpenAlex. Writes a ranked `references/citations/REPORT.md`; raw JSON gitignored.
+
+### Fetching and querying, without a terminal
+
+- **`references/fetch-pdfs.sh` now covers pitch-ontology.** Its open items with
+  direct URLs were generated from `works-pitch-ontology.bib` and appended — 2 PDFs
+  and 25 page archives. 57 targets total.
+- **`tools/fetch-open-access.sh`** — new, and the real answer for that
+  bibliography: 72 of its 104 works carry DOIs rather than direct URLs, so no
+  hand-written list could reach them. Resolves each DOI's best open-access
+  location through OpenAlex, downloads it, and reports what is closed in
+  `references/pdf/OA-REPORT.md`.
+- **`tools/citations.html`** — new. A self-contained page that runs the forward
+  citation sweep in a browser, with no terminal and no install. All 81 DOIs from
+  both bibliographies are embedded; queries go from the page straight to OpenAlex,
+  so the session's egress restrictions do not apply. Ranks citing works by their
+  own citation counts, surfaces open-access links, exports Markdown. No external
+  assets — it works from `file://` and offline apart from the API calls.

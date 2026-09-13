@@ -63,10 +63,29 @@ provenance and the curation differ. 72 carry DOIs, 93 are verified against
 Crossref or a publisher record, and the ontology's own domain taxonomy survives
 in `keywords`.
 
-`tools/openalex-citations.sh` runs the full forward-citation sweep. It could not
-be run from the assistant side — OpenAlex is refused at this session's egress
-proxy and rate-limits the cloud fetcher — so `docs/07` is a search sample and
-this script is the real job, for your own terminal.
+### Getting the documents
+
+Two fetchers, because the two bibliographies need different treatment.
+
+- **`references/fetch-pdfs.sh`** — a hand-curated list of direct URLs, now
+  including pitch-ontology's items that have one. 57 targets. Needs nothing but
+  `curl`.
+- **`tools/fetch-open-access.sh`** — resolves every DOI in `references/*.bib`
+  through OpenAlex and downloads the best open-access copy. This is what covers
+  the pitch-ontology set, most of whose URLs are `doi.org` links rather than
+  PDFs. Writes `references/pdf/OA-REPORT.md` listing what is closed. Needs `jq`.
+
+### Forward citations
+
+- **`tools/citations.html`** — open it in a browser. No terminal, no install, no
+  API key. All 81 DOIs from both bibliographies are embedded; it queries OpenAlex
+  from the page, ranks citing works by their own citation counts, shows
+  open-access links, and copies the whole thing out as Markdown.
+- **`tools/openalex-citations.sh`** — the same job from a terminal.
+
+Neither could be run from the assistant side: OpenAlex is refused at this
+session's egress proxy (403) and rate-limits the cloud fetcher (429). `docs/07`
+is a search sample and says so.
 
 [`SYNTHESES.md`](references/SYNTHESES.md) is one entry per source — what it is,
 what it argues, what it is for here — and every entry is marked with **how much

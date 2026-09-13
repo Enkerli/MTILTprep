@@ -123,3 +123,62 @@ arc "recit-arts-musique.html"    "https://recitarts.ca/fr/musique/competences/"
 
 echo
 echo "Archives in archive/ — gitignored, like pdf/."
+
+# ── pitch-ontology: open items with direct URLs ──────────────────────────
+# Generated from references/works-pitch-ontology.bib. DOI-only items are
+# handled by tools/fetch-open-access.sh, which resolves them via OpenAlex.
+
+arc "po-arxiv-2025-iranian-pitch-histograms.html" \
+  "https://arxiv.org/abs/2503.11956"
+arc "po-beyond-1932-project.html" \
+  "https://1932muscon.kcl.ac.uk/"
+arc "po-bozkurt-2025-ord-cc32.html" \
+  "https://arxiv.org/abs/2506.14503"
+arc "po-cahiers-accordeon-diatonique.html" \
+  "https://journals.openedition.org/ethnomusicologie/2686"
+arc "po-cahiers-ethnomusicologie.html" \
+  "https://journals.openedition.org/ethnomusicologie/"
+arc "po-cimcim-resources.html" \
+  "https://icom-music.mini.icom.museum/resources/"
+arc "po-compmusic-project.html" \
+  "https://compmusic.upf.edu/"
+arc "po-contrechamps-afrique-centrale.html" \
+  "https://books.openedition.org/contrechamps/1956"
+arc "po-empirical-musicology-review.html" \
+  "https://emusicology.org/index.php/EMR/"
+arc "po-furniss-1993-systeme-pentatonique.html" \
+  "https://www.persee.fr/doc/jafr\_0399-0346\_1993\_num\_63\_2\_2389\_t1\_0133\_0000\_1"
+get "po-knight-hornbostel-sachs-2015.pdf" \
+  "https://www2.oberlin.edu/faculty/rknight/Organology/KnightRev2015.pdf"
+arc "po-lhomme-2004-experimenter-ethnomusicologie.html" \
+  "https://journals.openedition.org/lhomme/24920"
+arc "po-mbira-org-tuning.html" \
+  "https://mbira.org/learn-mbira/how-to-tune-your-mbira/"
+arc "po-mcbride-passmore-tlusty-2023.html" \
+  "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0284851"
+arc "po-mimo.html" \
+  "http://www.mimo-international.com/"
+get "po-mimo-hornbostel-sachs-2011.pdf" \
+  "http://www.mimo-international.com/documents/hornbostel\%20sachs.pdf"
+arc "po-papaioannou-2026-cross-cultural-similarity.html" \
+  "https://transactions.ismir.net/articles/10.5334/tismir.341"
+arc "po-plos-2017-outliers-world-music.html" \
+  "https://journals.plos.org/plosone/article?id=10.1371\%2Fjournal.pone.0189399"
+arc "po-polak-2010-rhythmic-feel-as-meter.html" \
+  "https://mtosmt.org/issues/mto.10.16.4/mto.10.16.4.polak.html"
+arc "po-polak-london-2014-timing-meter-mande.html" \
+  "https://mtosmt.org/issues/mto.14.20.1/mto.14.20.1.polak-london.html"
+arc "po-qdl-cairo-congress-microtones.html" \
+  "https://www.qdl.qa/en/microtones-piano-and-muhammad-al-qubanshi-\%E2\%80\%93-first-congress-arabic-music-and-early-recordings-iraq"
+arc "po-saraga-datasets.html" \
+  "https://repositori.upf.edu/items/d4721c01-e38d-490b-b2d1-889f6dcd211d"
+arc "po-scala-scl-format.html" \
+  "https://www.huygens-fokker.org/scala/scl\_format.html"
+arc "po-temperley-ren-duan-2017-blue-notes-rock.html" \
+  "https://mtosmt.org/issues/mto.17.23.1/mto.17.23.1.temperley.html"
+arc "po-tismir-2023-carnatic-vocal-pitch.html" \
+  "https://transactions.ismir.net/articles/10.5334/tismir.137"
+arc "po-transposition-journal.html" \
+  "https://journals.openedition.org/transposition/"
+arc "po-unesco-ich-convention-2003.html" \
+  "https://ich.unesco.org/en/convention"

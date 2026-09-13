@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MTILT — forward citations</title>
+<style>
+:root{--bg:#EFF0F2;--card:#FAFBFC;--sunk:#E2E4E8;--ink:#1A1C21;--soft:#4C505A;
+--faint:#7C808B;--rule:#D3D6DC;--accent:#5A2A4E;--ok:#2D6A4F;--warn:#8A5D0C;--no:#9B3227;
+--mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+@media(prefers-color-scheme:dark){:root{--bg:#131519;--card:#1B1E23;--sunk:#24272E;
+--ink:#E4E6EA;--soft:#A0A5AF;--faint:#797E88;--rule:#2F333B;--accent:#D49BC4;
+--ok:#79C79B;--warn:#D8A94F;--no:#E08878}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:940px;margin:0 auto;padding:28px 18px 80px}
+h1{font-size:1.6rem;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--soft);margin:0 0 22px;max-width:62ch}
+fieldset{border:1px solid var(--rule);background:var(--card);padding:16px;margin:0 0 18px}
+legend{font:500 .68rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:0 6px}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+label{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--soft)}
+input,select{font:inherit;padding:7px 9px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:3px}
+input[type=number]{width:100px}input[type=email]{width:230px}
+button{font:500 inherit;padding:8px 16px;border:1px solid var(--accent);background:var(--accent);
+color:var(--card);border-radius:3px;cursor:pointer}
+button.ghost{background:transparent;color:var(--accent)}
+button:disabled{opacity:.45;cursor:default}
+progress{width:100%;height:6px;margin-top:14px}
+#status{font:.78rem/1.5 var(--mono);color:var(--faint);margin-top:8px;min-height:1.4em}
+.card{border:1px solid var(--rule);background:var(--card);padding:16px 18px;margin:0 0 1px}
+.card h2{font-size:1.02rem;margin:0 0 4px;font-weight:600}
+.meta{font:.72rem/1.5 var(--mono);color:var(--faint);margin-bottom:10px}
+.pill{display:inline-block;font:500 .64rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+padding:3px 7px;border-radius:2px;margin-left:6px}
+.pill.oa{background:rgba(45,106,79,.14);color:var(--ok)}
+.pill.closed{background:rgba(155,50,39,.14);color:var(--no)}
+ul{margin:0;padding-left:18px}li{margin:3px 0;font-size:.88rem;color:var(--soft)}
+li b{color:var(--ink);font-weight:600}
+a{color:var(--accent)}
+.none{color:var(--faint);font-size:.85rem;font-style:italic}
+#out{margin-top:22px}
+.hint{font-size:.82rem;color:var(--faint);margin-top:10px;max-width:64ch}
+</style></head><body><div class="wrap">
+<h1>Forward citations</h1>
+<p class="sub">Queries OpenAlex directly from this browser — no terminal, no install, no key.
+Every DOI in the MTILT bibliographies is embedded below, including the 104 works
+imported from pitch-ontology. Open this file from disk and press Run.</p>
+
+<fieldset><legend>Query</legend>
+<div class="row">
+  <label>Citing works published since<input type="number" id="since" value="2022" min="1900" max="2030"></label>
+  <label>Show top<input type="number" id="top" value="6" min="1" max="25"></label>
+  <label>Sources<select id="src"><option value="all">all</option>
+    <option value="mtilt.bib">mtilt.bib only</option>
+    <option value="works-pitch-ontology.bib">pitch-ontology only</option></select></label>
+  <label>Your email (polite pool, optional)<input type="email" id="mailto" placeholder="you@example.org"></label>
+  <button id="run">Run</button>
+  <button id="copy" class="ghost" disabled>Copy as Markdown</button>
+</div>
+<progress id="bar" value="0" max="1"></progress>
+<div id="status">Ready.</div>
+<p class="hint">One request per DOI, paced politely — a full run takes a couple of minutes.
+Results are ranked by how much each <em>citing</em> work has itself been cited, so the
+top of each list is what the field picked up. Open-access links are shown where OpenAlex has one.</p>
+</fieldset>
+
+<div id="out"></div>
+
+<script>
+const DOIS = [
+ {
+  "doi": "10.1017/CBO9780511518317",
+  "key": "arom-1991-african-polyphony-polyrhythm",
+  "title": "African Polyphony and Polyrhythm: Musical Structure and Methodology",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/40240517",
+  "key": "arom-2004-aksak-principes-typologie",
+  "title": "L'aksak : principes et typologie",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/07494469300640301",
+  "key": "arom-furniss-1993",
+  "title": "An interactive experimental method for the determination of musical scales in oral cultures: Application to th",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.48550/arXiv.2503.11956",
+  "key": "arxiv-2025-iranian-pitch-histograms",
+  "title": "Optimization-Based Analysis of Music Intervals and Tuning Systems in Oral Traditions Using Pitch Histograms: A",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/oso/9780190296605.001.0001",
+  "key": "bell-2018-dawn-of-the-daw",
+  "title": "Dawn of the DAW: The Studio as Musical Instrument",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298210903147673",
+  "key": "bozkurt-2009-weighing-models",
+  "title": "Weighing Diverse Theoretical Models on Turkish Maqam Music Against Pitch Measurements: A Comparison of Peaks A",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298215.2013.865760",
+  "key": "bozkurt-2014-makam-review",
+  "title": "Computational Analysis of Turkish Makam Music: Review of State-of-the-Art and Challenges",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.48550/arXiv.2506.14503",
+  "key": "bozkurt-2025-ord-cc32",
+  "title": "An Open Research Dataset of the 1932 Cairo Congress of Arab Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/926002",
+  "key": "brailoiu-1951-rythme-aksak",
+  "title": "Le rythme aksak",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.7551/mitpress/10192.001.0001",
+  "key": "brovig-hanssen-danielsen-2016-digital-signatures",
+  "title": "Digital Signatures: The Impact of Digitization on Popular Music Sound",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.3403/30336243",
+  "key": "bsi-midi-1-0-specification",
+  "title": "MIDI (Musical Instrument Digital Interface) specification 1.0 (Abridged Edition)",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.4324/9781315094588-3",
+  "key": "butler-2017-conceptualizing-rhythm-edm",
+  "title": "Conceptualizing Rhythm and Meter in Electronic Dance Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1525/mp.2020.38.1.1",
+  "key": "camara-2020-timing-is-everything",
+  "title": "Timing Is Everything…Or Is It? Effects of Instructed Timing Style, Reference and Pattern on Drum Kit Sound in ",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/oxfordhb/9780190454746.013.17",
+  "key": "camara-danielsen-2018-groove",
+  "title": "Groove",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1017/9781108991209.005",
+  "key": "cambridge-singing-country",
+  "title": "Singing Country in the Land Now Known as Australia",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/oso/9780198166863.001.0001",
+  "key": "clayton-2000-time-in-indian-music",
+  "title": "Time in Indian Music: Rhythm, Metre, and Form in North Indian Rāg Performance",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/947054",
+  "key": "cler-1994-theorie-aksak",
+  "title": "Pour une théorie de l'aksak",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/843811",
+  "key": "clough-douthett-1991-maximally-even-sets",
+  "title": "Maximally Even Sets",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.4000/books.contrechamps.1956",
+  "key": "contrechamps-afrique-centrale",
+  "title": "Les musiques traditionnelles d'Afrique Centrale : conception/perception",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.18061/emr.v13i1-2.6316",
+  "key": "cutting-2019-microtonal-blue-notes",
+  "title": "Microtonal Analysis of \"Blue Notes\" and the Blues Scale",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.4324/9781315596983",
+  "key": "danielsen-2010-musical-rhythm-digital-reproduction",
+  "title": "Musical Rhythm in the Age of Digital Reproduction",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1121/1.4930950",
+  "key": "danielsen-2015-instructed-timing-snare",
+  "title": "Effects of instructed timing and tempo on snare drum sound in drum kit performance",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1177/1028315306287002",
+  "key": "deardorff2006identification",
+  "title": "Identification and Assessment of Intercultural Competence as a Student Outcome of Internationalization",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.1162/comj\\_a\\_00023",
+  "key": "duignan-2010-abstraction-music-production",
+  "title": "Abstraction and Activity in Computer-Mediated Music Production",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1163/2330-4804\\_eiro\\_com\\_1679",
+  "key": "during-forud",
+  "title": "Forūd (1)",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1038/031488a0",
+  "key": "ellis-1885",
+  "title": "On the Musical Scales of Various Nations",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.7202/1060871ar",
+  "key": "enkerli2019son",
+  "title": "Son propre son: bricolage sonore et appropriation technologique",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.1525/9780520911079",
+  "key": "falkenhausen-1994-suspended-music",
+  "title": "Suspended Music: Chime-Bells in the Culture of Bronze Age China",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1163/9789004531260",
+  "key": "feldman-1996-music-of-the-ottoman-court",
+  "title": "Music of the Ottoman Court: Makam, Composition and the Early Ottoman Instrumental Repertoire",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1525/mp.2017.34.3.291",
+  "key": "frane-2017-swing-drum-breaks",
+  "title": "Swing Rhythm in Classic Drum Breaks From Hip-Hop’s Breakbeat Canon",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1016/j.sigpro.2009.06.017",
+  "key": "gedik-bozkurt-2010-pitch-histograms",
+  "title": "Pitch-frequency histogram-based music information retrieval for Turkish music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298215.2013.818038",
+  "key": "gomez2013computational",
+  "title": "Computational Ethnomusicology: Perspectives and Challenges",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.1080/14613808.2022.2074383",
+  "key": "green-tensions-2022",
+  "title": "Tensions, Issues and Strengths of Professor Lucy Green's Model of Informal Learning",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.1093/gmo/9781561592630.article.06155",
+  "key": "grove-colotomic-structure",
+  "title": "Colotomic structure",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298215.2013.875042",
+  "key": "gulati-2014-tonic-identification-indian",
+  "title": "Automatic Tonic Identification in Indian Art Music: Approaches and Evaluation",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1017/CBO9780511691591",
+  "key": "hagel-2009",
+  "title": "Ancient Greek Music: A New Technical History",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/852225",
+  "key": "hughes-1988-deep-structure-javanese",
+  "title": "Deep Structure and Surface Structure in Javanese Music: A Grammar of Gendhing Lampah",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1525/mp.2002.19.3.387",
+  "key": "iyer-2002-embodied-mind-microtiming",
+  "title": "Embodied Mind, Situated Cognition, and Expressive Microtiming in African-American Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1016/j.cub.2019.08.020",
+  "key": "jacoby-2019-pitch-perception-singing",
+  "title": "Universal and Non-universal Features of Musical Pitch Perception Revealed by Singing",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1038/s41562-023-01800-9",
+  "key": "jacoby-2024-rhythm-priors-15-countries",
+  "title": "Commonality and variation in mental representations of music revealed by a cross-cultural comparison of rhythm",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1016/j.cub.2016.12.031",
+  "key": "jacoby-mcdermott-2017-integer-ratio-priors",
+  "title": "Integer Ratio Priors on Musical Rhythm Revealed Cross-culturally by Iterated Reproduction",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298215.2013.818038",
+  "key": "jnmr-2013-computational-ethnomusicology",
+  "title": "Computational Ethnomusicology: perspectives and challenges",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1525/can.1987.2.3.02a00010",
+  "key": "keil-1987-participatory-discrepancies",
+  "title": "Participatory Discrepancies and the Power of Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/j.ctt2tvgcn",
+  "key": "kubik-1999-africa-and-the-blues",
+  "title": "Africa and the Blues",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/768436",
+  "key": "kubik-african-tone-systems",
+  "title": "African Tone-Systems—A Reassessment",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/oxfordhb/9780198832232.013.47",
+  "key": "ladd-kirby-2020-tone-melody-matching",
+  "title": "Tone–Melody Matching in Tone-Language Singing",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.4000/lhomme.24920",
+  "key": "lhomme-2004-experimenter-ethnomusicologie",
+  "title": "Expérimenter en ethnomusicologie",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1371/journal.pone.0284851",
+  "key": "mcbride-passmore-tlusty-2023",
+  "title": "Convergent evolution in a large cross-cultural database of musical scales",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1525/mp.2006.24.2.155",
+  "key": "mckinney-moelants-2006-tempo-ambiguity",
+  "title": "Ambiguity in Tempo Perception: What Draws Listeners to Different Metrical Levels?",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.52919/altralang.v6i2.483",
+  "key": "merakeb-2024",
+  "title": "A propos de la terminologie de la musique d’imẓad",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/17459730701828677",
+  "key": "milne-2008-tuning-continua",
+  "title": "Tuning continua and keyboard layouts",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1371/journal.pone.0089642",
+  "key": "mullensiefen2014goldmsi",
+  "title": "The Musicality of Non-Musicians: An Index for Assessing Musical Sophistication in the General Population",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.7757/persnewmusi.52.1.0081",
+  "key": "osborn-2014-kid-algebra",
+  "title": "Kid Algebra: Radiohead's Euclidean and Maximally Even Rhythms",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298215.2017.1418896",
+  "key": "panteli-2018-world-music-corpora",
+  "title": "A review of manual and computational approaches for the study of world music corpora",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.5334/tismir.341",
+  "key": "papaioannou-2026-cross-cultural-similarity",
+  "title": "Cross-Cultural Music Similarity: Bridging Human Perception, Signal Processing, and Foundation Models",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.7551/mitpress/15050.001.0001",
+  "key": "parncutt-2024-psychoacoustic-foundations",
+  "title": "Psychoacoustic Foundations of Major-Minor Tonality",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1525/9780520930490",
+  "key": "perlman-2004-unplayed-melodies",
+  "title": "Unplayed Melodies: Javanese Gamelan and the Genesis of Music Theory",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.32028/9781789699326",
+  "key": "plenckers-2021-arab-music",
+  "title": "Arab Music: A Survey of Its History and Its Modern Practice",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1371/journal.pone.0189399",
+  "key": "plos-2017-outliers-world-music",
+  "title": "A computational study on outliers in world music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.30535/mto.16.4.4",
+  "key": "polak-2010-rhythmic-feel-as-meter",
+  "title": "Rhythmic Feel as Meter: Non-Isochronous Beat Subdivision in Jembe Music from Mali",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.18061/emr.v12i3-4.4951",
+  "key": "polak-2018-lower-limit-for-meter",
+  "title": "The lower limit for meter in dance drumming from West Africa",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.30535/mto.20.1.1",
+  "key": "polak-london-2014-timing-meter-mande",
+  "title": "Timing and Meter in Mande Drumming from Mali",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.3389/fnins.2016.00285",
+  "key": "polak-london-jacoby-2016-metrical-subdivision",
+  "title": "Both Isochronous and Non-Isochronous Metrical Subdivision Afford Precise and Stable Ensemble Entrainment: A Co",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/omo/9781561592630.013.90000382458",
+  "key": "powers-widdess-2001-melodic-elaboration",
+  "title": "India, Theory and practice of classical music: Melodic elaboration",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.18061/emr.v16i1.7641",
+  "key": "saraga-datasets",
+  "title": "Saraga: Open Datasets for Research on Indian Art Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/oxfordhb/9780190945442.013.34",
+  "key": "savage-2022-corpus-studies",
+  "title": "An Overview of Cross-Cultural Music Corpus Studies",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1093/mq/XLIV.2.184",
+  "key": "seeger1958prescriptive",
+  "title": "Prescriptive and Descriptive Music-Writing",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.1121/1.410471",
+  "key": "sethares-1994",
+  "title": "Adaptive Tunings for Musical Scales",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/767878",
+  "key": "sutton-1987-variation-composition-java",
+  "title": "Variation and Composition in Java",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.30535/mto.23.1.7",
+  "key": "temperley-ren-duan-2017-blue-notes-rock",
+  "title": "Mediant Mixture and “Blue Notes” in Rock",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1017/S1355771807001793",
+  "key": "thoresen2007spectromorphological",
+  "title": "Spectromorphological Analysis of Sound Objects: An Adaptation of Pierre Schaeffer's Typomorphology",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.5334/tismir.137",
+  "key": "tismir-2023-carnatic-vocal-pitch",
+  "title": "Repertoire-Specific Vocal Pitch Data Generation for Improved Melodic Analysis of Carnatic Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1016/j.comgeo.2007.01.003",
+  "key": "toussaint-2010-computational-geometric-aspects",
+  "title": "Computational geometric aspects of rhythm, melody, and voice-leading",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1201/9781351247771",
+  "key": "toussaint-2019-geometry-of-musical-rhythm",
+  "title": "The Geometry of Musical Rhythm: What Makes a “Good” Rhythm Good?",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1080/09298215.2019.1667399",
+  "key": "useche-hurtado-demmer-2019",
+  "title": "Interplay between musical practices and tuning in the marimba de chonta music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1177/2059204319846617",
+  "key": "wallmark2019crosstalk",
+  "title": "Semantic Crosstalk in Timbre Perception",
+  "src": "mtilt.bib"
+ },
+ {
+  "doi": "10.1017/CBO9780511754777.004",
+  "key": "warren-2008-pitch-and-infrapitch",
+  "title": "Perception of acoustic repetition: pitch and infrapitch",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.2307/779360",
+  "key": "washburne-1997-clave-of-jazz",
+  "title": "The Clave of Jazz: A Caribbean Contribution to the Rhythmic Foundation of an African-American Music",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.1017/S0261143001001337",
+  "key": "weisethaunet-2001-blue-note",
+  "title": "Is there such a thing as the 'blue note'?",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.3406/ethio.2013.1539",
+  "key": "weisser-falceto-2013",
+  "title": "Investigating qəñət in Amhara secular music: an acoustic and historical study",
+  "src": "works-pitch-ontology.bib"
+ },
+ {
+  "doi": "10.3406/ethio.2013.1539",
+  "key": "weisser2013qenet",
+  "title": "Investigating q{\\textschwa}{\\~n}{\\textschwa}t in Amhara Secular Music: An Acoustic and Historical Study",
+  "src": "mtilt.bib"
+ }
+];
+const $ = s => document.querySelector(s);
+let md = '';
+
+async function j(url){ const r = await fetch(url); if(!r.ok) throw new Error(r.status); return r.json(); }
+const esc = s => (s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+$('#run').onclick = async () => {
+  const since = $('#since').value, top = +$('#top').value, src = $('#src').value;
+  const mail = $('#mailto').value.trim();
+  const q = mail ? '&mailto=' + encodeURIComponent(mail) : '';
+  const list = DOIS.filter(d => src === 'all' || d.src === src);
+  $('#run').disabled = true; $('#copy').disabled = true;
+  $('#out').innerHTML = ''; $('#bar').max = list.length; $('#bar').value = 0;
+  md = `# Forward citations since ${since}\n\nGenerated ${new Date().toISOString().slice(0,10)} from OpenAlex.\n\n`;
+  let done = 0, found = 0;
+
+  for (const d of list) {
+    $('#status').textContent = `${++done}/${list.length}  ${d.doi}`;
+    $('#bar').value = done;
+    try {
+      const w = await j(`https://api.openalex.org/works/doi:${encodeURIComponent(d.doi)}?select=id,title,publication_year,cited_by_count,open_access,best_oa_location${q}`);
+      const id = (w.id||'').split('/').pop();
+      if (!id) { continue; }
+      const c = await j(`https://api.openalex.org/works?filter=cites:${id},from_publication_date:${since}-01-01&per-page=${top}&sort=cited_by_count:desc${q}`);
+      const n = c.meta ? c.meta.count : 0;
+      if (!n) { continue; }
+      found++;
+      const oa = w.best_oa_location && (w.best_oa_location.pdf_url || w.best_oa_location.landing_page_url);
+      const div = document.createElement('div'); div.className = 'card';
+      div.innerHTML = `<h2>${esc(w.title || d.title)}</h2>
+        <div class="meta">${esc(d.key)} · ${esc(d.doi)} · ${w.cited_by_count} total ·
+        <b>${n} since ${since}</b>
+        ${oa ? `<span class="pill oa">open</span>` : `<span class="pill closed">closed</span>`}
+        ${oa ? ` <a href="${oa}" target="_blank" rel="noopener">get it</a>` : ''}</div>
+        <ul>${(c.results||[]).map(r =>
+          `<li><b>${r.publication_year}</b> · ${esc(r.title||'untitled')} — <i>${esc(
+            (r.primary_location && r.primary_location.source && r.primary_location.source.display_name) || '?')}</i>
+            · ${r.cited_by_count} cites${
+            r.open_access && r.open_access.oa_url ? ` · <a href="${r.open_access.oa_url}" target="_blank" rel="noopener">OA</a>` : ''}</li>`
+        ).join('')}</ul>`;
+      $('#out').appendChild(div);
+      md += `## ${w.title || d.title}\n\n\`${d.doi}\` — ${w.cited_by_count} total, **${n} since ${since}**${oa?` · [open](${oa})`:' · closed'}\n\n`;
+      md += (c.results||[]).map(r => `- **${r.publication_year}** · ${r.title||'untitled'} — *${
+        (r.primary_location&&r.primary_location.source&&r.primary_location.source.display_name)||'?'}* · ${r.cited_by_count} cites`).join('\n') + '\n\n';
+    } catch(e) { /* skip: not in OpenAlex, or a hiccup */ }
+    await new Promise(r => setTimeout(r, 120));
+  }
+  $('#status').textContent = `Done. ${found} of ${list.length} sources have citing work since ${since}.`;
+  if (!found) $('#out').innerHTML = '<p class="none">Nothing found — try an earlier year.</p>';
+  $('#run').disabled = false; $('#copy').disabled = !found;
+};
+
+$('#copy').onclick = async () => {
+  try { await navigator.clipboard.writeText(md); $('#status').textContent = 'Markdown copied.'; }
+  catch { const t=document.createElement('textarea'); t.value=md; document.body.appendChild(t);
+          t.select(); document.execCommand('copy'); t.remove(); $('#status').textContent='Markdown copied.'; }
+};
+</script></div></body></html>
