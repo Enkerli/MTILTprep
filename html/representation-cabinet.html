@@ -1,0 +1,626 @@
+<title>Representation Cabinet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #F3F2F6;
+    --surface: #FBFAFD;
+    --sunk: #E9E7F0;
+    --ink: #17161F;
+    --ink-soft: #4E4B5E;
+    --ink-faint: #7D7A8C;
+    --accent: #2E3A8C;
+    --accent-soft: #DCE0F2;
+    --mark: #8A5A0E;
+    --mark-soft: #F2E7D3;
+    --rule: #D4D1DE;
+
+    --f-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121118;
+      --surface: #1A1922;
+      --sunk: #23222D;
+      --ink: #E6E4EE;
+      --ink-soft: #A3A0B2;
+      --ink-faint: #7C798C;
+      --accent: #93A0EC;
+      --accent-soft: #24273F;
+      --mark: #DBA35C;
+      --mark-soft: #33291A;
+      --rule: #2F2D3B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #121118;
+    --surface: #1A1922;
+    --sunk: #23222D;
+    --ink: #E6E4EE;
+    --ink-soft: #A3A0B2;
+    --ink-faint: #7C798C;
+    --accent: #93A0EC;
+    --accent-soft: #24273F;
+    --mark: #DBA35C;
+    --mark-soft: #33291A;
+    --rule: #2F2D3B;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding-inline: 20px; padding-block: 56px 96px; }
+  .prose { max-width: var(--measure); }
+
+  h1, h2, h3, h4 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.012em; }
+  h3 { font-size: 1.18rem; font-weight: 600; }
+  p { margin: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  code, .mono { font-family: var(--f-mono); font-size: 0.86em; }
+
+  .eyebrow {
+    font-family: var(--f-mono); font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  /* masthead */
+  .masthead { display: flex; flex-direction: column; gap: 16px; }
+  .masthead .lede {
+    font-family: var(--f-display); font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1.48; color: var(--ink-soft); max-width: 58ch;
+  }
+  .masthead .meta {
+    font-family: var(--f-mono); font-size: 0.74rem; color: var(--ink-faint);
+    border-top: 1px solid var(--rule); padding-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 6px 20px;
+  }
+
+  section { margin-top: 66px; }
+  .sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .stack { display: flex; flex-direction: column; gap: 15px; }
+
+  /* the axis callout */
+  .axis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
+  @media (max-width: 640px) { .axis { grid-template-columns: 1fr; } }
+  .axis > div { background: var(--surface); padding: 20px 18px; display: flex; flex-direction: column; gap: 7px; }
+  .axis .t { font-family: var(--f-display); font-size: 1.1rem; font-weight: 600; }
+  .axis .b { font-size: 0.9rem; color: var(--ink-soft); }
+  .axis .e { font-family: var(--f-mono); font-size: 0.72rem; color: var(--ink-faint); margin-top: auto; padding-top: 6px; }
+
+  /* four-representation figure */
+  .quad { margin-top: 26px; border: 1px solid var(--rule); background: var(--surface); padding: 24px 20px 18px; }
+  .quad svg { width: 100%; height: auto; display: block; }
+  .quad .ring-o { fill: none; stroke: var(--rule); stroke-width: 1; }
+  .quad .off { fill: var(--sunk); stroke: var(--rule); stroke-width: 1; }
+  .quad .on { fill: var(--accent); }
+  .quad .boxline { fill: none; stroke: var(--rule); stroke-width: 1; }
+  .quad .lbl { fill: var(--ink-faint); font-family: var(--f-mono); font-size: 8px; }
+  .quad .big { fill: var(--ink); font-family: var(--f-mono); font-size: 13px; }
+  .quad .syl { fill: var(--ink); font-family: var(--f-mono); font-size: 9.5px; }
+  .quad figcaption { margin-top: 14px; font-size: 0.86rem; color: var(--ink-faint); max-width: 62ch; }
+
+  /* channels */
+  .channel { margin-top: 40px; }
+  .ch-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 4px;
+  }
+  .ch-num { font-family: var(--f-mono); font-size: 0.74rem; color: var(--accent); letter-spacing: 0.08em; }
+  .ch-head h3 { font-size: 1.4rem; }
+  .ch-note { font-size: 0.92rem; color: var(--ink-soft); margin-top: 14px; max-width: var(--measure); }
+
+  .entries { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 18px; }
+  .entry { background: var(--surface); padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 12px; }
+  .entry-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .entry-name { font-family: var(--f-display); font-size: 1.1rem; font-weight: 600; }
+  .entry-prov { font-family: var(--f-mono); font-size: 0.7rem; color: var(--ink-faint); }
+  .entry-what { font-size: 0.93rem; color: var(--ink-soft); max-width: var(--measure); }
+
+  .spec {
+    font-family: var(--f-mono); font-size: 0.84rem; line-height: 1.9;
+    background: var(--sunk); border-left: 2px solid var(--accent);
+    padding: 9px 14px; overflow-x: auto; white-space: pre; color: var(--ink);
+  }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+  @media (max-width: 620px) { .pair { grid-template-columns: 1fr; } }
+  .pair > div { display: flex; flex-direction: column; gap: 4px; }
+  .pair .lbl { font-family: var(--f-mono); font-size: 0.64rem; letter-spacing: 0.13em; text-transform: uppercase; }
+  .pair .shows .lbl { color: var(--accent); }
+  .pair .hides .lbl { color: var(--mark); }
+  .pair p { font-size: 0.88rem; color: var(--ink-soft); }
+
+  .yours {
+    font-size: 0.84rem; color: var(--ink-soft);
+    border-top: 1px dotted var(--rule); padding-top: 10px;
+  }
+  .yours b { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+  .yours.absent b { color: var(--mark); }
+
+  /* literature */
+  .lit { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .lit-item { background: var(--surface); padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .lit-item .cite { font-family: var(--f-display); font-size: 1.02rem; font-weight: 500; }
+  .lit-item .cite em { font-style: italic; }
+  .lit-item .why { font-size: 0.89rem; color: var(--ink-soft); max-width: var(--measure); }
+  .lit-item .tag { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+  /* coverage */
+  .cover { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .cov { background: var(--surface); padding: 15px 16px; display: flex; flex-direction: column; gap: 5px; }
+  .cov .n { font-family: var(--f-body); font-weight: 600; font-size: 0.92rem; }
+  .cov .s { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .cov.has .s { color: var(--accent); }
+  .cov.none .s { color: var(--mark); }
+  .cov .w { font-size: 0.82rem; color: var(--ink-soft); }
+
+  .closing { margin-top: 66px; padding-top: 22px; border-top: 1px solid var(--rule); max-width: var(--measure); display: flex; flex-direction: column; gap: 14px; }
+  .closing p { font-size: 0.94rem; color: var(--ink-soft); }
+  .closing strong { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">MTILT · survey before tools</span>
+    <h1>Representation Cabinet</h1>
+    <p class="lede">Nine channels through which music has been written down, spoken, drawn, measured and coded — what each one puts within reach, what each one makes disappear, and which ones your tools already speak.</p>
+    <div class="meta">
+      <span>v0.1 · September 2026</span>
+      <span>Curation, not exhaustiveness</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The cut that matters most</span>
+      <h2>Prescriptive or descriptive</h2>
+    </div>
+    <div class="prose stack">
+      <p>The rundown you were hoping for exists, and the sharpest one comes from your own discipline rather than from MIR. Charles Seeger drew the distinction in 1958: a music-writing is <em>prescriptive</em> when it is a set of instructions to someone who already knows the tradition, and <em>descriptive</em> when it is a report of what actually sounded. Staff notation is prescriptive and is routinely mistaken for descriptive — which is precisely the error that made early comparative musicology transcribe other people's music into an apparatus that could not hold it.</p>
+      <p>Every system below sits somewhere on that axis, and most of the pedagogical damage happens when a prescriptive system is presented as though it were a neutral description of the sound. That is the deep version of the pianocentrism complaint: the piano keyboard is an instruction set for one instrument, presented as the shape of pitch itself.</p>
+    </div>
+    <div class="axis">
+      <div>
+        <span class="t">Prescriptive</span>
+        <span class="b">Instructions to a performer inside a tradition. Compact because it can assume everything the reader already knows. Useless — or misleading — outside it.</span>
+        <span class="e">staff · tablature · jianpu · bol · Ziffers · UPI</span>
+      </div>
+      <div>
+        <span class="t">Descriptive</span>
+        <span class="b">A report of what sounded, made by someone attending to it. Assumes less, says less about what to do, and is far harder to read back into action.</span>
+        <span class="e">spectrogram · TUBS transcription · SASO symbols</span>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:18px; font-size:0.92rem; color:var(--ink-soft)">Milton Babbitt's related three-way split — graphemic, acoustic, auditory — separates the mark, the signal, and the thing heard. The three rarely line up, and no representation covers more than two of them well.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">One pattern</span>
+      <h2>The same eight steps, four ways</h2>
+    </div>
+    <figure class="quad">
+      <svg viewBox="0 0 640 150" role="img" aria-label="One rhythmic pattern of three onsets in eight steps, shown as a row of boxes, a ring, a binary string, and drum syllables.">
+        <!-- TUBS boxes -->
+        <g class="boxline">
+          <rect x="16" y="42" width="22" height="22"></rect>
+          <rect x="38" y="42" width="22" height="22"></rect>
+          <rect x="60" y="42" width="22" height="22"></rect>
+          <rect x="82" y="42" width="22" height="22"></rect>
+          <rect x="104" y="42" width="22" height="22"></rect>
+          <rect x="126" y="42" width="22" height="22"></rect>
+          <rect x="148" y="42" width="22" height="22"></rect>
+          <rect x="170" y="42" width="22" height="22"></rect>
+        </g>
+        <g class="on">
+          <rect x="19" y="45" width="16" height="16"></rect>
+          <rect x="85" y="45" width="16" height="16"></rect>
+          <rect x="151" y="45" width="16" height="16"></rect>
+        </g>
+        <text class="lbl" x="16" y="84">TUBS · box</text>
+        <text class="lbl" x="16" y="96">grid, read left to right</text>
+
+        <!-- ring -->
+        <circle class="ring-o" cx="286" cy="53" r="30"></circle>
+        <g class="off">
+          <circle cx="307.2" cy="31.8" r="4.5"></circle>
+          <circle cx="316" cy="53" r="4.5"></circle>
+          <circle cx="286" cy="83" r="4.5"></circle>
+          <circle cx="264.8" cy="74.2" r="4.5"></circle>
+          <circle cx="264.8" cy="31.8" r="4.5"></circle>
+        </g>
+        <g class="on">
+          <circle cx="286" cy="23" r="5.5"></circle>
+          <circle cx="307.2" cy="74.2" r="5.5"></circle>
+          <circle cx="256" cy="53" r="5.5"></circle>
+        </g>
+        <text class="lbl" x="248" y="110">ring · cyclic</text>
+        <text class="lbl" x="248" y="122">no first step</text>
+
+        <!-- binary -->
+        <text class="big" x="380" y="58">10010010</text>
+        <text class="lbl" x="380" y="84">binary · numeric</text>
+        <text class="lbl" x="380" y="96">one integer, transformable</text>
+
+        <!-- syllables -->
+        <text class="syl" x="500" y="58">dha — — dha — — dha —</text>
+        <text class="lbl" x="500" y="84">syllabic · spoken</text>
+        <text class="lbl" x="500" y="96">carried in the body</text>
+      </svg>
+      <figcaption>Three onsets across eight steps. Nothing about the pattern changes between panels; what is easy to think about changes completely. The grid invites you to count. The ring makes the question "where does it start?" visible and unanswerable. The binary string invites arithmetic — rotate it, invert it, add it to another. The syllables invite you to say it, and travel without paper.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The cabinet</span>
+      <h2>Nine channels</h2>
+    </div>
+    <div class="prose">
+      <p>Grouped by the substrate a system runs on rather than by what it encodes, because the substrate is what determines who can use it, where it travels, and what it silently drops.</p>
+    </div>
+
+    <!-- 1 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">01</span><h3>Syllabic — spoken and memorised</h3></div>
+      <p class="ch-note">Sound stored in the mouth. No artefact, no literacy requirement, no device. The oldest and by far the most portable channel, and the one most completely absent from music-technology tooling.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Bol</span><span class="entry-prov">Hindustani · tabla, pakhawaj</span></div>
+          <p class="entry-what">Syllables that name drum strokes: each <em>bol</em> is simultaneously a sound, a hand position, and a word you can chant. Compositions are recited before they are played, and the recitation <em>is</em> the piece.</p>
+          <div class="spec">dha dhin dhin dha | dha dhin dhin dha
+dha tin tin ta  | ta  dhin dhin dha</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Timbre and stroke identity, inseparably from rhythm. You cannot notate a bol without notating which sound it is.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Absolute duration and pitch. And it is unusable outside the tradition that assigns the syllables.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing. A workshop could use it tomorrow with no tool at all.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Konnakol / solkattu</span><span class="entry-prov">Karnatic · vocal percussion</span></div>
+          <p class="entry-what">The South Indian counterpart, built on short syllable cells (<code>ta ka di mi</code>, <code>ta ki ta</code>) that combine into long rhythmic structures. It is taught before any instrument and performed in its own right.</p>
+          <div class="spec">ta ka di mi  ta ki ta  ta ka di mi
+4            3         4          (= 11)</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Grouping and additive structure — the arithmetic of rhythm, felt as speech rather than counted.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Pitch entirely, and any simultaneity: it is a single stream.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing — though it maps cleanly onto the additive patterns Serpe already generates.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Tonic sol-fa, Kodály hand signs</span><span class="entry-prov">Curwen, 1840s · Kodály, 20th c.</span></div>
+          <p class="entry-what">Movable-<em>do</em> syllables, with Curwen's system adding a hand shape per degree so that pitch relation becomes a gesture. Built explicitly for people who could not read staff notation.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Scale-degree function — that a note has a <em>role</em>, not just a location. Transposition becomes trivial and invisible.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Absolute pitch, and anything chromatic or modulating without awkward extension.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing, though ProgGenie's degree thinking is the same idea rendered visually.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">02</span><h3>Numeric — ciphers and degrees</h3></div>
+      <p class="ch-note">A single family, repeatedly reinvented, that travelled further than almost anything else. Souhaitty, a Franciscan, proposed numbers for chant in the 1660s; Rousseau argued for them in 1742; Galin, Paris and Chevé systematised them in nineteenth-century France; from there the idea reached China as <em>jianpu</em> and Indonesia as <em>not angka</em>. Ziffers is the live-coding descendant of the same lineage.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Jianpu / not angka</span><span class="entry-prov">via Galin-Paris-Chevé · China, Indonesia</span></div>
+          <p class="entry-what">Degrees 1–7 with a stated key, underlines halving duration, dots marking octave, 0 for rest. Compact enough to be printed between lines of song text, which is much of why it spread.</p>
+          <div class="spec">1=C  4/4
+3 5 | 3 5 | 6 5 3 2 | 1 - - - |</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Relative pitch and transposition as a single edit. Typeable, printable anywhere, learnable in minutes.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Polyphony and voice-leading — it is built for melody. Also anything outside the seven degrees.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> The degree logic underlies ProgGenie; the notation itself isn't surfaced anywhere.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Ziffers</span><span class="entry-prov">Sonic Pi · live coding</span></div>
+          <p class="entry-what">Numbered notation rebuilt as a live-codable string: degrees with duration letters, plus repeats, random choice, arrays and Roman-numeral chords. Its author chose numbers precisely because note names exclude people.</p>
+          <div class="spec">zplay q5353 5653 4242 4542</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Melody as an editable, transposable, mutatable string. Change the key parameter, keep the numbers.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Everything continuous — the shape of a note rather than its identity.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> Closest kin to your UPI strings, and a direct precedent for typed musical input.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Pitch-class integers, binary and hex patterns</span><span class="entry-prov">set theory · drum machines · your own tools</span></div>
+          <p class="entry-what">Pitches as residues mod 12 (<code>{0,2,4,7,9}</code>); rhythms as bit strings or as onset arrays. The representation that makes musical material arithmetically operable.</p>
+          <div class="spec">{0,2,4,7,9}          pitch-class set
+10010010             onsets as bits
+[0,3,6]:8            onsets as indices
+0x94:8               the same idea, packed</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Transformation as computation: rotate, invert, complement, intersect. Two patterns can be compared by an operation rather than by an opinion.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Everything about weight, feel and emphasis. A bit string cannot tell you which onset matters.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> Central — PickPCS, PitchFold, Serpe and the rhythm explorer all run on this.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Nashville Number System</span><span class="entry-prov">US session musicians, 1950s–</span></div>
+          <p class="entry-what">A chart of chord degrees rather than chord names, written fast and read by a band that has never rehearsed the song. Harmony as function, in the working vernacular of people who are paid to be quick.</p>
+          <div class="spec">| 1  | 6- | 4  | 5  |</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Harmonic function and the fact that the same progression recurs across songs in different keys.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Voicing, register, instrumentation — deliberately, so the players decide.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> ProgGenie's territory; worth checking whether its leadsheet can display this way.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">03</span><h3>Grid — boxes and steps</h3></div>
+      <p class="ch-note">Discrete time as equal cells. The channel that made drum machines legible, and the one that ethnomusicology reached for when staff notation could not hold West African rhythm.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">TUBS</span><span class="entry-prov">Koetting, 1970 · after Philip Harland</span></div>
+          <p class="entry-what">The Time Unit Box System: a row of equal boxes, filled or empty. Devised for transcribing West African drumming without imposing metric hierarchy on it.</p>
+          <div class="spec">| x |   |   | x |   |   | x |   |</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Pattern as shape, with no assumption about which box is strong. Comparison between patterns is visual and immediate.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Micro-timing — the thing that often makes the music. Equal boxes assert an evenness that may not be there.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> Implicit in Serpe and the rhythm explorer; not offered as an explicit view.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Piano roll</span><span class="entry-prov">every DAW · Building Blocks</span></div>
+          <p class="entry-what">Time across, pitch up, duration as bar length. The de facto notation of contemporary music-making, and the one Audible Genius uses to teach fifty hours of material with the staff removed.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Contour and duration directly, plus editing as dragging. Nothing has to be named to be moved.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Function and spelling — and it usually keeps a keyboard down its left edge, so the removal of the staff leaves pianocentrism untouched.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> The obvious candidate for scale-driven contrast instead of black-and-white keys — PitchFold already computes the sets.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Pad and fingering grids</span><span class="entry-prov">isomorphic layouts · Exquisite Fingerings</span></div>
+          <p class="entry-what">Pitch laid out on a two-dimensional lattice, where an interval is the same physical move everywhere. Guitar fretboards approximate it; Jankó, Wicki-Hayden and modern pad controllers commit to it.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Interval as gesture, and transposition as translation — a shape keeps its sound anywhere on the grid.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Register cues that a keyboard's irregularity provides; the grid is uniform and therefore unlandmarked.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> Exquisite Fingerings, and the grid option in Chord Dictionary.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">04</span><h3>Cyclic — rings and lattices</h3></div>
+      <p class="ch-note">Geometry standing in for musical space. The channel where structure becomes shape and the question of a beginning quietly disappears.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Rhythm necklace / ring</span><span class="entry-prov">Toussaint · bell-pattern analysis</span></div>
+          <p class="entry-what">A cycle drawn as a circle with onsets around it. Rotations of a pattern become visibly the same object, which is exactly what a linear notation cannot show.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Rotational identity, symmetry, and evenness. Two patterns that look unrelated in a bar reveal themselves as one.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Any sense of a downbeat, and any pattern whose cycle isn't fixed.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> PickPCS's ring, the rhythm explorer's circular display, Chord Dictionary's circle option.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Circle of fifths · Tonnetz</span><span class="entry-prov">Heinichen 1728 · Euler 1739</span></div>
+          <p class="entry-what">Pitch arranged by interval relation rather than by height. The Tonnetz in particular makes chord transformation a short move on a lattice rather than a rule to memorise.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Proximity as harmonic relatedness — why some changes feel smooth and others don't, without naming a single chord.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Time, entirely. These are maps of a space, not of a piece.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> Partly present in Chord Dictionary's circle view; the Tonnetz isn't there.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">05</span><h3>Positional — tablature</h3></div>
+      <p class="ch-note">Notation of what the body does, not of what results. The oldest widespread alternative to pitch notation in the West, and still the way most guitarists read.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Tablature</span><span class="entry-prov">lute, vihuela, guitar · gongche · sheng</span></div>
+          <p class="entry-what">Lines are strings or holes; numbers or letters are positions. It tells you where to put your fingers and says nothing about which note that is.</p>
+          <div class="spec">e|--0--3--0--|
+B|--1--0--1--|
+G|--0--0--0--|</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Playability immediately, and idiom — which voicings an instrument actually falls into.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Pitch identity and anything transferable to another instrument. It is the most prescriptive system here.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> Exquisite Fingerings is a tablature in the general sense; guitar tab itself isn't offered.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">06</span><h3>Drawn — continuous marks</h3></div>
+      <p class="ch-note">Where the mark is not a symbol standing for a sound but a trajectory the sound follows. This is DrawnQurve's family, and it has a serious lineage.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">UPIC</span><span class="entry-prov">Xenakis, CEMAMu, 1977</span></div>
+          <p class="entry-what">A drawing table wired to a synthesis engine: you draw on a surface and the drawing is the score, the envelope and the waveform depending on which page you are on. The direct ancestor of every draw-to-sound tool since.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Gesture and continuous change, with no discretisation anywhere. Anyone who can draw can make sound.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Repeatability and discussability — two curves that sound alike may look nothing alike.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> DrawnQurve is squarely in this line and could say so.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Graphic scores</span><span class="entry-prov">Cardew's <em>Treatise</em> · Cage · Brown · Haubenstock-Ramati</span></div>
+          <p class="entry-what">Scores that supply no key at all. <em>Treatise</em>'s 193 pages carry no performance instructions whatsoever; the performer's interpretation of the marks is the work.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>That reading a score is an act of interpretation — visible here because nothing else is holding it up.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Any determinate sound. Two readings share nothing but the page.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing — but this is the cheapest possible workshop material and needs no software.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">07</span><h3>Signal-derived — measured from the sound</h3></div>
+      <p class="ch-note">The only genuinely descriptive channel in Seeger's sense: nobody decides what goes in, the analysis does. This is where MIR actually lives, and it is entirely absent from your suite.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Spectrogram / sonogram</span><span class="entry-prov">Sonic Visualiser · Praat · Audacity</span></div>
+          <p class="entry-what">Time against frequency with intensity as brightness. It shows what is present in the sound regardless of whether anyone intended it or has a word for it.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Timbre, noise, inharmonicity, breath, room — everything conventional notation discards. It also shows that a "note" is a smear, not a point.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Intention and structure. It cannot tell you what was a mistake, and it is unreadable as instructions.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing. The largest single gap in the suite.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">The listening score</span><span class="entry-prov">Wehinger for Ligeti's <em>Artikulation</em>, 1970</span></div>
+          <p class="entry-what">A hand-made graphic transcription of a finished electronic piece, built so that listeners could follow sound that had never been notated. Neither prescriptive nor measured — a third thing, made to be read while hearing.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>That a representation can exist purely to support listening, with no performance function at all.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Reproducibility — it describes one recording and nothing else.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing, and arguably the most MTILT-shaped object on this page.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">08</span><h3>Morphological — describing the sound object</h3></div>
+      <p class="ch-note">Your timbre track, and it is further developed than it looks. Schaeffer's typo-morphology has a working, taught, symbol-bearing descendant.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Typo-morphology → Aural Sonology</span><span class="entry-prov">Schaeffer 1966 · Thoresen &amp; Hedman 2007 · Sköld 2020</span></div>
+          <p class="entry-what">Schaeffer's classification of sound objects, reduced by Thoresen from roughly 28 categories to 15 and given an actual symbol set for analysis — "spectromorphological analysis of sound objects" — then extended by Sköld into a notation meant for composing rather than only describing, with spectrum type, spectral width and density, granularity and amplitude envelope on a hybrid pitch-frequency staff.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>A vocabulary and a set of marks for what a sound <em>is</em> — the dimension no other channel addresses. It also comes with a listening discipline attached.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Nothing much, but it costs: the symbol set has to be learned, which sits awkwardly with bypassing terminology.</p></div>
+          </div>
+          <p class="yours absent"><b>In your tools</b> Nothing — and this is the track you said you hadn't started. It has a bibliography and a teaching tradition waiting.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">09</span><h3>Procedural — the pattern as code</h3></div>
+      <p class="ch-note">Representation as instruction to a machine rather than depiction of a result. Your UPI belongs here, and so does most live coding.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Pattern languages</span><span class="entry-prov">TidalCycles · Sonic Pi · your UPI</span></div>
+          <p class="entry-what">A short string that generates material rather than listing it. <code>E(3,8)</code> does not record three onsets; it names an algorithm whose output happens to be three onsets.</p>
+          <div class="spec">E(3,8)          Euclidean, generated
+{100}E(3,8)     with an accent layer
+E(3,8)|P(5,12)  two scenes, cycling</div>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Family resemblance and parametric variation — you can see that two patterns are relatives because their strings are.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>The result. You cannot read the sound off the string without running it, which is a real barrier for a newcomer.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> UPI across Serpe and the rhythm explorer — the most developed representation you have.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="channel">
+      <div class="ch-head"><span class="ch-num">10</span><h3>Staff — the one that usually goes first</h3></div>
+      <p class="ch-note">Placed last on purpose. It is a strong system with a clear domain, and the argument against it is about its unmarked default status rather than about its capabilities.</p>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry-top"><span class="entry-name">Common Western staff notation</span><span class="entry-prov">c. 11th century onward</span></div>
+          <p class="entry-what">Pitch as vertical position on a five-line grid with clef, duration as notehead shape, plus several centuries of accumulated convention.</p>
+          <div class="pair">
+            <div class="shows"><span class="lbl">Puts in reach</span><p>Polyphony, voice-leading, large-scale structure and precise coordination between many players. Nothing else here does all four.</p></div>
+            <div class="hides"><span class="lbl">Makes disappear</span><p>Timbre, micro-timing, any pitch off the twelve, and the labour of learning it — which is the part that does the excluding.</p></div>
+          </div>
+          <p class="yours"><b>In your tools</b> ProgGenie's leadsheet. Keeping it available while refusing it the default slot is the whole position.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The rundowns you asked about</span>
+      <h2>Where this has been surveyed already</h2>
+    </div>
+    <div class="lit">
+      <div class="lit-item">
+        <span class="tag">Ethnomusicology · the one to read first</span>
+        <span class="cite">Seeger, C. (1958). "Prescriptive and Descriptive Music-Writing." <em>The Musical Quarterly</em> XLIV(2), 184.</span>
+        <span class="why">Six pages that reframe the whole problem, from inside your own discipline. Free copies circulate.</span>
+      </div>
+      <div class="lit-item">
+        <span class="tag">Computer music · the evaluation framework</span>
+        <span class="cite">Wiggins, Miranda, Smaill &amp; Harris (1993). "A Framework for the Evaluation of Music Representation Systems." <em>Computer Music Journal</em>.</span>
+        <span class="why">Proposes two axes — expressive completeness and structural generality — for comparing representations rather than ranking them. Reissued in <em>Contemporary Music Review</em> as "Surveying Musical Representation Systems". This is the closest thing to the rundown you were hoping existed.</span>
+      </div>
+      <div class="lit-item">
+        <span class="tag">Reference · the encyclopaedia of codes</span>
+        <span class="cite">Selfridge-Field, E. (ed.) (1997). <em>Beyond MIDI: The Handbook of Musical Codes</em>. MIT Press.</span>
+        <span class="why">A code-by-code handbook of symbolic representations, each described by someone who worked with it. Pre-dates most of the web but remains the fullest single inventory.</span>
+      </div>
+      <div class="lit-item">
+        <span class="tag">Venue · an entire conference on this question</span>
+        <span class="cite">TENOR — International Conference on Technologies for Music Notation and Representation.</span>
+        <span class="why">Running since 2015, proceedings open at tenor-conference.org. Sköld's timbre-notation paper is in the 2020 volume. If you want people already arguing about exactly your question, they are here.</span>
+      </div>
+      <div class="lit-item">
+        <span class="tag">MIR · the modern comparison</span>
+        <span class="cite">"Symbolic Music Representations for Classification Tasks: A Systematic Evaluation." ISMIR 2023.</span>
+        <span class="why">Evaluates symbolic representations against each other empirically. Narrower than the others — it asks which representation a model learns best from — but it is the current state of the MIR side.</span>
+      </div>
+      <div class="lit-item">
+        <span class="tag">Sound objects · the timbre bibliography</span>
+        <span class="cite">Thoresen, L. with Hedman, A. (2007). "Spectromorphological analysis of sound objects: an adaptation of Pierre Schaeffer's typomorphology." <em>Organised Sound</em> 12(2).</span>
+        <span class="why">The paper that turned Schaeffer into a usable analytical notation. Open copies available via EMS Network and CCCM.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Coverage</span>
+      <h2>Which channels your suite speaks</h2>
+    </div>
+    <div class="cover">
+      <div class="cov has"><span class="n">Numeric</span><span class="s">Strong</span><span class="w">PCS, bits, onset arrays everywhere</span></div>
+      <div class="cov has"><span class="n">Grid</span><span class="s">Strong</span><span class="w">Pads, Chord Dictionary, leadsheet</span></div>
+      <div class="cov has"><span class="n">Cyclic</span><span class="s">Strong</span><span class="w">PickPCS ring, circular displays</span></div>
+      <div class="cov has"><span class="n">Procedural</span><span class="s">Strong</span><span class="w">UPI — your most developed one</span></div>
+      <div class="cov has"><span class="n">Drawn</span><span class="s">Present</span><span class="w">DrawnQurve</span></div>
+      <div class="cov has"><span class="n">Positional</span><span class="s">Partial</span><span class="w">Exquisite Fingerings</span></div>
+      <div class="cov has"><span class="n">Staff</span><span class="s">Partial</span><span class="w">ProgGenie leadsheet</span></div>
+      <div class="cov none"><span class="n">Syllabic</span><span class="s">Absent</span><span class="w">Needs no tool at all</span></div>
+      <div class="cov none"><span class="n">Signal-derived</span><span class="s">Absent</span><span class="w">No spectrogram anywhere</span></div>
+      <div class="cov none"><span class="n">Morphological</span><span class="s">Absent</span><span class="w">The timbre track, unstarted</span></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p><strong>The shape of the gap is specific.</strong> Your suite is strong across every channel that is visual and symbolic, and empty across the two that aren't: the spoken one and the measured one. Both of those are the ones that carry timbre. That is not a coincidence — it is the same absence, approached from opposite ends.</p>
+    <p>The cheap end of it needs no software. Bol and konnakol are usable in a room tomorrow, and they teach rhythm-with-timbre in a way nothing on a screen currently does. The expensive end — a spectrogram view, or morphological descriptors — is real work, but Thoresen and Sköld mean you would not be starting from Schaeffer's raw typology.</p>
+    <p><strong>On sources.</strong> Seeger 1958, the Thoresen and Sköld papers, Ziffers, TENOR, the jianpu lineage and the Wiggins framework are all verified against primary or publisher pages. Specimen notations above are illustrative — the bol is a standard teentaal theka and the tab is invented for the example. Dates given for Toussaint's rhythm-necklace work, Koetting's TUBS and UPIC are from general reference rather than the primary texts.</p>
+  </div>
+
+</div>

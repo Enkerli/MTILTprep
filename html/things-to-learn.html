@@ -1,0 +1,417 @@
+<title>Sixteen Things and a Descent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600&family=Fira+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #EDEDE9;
+    --surface: #F9F9F6;
+    --sunk: #E0E1DA;
+    --ink: #1B1E19;
+    --ink-soft: #4E5349;
+    --ink-faint: #7E837A;
+    --accent: #2F5233;
+    --accent-soft: #DCE5DB;
+    --mark: #91372D;
+    --mark-soft: #F0DCD8;
+    --rule: #D2D3CB;
+
+    --f-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --f-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+    --f-mono: "Fira Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121410;
+      --surface: #1A1D18;
+      --sunk: #242820;
+      --ink: #E5E8E1;
+      --ink-soft: #A2A89C;
+      --ink-faint: #7B8175;
+      --accent: #86BC8C;
+      --accent-soft: #1F2D20;
+      --mark: #DD8574;
+      --mark-soft: #35201B;
+      --rule: #2E3229;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #121410;
+    --surface: #1A1D18;
+    --sunk: #242820;
+    --ink: #E5E8E1;
+    --ink-soft: #A2A89C;
+    --ink-faint: #7B8175;
+    --accent: #86BC8C;
+    --accent-soft: #1F2D20;
+    --mark: #DD8574;
+    --mark-soft: #35201B;
+    --rule: #2E3229;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 950px; margin: 0 auto; padding-inline: 20px; padding-block: 54px 92px; }
+  .prose { max-width: var(--measure); }
+
+  h1, h2, h3, h4 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(2.1rem, 5.6vw, 3rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.018em; }
+  h2 { font-size: clamp(1.45rem, 3.3vw, 1.95rem); font-weight: 600; line-height: 1.16; letter-spacing: -0.01em; }
+  h3 { font-size: 1.16rem; font-weight: 600; }
+  p { margin: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  code, .mono { font-family: var(--f-mono); font-size: 0.85em; }
+
+  .eyebrow {
+    font-family: var(--f-mono); font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  .masthead { display: flex; flex-direction: column; gap: 15px; }
+  .masthead .lede {
+    font-family: var(--f-display); font-size: clamp(1.08rem, 2.3vw, 1.3rem);
+    line-height: 1.5; color: var(--ink-soft); max-width: 58ch;
+  }
+  .masthead .meta {
+    font-family: var(--f-mono); font-size: 0.73rem; color: var(--ink-faint);
+    border-top: 1px solid var(--rule); padding-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 6px 20px;
+  }
+
+  section { margin-top: 64px; }
+  .sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .stack { display: flex; flex-direction: column; gap: 15px; }
+
+  /* kinds */
+  .kind { margin-top: 30px; border: 1px solid var(--rule); background: var(--surface); }
+  .kind-head {
+    padding: 18px 20px 14px; border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .kind-head .row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .kind-head h3 { font-size: 1.28rem; }
+  .kind-head .count { font-family: var(--f-mono); font-size: 0.7rem; color: var(--ink-faint); letter-spacing: 0.08em; }
+  .kind-head .gloss { font-size: 0.92rem; color: var(--ink-soft); max-width: var(--measure); }
+
+  .aims { list-style: none; margin: 0; padding: 0; }
+  .aims li {
+    padding: 13px 20px; border-bottom: 1px dotted var(--rule);
+    font-family: var(--f-display); font-size: 1.02rem; line-height: 1.4;
+  }
+  .aims li:last-child { border-bottom: none; }
+
+  .implies { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); }
+  @media (max-width: 700px) { .implies { grid-template-columns: 1fr; } }
+  .implies > div { background: var(--surface); padding: 14px 20px; display: flex; flex-direction: column; gap: 4px; }
+  .implies .lbl { font-family: var(--f-mono); font-size: 0.63rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-faint); }
+  .implies p { font-size: 0.86rem; color: var(--ink-soft); }
+  .implies .tool-yes { color: var(--accent); font-weight: 600; }
+  .implies .tool-no { color: var(--mark); font-weight: 600; }
+
+  /* descriptor table */
+  .dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .dim { background: var(--surface); padding: 18px; display: flex; flex-direction: column; gap: 7px; }
+  .dim .n { font-family: var(--f-display); font-size: 1.08rem; font-weight: 600; }
+  .dim .words { font-family: var(--f-mono); font-size: 0.76rem; color: var(--accent); }
+  .dim .ac { font-size: 0.85rem; color: var(--ink-soft); }
+
+  .wobbles { border-left: 2px solid var(--mark); background: var(--mark-soft); padding: 16px 18px; margin-top: 22px; display: flex; flex-direction: column; gap: 9px; }
+  .wobbles .t { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mark); }
+  .wobbles ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .wobbles li { font-size: 0.9rem; color: var(--ink-soft); }
+  .wobbles li b { color: var(--ink); font-weight: 600; }
+
+  /* descent / ascent */
+  .vee { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 26px; align-items: start; }
+  @media (max-width: 760px) { .vee { grid-template-columns: 1fr; } }
+  .leg { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .leg-cap {
+    background: var(--sunk); padding: 12px 16px;
+    font-family: var(--f-mono); font-size: 0.67rem; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .rung { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .rung .s { font-family: var(--f-display); font-size: 1.02rem; font-weight: 600; }
+  .rung .q { font-size: 0.85rem; color: var(--ink-soft); }
+  .rung .have { font-family: var(--f-mono); font-size: 0.68rem; color: var(--accent); }
+  .rung .have.gap { color: var(--mark); }
+
+  .hinge {
+    grid-column: 1 / -1; background: var(--accent-soft); border: 1px solid var(--accent);
+    padding: 20px 22px; display: flex; flex-direction: column; gap: 7px; text-align: center; align-items: center;
+  }
+  .hinge .t { font-family: var(--f-display); font-size: 1.2rem; font-weight: 600; }
+  .hinge p { font-size: 0.9rem; color: var(--ink-soft); max-width: 58ch; }
+
+  /* generic cards */
+  .notes { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .note { background: var(--surface); padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .note h4 { font-size: 1.04rem; }
+  .note p { font-size: 0.91rem; color: var(--ink-soft); max-width: var(--measure); }
+
+  .closing { margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--rule); max-width: var(--measure); display: flex; flex-direction: column; gap: 13px; }
+  .closing p { font-size: 0.93rem; color: var(--ink-soft); }
+  .closing strong { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">MTILT · the approach, not the tools</span>
+    <h1>Sixteen things and a descent</h1>
+    <p class="lede">The list you said you should come up with — you already wrote it. Sorted here by kind, because the kinds want different sessions, different evidence, and different amounts of software.</p>
+    <div class="meta">
+      <span>v0.1 · September 2026</span>
+      <span>Your wording kept intact</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The list</span>
+      <h2>Six kinds of aim</h2>
+    </div>
+    <div class="prose stack">
+      <p>Sixteen items, and they are not one kind of thing. Some are capabilities a person walks out with, some are perceptual, some are frankly critical and social, one is explicitly about acquiring the conventional vocabulary. Sorting them is not a taxonomy to enforce — several sit in two places at once, and the overlaps are where the good sessions probably live. It is a way of noticing that "help people learn X" means something different in each row.</p>
+    </div>
+
+    <div class="kind">
+      <div class="kind-head">
+        <div class="row"><h3>Attending</h3><span class="count">2 items</span></div>
+        <p class="gloss">Noticing what is actually there, in sound you are already surrounded by.</p>
+      </div>
+      <ul class="aims">
+        <li>Unpacking what they like, noticing what makes it work</li>
+        <li>Musical diversity in all its glory</li>
+      </ul>
+      <div class="implies">
+        <div><span class="lbl">Session shape</span><p>Listening together to material the participants brought, with structured attention and no obligation to name.</p></div>
+        <div><span class="lbl">Evidence it worked</span><p>They hear something in a familiar track they had not heard before, and can point to it.</p></div>
+        <div><span class="lbl">Tools</span><p><span class="tool-yes">Helpful.</span> A spectrogram, a stem separator, an A/B switch. Representation earns its place here.</p></div>
+      </div>
+    </div>
+
+    <div class="kind">
+      <div class="kind-head">
+        <div class="row"><h3>Doing</h3><span class="count">5 items</span></div>
+        <p class="gloss">Capabilities someone leaves with — things they can now make happen.</p>
+      </div>
+      <ul class="aims">
+        <li>Learning a way to play with music which is more "intuitive" than most instruments</li>
+        <li>Learning how to improvise</li>
+        <li>Communicating through music</li>
+        <li>Memorizing specific songs</li>
+        <li>Expanding an improviser's "language"</li>
+      </ul>
+      <div class="implies">
+        <div><span class="lbl">Session shape</span><p>Repeated practice with something responsive. These are the only aims that genuinely need return visits.</p></div>
+        <div><span class="lbl">Evidence it worked</span><p>They do the thing, later, unprompted, without you in the room.</p></div>
+        <div><span class="lbl">Tools</span><p><span class="tool-yes">Central.</span> This is where your suite lives, and "more intuitive than most instruments" is close to its design brief.</p></div>
+      </div>
+    </div>
+
+    <div class="kind">
+      <div class="kind-head">
+        <div class="row"><h3>Naming</h3><span class="count">1 item</span></div>
+        <p class="gloss">Access to a discourse community. The aim that is unapologetically about concepts.</p>
+      </div>
+      <ul class="aims">
+        <li>Learning the "lingo" to be able to talk with musicians</li>
+      </ul>
+      <div class="implies">
+        <div><span class="lbl">Session shape</span><p>Experience first, then the word — and the word taught as a password into a room, not as the truth about the sound.</p></div>
+        <div><span class="lbl">Evidence it worked</span><p>They hold their own in a conversation with a musician and are not condescended to.</p></div>
+        <div><span class="lbl">Tools</span><p><span class="tool-yes">Marginal but real.</span> pitch-ontology is the right shape for this, provided it is used as a phrasebook rather than a syllabus.</p></div>
+      </div>
+    </div>
+
+    <div class="kind">
+      <div class="kind-head">
+        <div class="row"><h3>Situating</h3><span class="count">4 items</span></div>
+        <p class="gloss">Seeing music as made by people under conditions. Your discipline, unmediated.</p>
+      </div>
+      <ul class="aims">
+        <li>The context behind musical approaches</li>
+        <li>Understanding the issues with how narrow musical learning tends to be</li>
+        <li>How we've been commodifying music</li>
+        <li>What musical tastes tell us about social groups (including "subcultures")</li>
+      </ul>
+      <div class="implies">
+        <div><span class="lbl">Session shape</span><p>Discussion, comparison, primary material. Closer to a seminar or a listening club than to a workshop.</p></div>
+        <div><span class="lbl">Evidence it worked</span><p>They describe their own taste as situated rather than as a personality trait.</p></div>
+        <div><span class="lbl">Tools</span><p><span class="tool-no">Barely.</span> No widget delivers this. A well-chosen pair of recordings does.</p></div>
+      </div>
+    </div>
+
+    <div class="kind">
+      <div class="kind-head">
+        <div class="row"><h3>Crossing</h3><span class="count">2 items</span></div>
+        <p class="gloss">Music as a way into something that isn't music — where the two look at the same object.</p>
+      </div>
+      <ul class="aims">
+        <li>The connections between music and other domains</li>
+        <li>Acoustics as inspiration for certain musical practices or structures… with important modifications</li>
+      </ul>
+      <div class="implies">
+        <div><span class="lbl">Session shape</span><p>One phenomenon, examined twice. The "important modifications" clause is the whole discipline of it — acoustics inspires, it does not explain.</p></div>
+        <div><span class="lbl">Evidence it worked</span><p>They can say where the analogy stops, not only where it holds.</p></div>
+        <div><span class="lbl">Tools</span><p><span class="tool-yes">Helpful.</span> The numeric and cyclic representations do real work here.</p></div>
+      </div>
+    </div>
+
+    <div class="kind">
+      <div class="kind-head">
+        <div class="row"><h3>Inhabiting</h3><span class="count">2 items</span></div>
+        <p class="gloss">A change in how a person carries themselves around music. The hardest to claim and possibly the most valuable.</p>
+      </div>
+      <ul class="aims">
+        <li>Casual musicking as liberating</li>
+        <li>Singing as breathing exercise</li>
+      </ul>
+      <div class="implies">
+        <div><span class="lbl">Session shape</span><p>Low stakes, repeated, no product. The session succeeds by not producing anything worth evaluating.</p></div>
+        <div><span class="lbl">Evidence it worked</span><p>They sing in the car. You will probably never find out.</p></div>
+        <div><span class="lbl">Tools</span><p><span class="tool-no">None.</span> A tool in the room may actively harm this one by giving people something to be judged at.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">What the sorting shows</span>
+      <h2>Two kinds out of six</h2>
+    </div>
+    <div class="prose stack">
+      <p>Tools are central to <em>Doing</em>, helpful in <em>Attending</em> and <em>Crossing</em>, marginal in <em>Naming</em>, and either useless or counterproductive in <em>Situating</em> and <em>Inhabiting</em>. That accounts for the feeling that your recent work doesn't connect: the suite serves the two kinds it was designed for, and MTILT as you've just described it is mostly the other four.</p>
+      <p>Which reframes the reflex you noticed. Building a tool to fill the timbre gap would deepen the kind you are already strongest in. The gap that matters is not in the tool rack — it is that four of your six kinds have no session format yet, and three of them need none.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Timbre, corrected</span>
+      <h2>The descriptors are the pedagogy</h2>
+    </div>
+    <div class="prose stack">
+      <p>You were right and I overread you. Thoresen's symbols and Sköld's staff are analytical and compositional apparatus; they are not connected to musical learning in any live way, and pointing at them does not make your statement less accurate. Timbre remains the thing that musical learning almost never represents.</p>
+      <p>But the descriptor question — the one you keep coming back to — turns out to have empirical ground under it, and the ground supports exactly the distinction you drew from Farnell. Across studies and across languages, three semantic dimensions recur, and they have acoustic correlates. "Cinematic" has none of this. "Bright" has all of it.</p>
+    </div>
+
+    <div class="dims">
+      <div class="dim">
+        <span class="n">Brightness</span>
+        <span class="words">bright · sharp · luminous · dull</span>
+        <span class="ac">Tracks spectral centroid — the amplitude-weighted mean frequency. Shifts in the spectral envelope are heard systematically as changes in brightness.</span>
+      </div>
+      <div class="dim">
+        <span class="n">Texture</span>
+        <span class="words">rough · harsh · smooth</span>
+        <span class="ac">Tracks amplitude modulation within a critical band, roughly 15–300 Hz, plus high-frequency energy. This is your haptic dimension, already named as touch.</span>
+      </div>
+      <div class="dim">
+        <span class="n">Fullness</span>
+        <span class="words">full · rich · thin · hollow</span>
+        <span class="ac">Tracks fundamental strength, inharmonicity and spectral variation over time. "Hollow" — one of yours — lives here.</span>
+      </div>
+    </div>
+
+    <p class="prose" style="margin-top:20px">Zacharakis and colleagues compared English and Greek speakers and found native language had very little effect on the configuration of the semantic space. Which means these three are not a Western convention you would be importing. They are close to a floor.</p>
+
+    <div class="wobbles">
+      <span class="t">And the instabilities are the workshop material, not the problem</span>
+      <ul>
+        <li><b>Musicians rate more consistently than non-musicians.</b> The inconsistency of untrained descriptions is itself a finding worth showing people about themselves.</li>
+        <li><b>The antonym pairs are suspect.</b> Semantic-differential work assumes dark–bright is a genuine opposition. It may not be. Ask a room and watch it fracture.</li>
+        <li><b>"Soft" is polysemous</b> — it describes overall loudness and transient character, and people slide between the two without noticing.</li>
+        <li><b>Some descriptors are instrument-specific.</b> Trombone reliably attracts emotion words that other brass don't. Your "woody" and "glassy" are material metaphors and probably behave this way.</li>
+        <li><b>The known gap:</b> verbal descriptors fail at the sustained-versus-impulsive distinction, which is perceptually one of the biggest. There is a hole in language exactly where a workshop could point.</li>
+      </ul>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h4>The functional descriptors are a different animal, and worth keeping separate</h4>
+        <p>Bass, keys, pads, lead. These name a <em>role in an arrangement</em>, not a quality of sound — which is why they are stable where "cinematic" isn't, and why they organise soundware so effectively. They are closer to instrumentation than to timbre, and conflating the two is probably the single most common confusion in sample-library metadata.</p>
+      </div>
+      <div class="note">
+        <h4>Your information-architecture instinct and the descriptor pedagogy are the same project</h4>
+        <p>A sample library's tags are folk descriptors at scale — an existing corpus of how people actually name sound, complete with disagreements. Curating one is ethnographic work you would be doing anyway, and it generates the material for the sessions. The library tool and the timbre pedagogy are one thing seen from two ends.</p>
+      </div>
+      <div class="note">
+        <h4>Syntorial versus Learning Synths, precisely</h4>
+        <p>Syntorial sets a target patch and asks you to match it by ear; the exercise has a right answer. Learning Synths hands you a live synth in a browser and lets the explanation follow the play. You said you prefer discovery — the operative difference is the target, not the subject. And "known sounds" gives you the alternative to a target: you are not matching an arbitrary patch, you are chasing something you already love.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The old dream</span>
+      <h2>Down to the single cycle, then back up</h2>
+    </div>
+    <div class="prose stack">
+      <p>This is the most structurally interesting thing in your notes, and it may be the answer to the question you have been circling. It inverts the standard order: conventional curricula start at pitch and notation and never arrive at timbre. Yours starts at a sound somebody already loves and arrives at harmony last, if at all.</p>
+      <p>It is also where Schaeffer and Schafer meet without either having to be taught. The descent is reduced listening — you keep removing context until the sound stops being a recording <em>of</em> something. The ascent is ear cleaning in reverse. Schafer's <em>A Sound Education</em> gives a hundred exercises in the same register.</p>
+      <p>The rungs below are a proposal, not your specification — you named the endpoints and the general order, not the steps.</p>
+    </div>
+
+    <div class="vee">
+      <div class="leg">
+        <div class="leg-cap">Descent — subtractive, each step a question</div>
+        <div class="rung"><span class="s">The whole recording</span><span class="q">Something they brought and love. What is in here?</span></div>
+        <div class="rung"><span class="s">Stems and layers</span><span class="q">Pull it apart. Which layer were you actually hearing?</span></div>
+        <div class="rung"><span class="s">One sound, alone</span><span class="q">Out of context, does it still sound like what you thought?</span></div>
+        <div class="rung"><span class="s">One event</span><span class="q">Attack, body, decay. Which part tells you what it is?</span></div>
+        <div class="rung"><span class="s">A grain</span><span class="q">Shorter than recognition. What survives?</span></div>
+      </div>
+      <div class="leg">
+        <div class="leg-cap">Ascent — additive, each rung a channel you already have</div>
+        <div class="rung"><span class="s">Timbre</span><span class="q">Shape the single cycle. Words for what changed.</span><span class="have gap">no representation in the suite</span></div>
+        <div class="rung"><span class="s">Dynamics</span><span class="q">Give it an envelope, a swell, a hesitation.</span><span class="have">DrawnQurve · drawn curves</span></div>
+        <div class="rung"><span class="s">Rhythm</span><span class="q">Repeat it. Space the repetitions unevenly.</span><span class="have">Serpe · rings, grids, UPI</span></div>
+        <div class="rung"><span class="s">Pitch</span><span class="q">Now more than one. Which ones belong together?</span><span class="have">PickPCS · PitchFold</span></div>
+        <div class="rung"><span class="s">Melody</span><span class="q">An order, a contour, a thing you can sing back.</span><span class="have">ProgGenie · degrees</span></div>
+        <div class="rung"><span class="s">Harmony</span><span class="q">Several at once, and the environment changes.</span><span class="have">ProgGenie · Chord Dictionary</span></div>
+      </div>
+      <div class="hinge">
+        <span class="t">The single cycle</span>
+        <p>The hinge, and the only moment in any music curriculum where a learner meets the smallest unit of sound as an object rather than as a note. Everything above it is built; everything below it was taken away.</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h4>Why this resolves the tools question</h4>
+        <p>Your tools don't relate to MTILT because they have no order and no reason — each one is a good instrument with nothing telling a learner why they are holding it. The descent-and-ascent supplies both, and it costs nothing to build, because it is a <em>sequence</em>, not software. Five of the six ascent rungs already have a tool. The sixth is timbre, at the bottom, which is exactly where your gap is and exactly where the sequence spends its most interesting time.</p>
+      </div>
+      <div class="note">
+        <h4>Why the descent is the inclusive half</h4>
+        <p>Nobody can be bad at it. Taking a recording apart requires no skill, no vocabulary and no instrument, and the material is something the learner chose. It is also the half that produces the descriptors — every step down is a moment where somebody has to say what they are hearing, in their own words, because none of the official ones apply yet.</p>
+      </div>
+      <div class="note">
+        <h4>The obvious first session</h4>
+        <p>The descent alone, once, with two or three people and one track each. No ascent, no tools, no synthesis. Just down to the grain and a list of the words that came up. If that hour works, the rest of the structure has something to stand on. If it doesn't, you have learned the important thing early.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p><strong>On sources.</strong> The three semantic dimensions and their acoustic correlates, the cross-linguistic finding, and the listed instabilities are from Saitis &amp; Weinzierl's survey chapter "The Semantics of Timbre" and the Zacharakis work it reports. Schafer's <em>Ear Cleaning</em> (1967) and <em>A Sound Education</em> (1992) are as cited. Learning Synths and Syntorial descriptions are from their own pages.</p>
+    <p><strong>What's mine rather than yours.</strong> The six kinds, the descent rungs, and the claim that tools help in two of six are readings of your list, not statements from it. Your sixteen aims are quoted as you wrote them. The Schafer approach you half-remembered does appear to be what you thought it was — starting from the sounds students already encounter rather than from theory — but I have that from secondary sources, not from the books.</p>
+  </div>
+
+</div>

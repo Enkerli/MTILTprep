@@ -1,0 +1,469 @@
+<title>Competency Frameworks for Music</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&family=Azeret+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #EFF0F2;
+    --surface: #FAFBFC;
+    --sunk: #E2E4E8;
+    --ink: #1A1C21;
+    --ink-soft: #4C505A;
+    --ink-faint: #7C808B;
+    --accent: #5A2A4E;
+    --accent-soft: #EADFE8;
+    --rule: #D3D6DC;
+
+    --ok: #2D6A4F;
+    --ok-bg: #DDEBE3;
+    --part: #8A5D0C;
+    --part-bg: #F2E8D3;
+    --gone: #9B3227;
+    --gone-bg: #F3DEDA;
+
+    --f-display: "Petrona", Georgia, "Times New Roman", serif;
+    --f-body: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+    --f-mono: "Azeret Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131519;
+      --surface: #1B1E23;
+      --sunk: #24272E;
+      --ink: #E4E6EA;
+      --ink-soft: #A0A5AF;
+      --ink-faint: #797E88;
+      --accent: #D49BC4;
+      --accent-soft: #2C1A28;
+      --rule: #2F333B;
+      --ok: #79C79B;
+      --ok-bg: #1A2E24;
+      --part: #D8A94F;
+      --part-bg: #332818;
+      --gone: #E08878;
+      --gone-bg: #351F1C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #131519;
+    --surface: #1B1E23;
+    --sunk: #24272E;
+    --ink: #E4E6EA;
+    --ink-soft: #A0A5AF;
+    --ink-faint: #797E88;
+    --accent: #D49BC4;
+    --accent-soft: #2C1A28;
+    --rule: #2F333B;
+    --ok: #79C79B;
+    --ok-bg: #1A2E24;
+    --part: #D8A94F;
+    --part-bg: #332818;
+    --gone: #E08878;
+    --gone-bg: #351F1C;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding-inline: 20px; padding-block: 54px 92px; }
+  .prose { max-width: var(--measure); }
+
+  h1, h2, h3, h4 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(2.05rem, 5.4vw, 2.95rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.42rem, 3.2vw, 1.9rem); font-weight: 600; line-height: 1.16; }
+  h3 { font-size: 1.14rem; font-weight: 600; }
+  h4 { font-size: 1rem; font-weight: 600; }
+  p { margin: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  code, .mono { font-family: var(--f-mono); font-size: 0.82em; }
+
+  .eyebrow {
+    font-family: var(--f-mono); font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  .masthead { display: flex; flex-direction: column; gap: 15px; }
+  .masthead .lede {
+    font-family: var(--f-display); font-size: clamp(1.06rem, 2.3vw, 1.28rem);
+    line-height: 1.5; color: var(--ink-soft); max-width: 60ch;
+  }
+  .masthead .meta {
+    font-family: var(--f-mono); font-size: 0.71rem; color: var(--ink-faint);
+    border-top: 1px solid var(--rule); padding-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 6px 20px;
+  }
+
+  section { margin-top: 62px; }
+  .sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .stack { display: flex; flex-direction: column; gap: 15px; }
+
+  /* family */
+  .family { margin-top: 34px; }
+  .fam-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink); padding-bottom: 8px;
+  }
+  .fam-head .ltr { font-family: var(--f-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+  .fam-head h3 { font-size: 1.32rem; }
+  .fam-note { font-size: 0.92rem; color: var(--ink-soft); margin-top: 12px; max-width: var(--measure); }
+
+  .fws { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 16px; }
+  .fw { background: var(--surface); padding: 18px 20px; display: flex; flex-direction: column; gap: 9px; }
+  .fw-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .fw-name { font-family: var(--f-display); font-size: 1.1rem; font-weight: 600; }
+  .fw-prov { font-family: var(--f-mono); font-size: 0.68rem; color: var(--ink-faint); }
+  .fw p { font-size: 0.9rem; color: var(--ink-soft); max-width: var(--measure); }
+  .fw .struct {
+    font-family: var(--f-mono); font-size: 0.76rem; line-height: 1.75;
+    background: var(--sunk); border-left: 2px solid var(--accent);
+    padding: 9px 13px; color: var(--ink); overflow-x: auto;
+  }
+  .fw .stance { font-size: 0.86rem; color: var(--ink-soft); border-top: 1px dotted var(--rule); padding-top: 8px; }
+  .fw .stance b { font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+
+  /* coverage table */
+  .tscroll { overflow-x: auto; margin-top: 22px; border: 1px solid var(--rule); }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.88rem; background: var(--surface); }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-family: var(--f-mono); font-size: 0.64rem; letter-spacing: 0.11em;
+    text-transform: uppercase; color: var(--ink-faint); font-weight: 500;
+    background: var(--sunk); position: sticky; top: 0;
+  }
+  td.aim { font-family: var(--f-display); font-size: 0.98rem; font-weight: 500; width: 30%; }
+  td.where { color: var(--ink-soft); }
+  .badge {
+    display: inline-block; font-family: var(--f-mono); font-size: 0.63rem;
+    letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px;
+    border-radius: 2px; white-space: nowrap; font-weight: 500;
+  }
+  .badge.ok { background: var(--ok-bg); color: var(--ok); }
+  .badge.part { background: var(--part-bg); color: var(--part); }
+  .badge.gone { background: var(--gone-bg); color: var(--gone); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 0.83rem; color: var(--ink-soft); }
+  .legend span.i { display: inline-flex; align-items: center; gap: 7px; }
+
+  /* findings */
+  .finds { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .find { background: var(--surface); padding: 20px 22px; display: flex; flex-direction: column; gap: 7px; }
+  .find h4 { font-size: 1.06rem; }
+  .find p { font-size: 0.91rem; color: var(--ink-soft); max-width: var(--measure); }
+
+  .tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .tl { background: var(--surface); padding: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .tl .n { font-family: var(--f-display); font-size: 2rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .tl .k { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tl .d { font-size: 0.84rem; color: var(--ink-soft); }
+  .tl.ok .n, .tl.ok .k { color: var(--ok); }
+  .tl.part .n, .tl.part .k { color: var(--part); }
+  .tl.gone .n, .tl.gone .k { color: var(--gone); }
+
+  .closing { margin-top: 62px; padding-top: 22px; border-top: 1px solid var(--rule); max-width: var(--measure); display: flex; flex-direction: column; gap: 13px; }
+  .closing p { font-size: 0.92rem; color: var(--ink-soft); }
+  .closing strong { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">MTILT · review</span>
+    <h1>Competency Frameworks for Music</h1>
+    <p class="lede">What exists, across seven literatures that mostly don't cite each other — and how much of it reaches the sixteen things you want to help people learn.</p>
+    <div class="meta">
+      <span>v0.1 · September 2026</span>
+      <span>Curricular · psychometric · professional · informal · civic · clinical · critical</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Before the survey</span>
+      <h2>What a competency framework is for</h2>
+    </div>
+    <div class="prose stack">
+      <p>Nearly every framework below exists to make something assessable — for a ministry, an accreditor, a researcher, or an exam board. That purpose is not incidental; it determines what a framework can contain. An aim that cannot be evidenced within a term, by a person who is not the learner, tends not to survive the drafting process.</p>
+      <p>This predicts the coverage pattern before we look at it. Your aims that name a capability will be well served. Your aims that name a disposition, a critique, or a change in how somebody lives will be absent — not overlooked, but structurally excluded. Worth holding onto, because it means the gaps are not an invitation to write a better framework.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The field</span>
+      <h2>Seven families</h2>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">A</span><h3>Curricular — what schools are told to teach</h3></div>
+      <p class="fam-note">Government or association documents that define music as a school subject. The most influential and the most contested.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">National Core Arts Standards</span><span class="fw-prov">United States · 2014 · NAfME / NCCAS</span></div>
+          <p>Four artistic processes, eleven anchor standards, elaborated per grade and per ensemble type. The dominant Anglophone structure, widely borrowed.</p>
+          <div class="struct">CREATING     Imagine · Plan and Make · Evaluate and Refine · Present
+PERFORMING   Select · Analyze · Interpret · Rehearse/Refine · Present
+RESPONDING   Select · Analyze · Interpret · Evaluate
+CONNECTING   #10 relate personal experience to making
+             #11 relate works to varied contexts and daily life</div>
+          <p class="stance"><b>Stance</b> Process-based rather than repertoire-based, which was the reform. "Connecting" is the only door to anything outside music, and it is the thinnest of the four.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Programme de formation de l'école québécoise</span><span class="fw-prov">Québec · 2001 · domaine des arts</span></div>
+          <p>Three competencies, stated as verbs, identical in shape across the four arts disciplines. Your own jurisdiction, and structurally the cleanest document here.</p>
+          <div class="struct">C1  Inventer des pièces vocales ou instrumentales
+C2  Interpréter des pièces musicales
+C3  Apprécier des œuvres musicales</div>
+          <p class="stance"><b>Stance</b> <em>Apprécier</em> explicitly carries a sociocultural dimension alongside the technical one — it is not just aesthetic judgement. That makes Québec's third competency a better hook for your <em>Situating</em> aims than anything in the American standards.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">England: National Curriculum + Model Music Curriculum</span><span class="fw-prov">United Kingdom · 2013, 2021</span></div>
+          <p>Performing, composing, listening as the statutory triad, with the 2021 Model Music Curriculum adding non-statutory repertoire lists and year-by-year expectations.</p>
+          <p class="stance"><b>Stance</b> The MMC's repertoire lists reopened exactly the argument about whose music counts that the process-based reforms were meant to settle.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">B</span><h3>Professional — higher education and graded ladders</h3></div>
+      <p class="fam-note">Outcome statements for conservatoire degrees and the graded-exam systems that function as de facto competency ladders for millions of learners.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">AEC / Polifonia Learning Outcomes</span><span class="fw-prov">Europe · Association Européenne des Conservatoires</span></div>
+          <p>The most complete articulation of what a trained musician is supposed to be able to do, across three Bologna cycles, in three groups.</p>
+          <div class="struct">PRACTICAL   artistic expression · repertoire · ensemble · practising,
+            rehearsing, reading, aural, creative · verbal ·
+            public performance · improvisation · pedagogy
+THEORETICAL repertoire and materials · context · improvisation ·
+            pedagogical knowledge
+GENERIC     independence · psychological understanding ·
+            critical awareness · communication</div>
+          <p class="stance"><b>Stance</b> Notable for treating improvisation as both a practical skill and a body of knowledge, and for putting "verbal skills — discuss music intelligently" on the same footing as playing. Third cycle asks graduates to "question conventions" and "challenge community standards", which is further than any school framework goes.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Graded examination syllabi</span><span class="fw-prov">ABRSM · Trinity · RSL / Rockschool</span></div>
+          <p>Eight or nine graded levels per instrument, each specifying repertoire, technical work, sight-reading and aural tests. Not called competency frameworks, but functionally the most widely used ones in the world.</p>
+          <p class="stance"><b>Stance</b> RSL's popular-music grades are the interesting case — they had to invent assessment criteria for improvisation, band skills and production, which forced articulation of things classical ladders left tacit.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">C</span><h3>Psychometric — models built to be measured</h3></div>
+      <p class="fam-note">Research instruments rather than curricula. This is where the most careful thinking about what musical ability actually consists of has happened — and where non-formal musical lives are taken most seriously.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Goldsmiths Musical Sophistication Index</span><span class="fw-prov">Müllensiefen et al. · Goldsmiths, London</span></div>
+          <p>Five subscales measuring "the ability to engage with music in a flexible, effective and nuanced way" — deliberately broader than training, and explicitly built to be sensitive to differences <em>among non-musicians</em>.</p>
+          <div class="struct">Active musical engagement       time and resources spent on music
+Perceptual abilities            accuracy of musical listening
+Musical training                amount of formal training
+Singing abilities               accuracy of one's own singing
+Emotional engagement            talking about what music expresses</div>
+          <p class="stance"><b>Stance</b> The single most MTILT-compatible instrument in this entire survey. "Active engagement" is the only place in the literature where a person who mostly listens, collects and attends is treated as having a measurable musical life. It measures rather than cultivates — but it legitimises the category.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">KoMus / KOPRA-M</span><span class="fw-prov">Germany · Jordan, Knigge, Lehmann-Wermser, Niessen et al.</span></div>
+          <p>An empirically developed and validated competence model for school music, built with the psychometric seriousness German education research applies to every subject. The core competence is named as a pair.</p>
+          <div class="struct">"Musik wahrnehmen und kontextualisieren"
+ — perceiving AND contextualising music, as one competence
+KOPRA-M extends the approach to practical musical competences</div>
+          <p class="stance"><b>Stance</b> The pairing is the point, and it is unusual. Most frameworks let you perceive without contextualising. This one refuses to separate hearing a piece from knowing where it comes from — which is close to a formal statement of your own position.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Aptitude and perception batteries</span><span class="fw-prov">Gordon · PROMS · MET</span></div>
+          <p>Gordon's audiation-based aptitude tests, the Profile of Music Perception Skills, and various discrimination batteries. Narrower, older, and mostly concerned with capacity rather than learning.</p>
+          <p class="stance"><b>Stance</b> Treats musical ability as something a person has an amount of — the frame your project is most opposed to.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">D</span><h3>Theoretical — models of musical activity</h3></div>
+      <p class="fam-note">Not assessment instruments but accounts of what musical engagement consists of. Both of these were written partly against the narrowness of school music.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Swanwick's C(L)A(S)P</span><span class="fw-prov">Keith Swanwick · A Basis for Music Education, 1979</span></div>
+          <p>Five modes of musical encounter, with three held to be direct and two supporting — the brackets are the argument, not a typographic accident.</p>
+          <div class="struct">C  Composition          direct
+(L) Literature studies   supporting
+A  Audition             direct   — listening as attentive encounter
+(S) Skill acquisition    supporting
+P  Performance          direct</div>
+          <p class="stance"><b>Stance</b> Deliberately demotes technique and music history to supporting roles, against a tradition that made them the whole subject. Audition-as-a-direct-mode is close to your <em>Attending</em>.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Elliott's praxial musicianship</span><span class="fw-prov">David Elliott · Music Matters, 1995</span></div>
+          <p>Musicianship as a multidimensional form of procedural knowledge, with formal, informal, impressionistic and supervisory knowledge surrounding a procedural core. Music understood as something people <em>do</em> — musicing — rather than a body of works.</p>
+          <p class="stance"><b>Stance</b> The philosophical companion to Small's musicking, and the most influential argument that knowing-how precedes and exceeds knowing-that in music.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">E</span><h3>Informal — how people actually learn music</h3></div>
+      <p class="fam-note">Descriptive research on learning that happens without curricula, later converted into pedagogy. The family closest to your instincts, and the one that least resembles a competency framework.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Green's informal learning model</span><span class="fw-prov">Lucy Green · Music, Informal Learning and the School, 2008 · Musical Futures</span></div>
+          <p>Five characteristics abstracted from how popular musicians actually learn, then deliberately imported into classrooms.</p>
+          <div class="struct">1  learners choose music they know, love and identify with
+2  learning by ear from recordings, not from notation
+3  peer learning in friendship groups
+4  haphazard, personal, non-sequential progression
+5  listening, composing, performing, improvising all at once</div>
+          <p class="stance"><b>Stance</b> One reported outcome is worth your attention: students said the process changed how they listened at home, many discovering "there was any more to music apart from the lyrics." That is your first aim, arrived at as a side effect and documented.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Community music</span><span class="fw-prov">Higgins · Veblen · ISME CMA</span></div>
+          <p>A field defined by participation, hospitality and context rather than outcomes, working with groups that formal music education does not reach.</p>
+          <p class="stance"><b>Stance</b> Actively resists competency framing on the grounds that specifying outcomes in advance would undo the hospitality. The nearest thing in the literature to a principled defence of vague deliverables.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">F</span><h3>Cultural and civic competence</h3></div>
+      <p class="fam-note">You raised this as related, and it is — but with one structural catch worth noticing up front.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Reference Framework of Competences for Democratic Culture</span><span class="fw-prov">Council of Europe · 2016–18</span></div>
+          <p>Twenty competences across four categories, the most developed instrument of its kind, adopted across European education systems.</p>
+          <div class="struct">VALUES (3)      human dignity and rights · cultural diversity ·
+                democracy, justice, fairness, equality, rule of law
+ATTITUDES (6)   openness to cultural otherness · respect ·
+                civic-mindedness · responsibility · self-efficacy ·
+                tolerance of ambiguity
+SKILLS (8)      autonomous learning · analytical and critical thinking ·
+                listening and observing · empathy · flexibility ·
+                linguistic and plurilingual · cooperation ·
+                conflict resolution
+KNOWLEDGE (3)   critical understanding of self · of language and
+                communication · of the world</div>
+          <p class="stance"><b>Stance</b> Includes <em>listening and observing</em> and <em>tolerance of ambiguity</em> as named competences — both of which a music workshop develops incidentally. Also demonstrates that dispositions <em>can</em> be put in a framework if the framework is willing to abandon short-term assessability.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Culturally responsive teaching in music</span><span class="fw-prov">Lind &amp; McKoy · Deardorff · Bennett's DMIS</span></div>
+          <p>Music-specific application of culturally responsive pedagogy, alongside the general intercultural competence models — Deardorff's process model and Bennett's developmental stages from denial to integration.</p>
+          <p class="stance"><b>Stance</b> <strong>The catch:</strong> almost all of this literature specifies the <em>teacher's</em> competence, not the learner's. If you want cultural competence as a learning aim rather than a facilitator qualification, you are largely on your own — and the RFCDC is the better borrow.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family">
+      <div class="fam-head"><span class="ltr">G</span><h3>Clinical and critical — the two outside literatures</h3></div>
+      <p class="fam-note">Neither is a music education framework, and two of your aims live almost entirely in them.</p>
+      <div class="fws">
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">Music therapy competencies</span><span class="fw-prov">AMTA Professional Competencies · CBMT Scope of Practice</span></div>
+          <p>Detailed professional competency sets covering musical foundations, clinical foundations and therapy skills, with an advanced tier. Adjacent programmes such as Singing for Lung Health formalise breath work through group singing.</p>
+          <p class="stance"><b>Stance</b> Where "singing as breathing exercise" actually lives. Framed as clinical competence for practitioners and as health outcome for participants — never as musical learning.</p>
+        </div>
+        <div class="fw">
+          <div class="fw-top"><span class="fw-name">The critical literature on standards</span><span class="fw-prov">MayDay Group · Action, Criticism and Theory · Mullen</span></div>
+          <p>Sustained argument that the standards movement in music education serves neoliberal and neoconservative interests at once — linking music to workplace skills and measurable outputs while codifying Eurocentric epistemologies of musical value behind inclusive rhetoric.</p>
+          <p class="stance"><b>Stance</b> No framework contains its own critique, so one of your aims is covered only here. Proposed alternatives centre on dialogical, local, student-as-producer practice rather than on better benchmarks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Coverage</span>
+      <h2>Your sixteen aims against the field</h2>
+    </div>
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Aim</th><th scope="col">Coverage</th><th scope="col">Where it is addressed, and how well</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="aim">Unpacking what they like, noticing what makes it work</td><td><span class="badge ok">Strong</span></td><td class="where">NCAS Responding in full; Québec <em>Apprécier</em>; KoMus <em>wahrnehmen</em>; Gold-MSI perceptual abilities. Green documents it as an outcome of learner-chosen material.</td></tr>
+          <tr><td class="aim">A way to play with music more "intuitive" than most instruments</td><td><span class="badge gone">Absent</span></td><td class="where">No competency framework treats interface or instrument design as a learning aim. This lives in NIME and HCI research, which doesn't speak the competency language at all. Genuinely yours.</td></tr>
+          <tr><td class="aim">The context behind musical approaches</td><td><span class="badge ok">Strong</span></td><td class="where">KoMus binds it to perception as a single competence; Québec's <em>Apprécier</em> carries the sociocultural dimension; AEC "Context"; NCAS Connecting #11.</td></tr>
+          <tr><td class="aim">Connections between music and other domains</td><td><span class="badge part">Partial</span></td><td class="where">NCAS Connecting #10 is the only formal hook, and in practice it is read as "relate music to your own experience" rather than to mathematics or acoustics. Thin everywhere.</td></tr>
+          <tr><td class="aim">Learning how to improvise</td><td><span class="badge ok">Strong</span></td><td class="where">AEC treats it as practical skill <em>and</em> theoretical knowledge across all three cycles; NCAS Creating; RSL grades assess it; jazz pedagogy is deeply developed.</td></tr>
+          <tr><td class="aim">Communicating through music</td><td><span class="badge part">Partial</span></td><td class="where">Present as "convey intent" in NCAS Performing. But AEC's "communication skills" means talking <em>about</em> music and collaborating — not communicating through it. The distinction is rarely made.</td></tr>
+          <tr><td class="aim">The "lingo" to talk with musicians</td><td><span class="badge ok">Strong, but inverted</span></td><td class="where">AEC "verbal skills — discuss music intelligently" and every theory syllabus. Framed as mastery of a discourse you are joining permanently. Your framing — a passport for outsiders who are visiting — is not in the literature.</td></tr>
+          <tr><td class="aim">Issues with how narrow musical learning tends to be</td><td><span class="badge part">Only in the critique</span></td><td class="where">MayDay Group, Mullen, the neoliberalism-and-music-education literature. By construction no framework contains it. Available, but as commentary rather than curriculum.</td></tr>
+          <tr><td class="aim">Casual musicking as liberating</td><td><span class="badge gone">Structurally absent</span></td><td class="where">Gold-MSI "active engagement" legitimises the category and measures it; Small and Elliott argue for it philosophically; community music practises it while refusing to specify it. Nobody cultivates it as a stated aim.</td></tr>
+          <tr><td class="aim">Acoustics as inspiration… with important modifications</td><td><span class="badge gone">Absent</span></td><td class="where">Acoustics appears as physics content in some curricula. The stance you describe — inspiration that must be deliberately broken — is a compositional position, not a competence anyone has written down.</td></tr>
+          <tr><td class="aim">Musical diversity in all its glory</td><td><span class="badge part">Claimed everywhere, contested</span></td><td class="where">RFCDC "valuing cultural diversity" is explicit and serious. Every music framework claims it; Mullen's charge is that NCAS codifies Eurocentric value behind the claim. Lind &amp; McKoy is the music-specific treatment, aimed at teachers.</td></tr>
+          <tr><td class="aim">How we've been commodifying music</td><td><span class="badge gone">Absent from music education</span></td><td class="where">AEC mentions business and legal aspects — as professional preparation, not critique. The actual material is in popular music studies and sociology: Attali and Théberge, both of whom you already cite.</td></tr>
+          <tr><td class="aim">What musical tastes tell us about social groups</td><td><span class="badge gone">Absent from frameworks</span></td><td class="where">Central to the sociology of music — Bourdieu, subcultural theory, taste research — and entirely outside competency documents. Your own discipline covers it; music education does not import it.</td></tr>
+          <tr><td class="aim">Singing as breathing exercise</td><td><span class="badge gone">Elsewhere entirely</span></td><td class="where">Music therapy competencies and Singing for Lung Health programmes. Framed as clinical practice or health outcome. No music curriculum treats breath as the point rather than the means.</td></tr>
+          <tr><td class="aim">Memorizing specific songs</td><td><span class="badge part">Partial</span></td><td class="where">Repertoire outcomes in AEC; memorisation required by graded exams. Treated as a means to performance rather than as an aim someone might hold for itself. Green's model is closest — learners memorise music they chose.</td></tr>
+          <tr><td class="aim">Expanding an improviser's "language"</td><td><span class="badge part">Practice yes, framework barely</span></td><td class="where">Jazz pedagogy has a highly developed apparatus — vocabulary, transcription, licks, patterns. AEC gestures at "fundamental patterns underlying improvisation". Rarely formalised as competence.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span class="i"><span class="badge ok">Strong</span> a framework names it and specifies it</span>
+      <span class="i"><span class="badge part">Partial</span> present but thin, or framed differently than you mean it</span>
+      <span class="i"><span class="badge gone">Absent</span> not in music competency frameworks; sometimes elsewhere</span>
+    </div>
+
+    <div class="tally">
+      <div class="tl ok"><span class="n">4</span><span class="k">Strong</span><span class="d">All four are capabilities or perceptual skills — assessable in a term.</span></div>
+      <div class="tl part"><span class="n">6</span><span class="k">Partial</span><span class="d">Present but bent toward a different purpose than yours.</span></div>
+      <div class="tl gone"><span class="n">6</span><span class="k">Absent</span><span class="d">Dispositional, critical, or cross-domain. Four of them live in other fields.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">What the review shows</span>
+      <h2>Four findings</h2>
+    </div>
+    <div class="finds">
+      <div class="find">
+        <h4>The gap is not in your thinking, it is between literatures</h4>
+        <p>Your sixteen aims are scattered across at least seven bodies of work that barely cite one another: music education standards, psychometric musicality research, German empirical <em>Kompetenz</em> modelling, informal-learning research, civic and intercultural competence, music therapy, and the sociology of music. Each covers some of your list well. None covers even half. There is no framework that holds capability, critique and disposition together — which is a reasonable description of what MTILT would be, if you decided it were a framework at all.</p>
+      </div>
+      <div class="find">
+        <h4>The absences are load-bearing, not oversights</h4>
+        <p>Six of your aims are missing because competency frameworks must produce evidence a third party can check within a school year. "Sings in the car" and "understands why their taste is not a personality trait" fail that test. The Council of Europe's framework shows dispositions <em>can</em> be written down — it names tolerance of ambiguity as a competence — but only by giving up on short-term assessment. That is the trade, and it is the one worth making deliberately rather than by default.</p>
+      </div>
+      <div class="find">
+        <h4>Two frameworks are worth borrowing from directly</h4>
+        <p>The German KoMus model, because it refuses to separate perceiving music from contextualising it — one competence, not two, which is close to a formal statement of your position and is empirically validated. And the Gold-MSI, because "active musical engagement" is the only place in the entire field where a person who mostly listens, collects and attends is credited with a musical life. Québec's <em>Apprécier</em> is the third, and it is already yours by jurisdiction.</p>
+      </div>
+      <div class="find">
+        <h4>Cultural competence frameworks are about teachers, not learners</h4>
+        <p>You raised cultural competency as related, and it is — but the music-specific literature almost entirely specifies what a culturally responsive <em>teacher</em> knows and does. If you want it as a learner aim, the Council of Europe's twenty competences are the better source, since they are written for the person learning rather than the person facilitating.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Two things you raised in passing</span>
+      <h2>Grooves, and different tools</h2>
+    </div>
+    <div class="finds">
+      <div class="find">
+        <h4>A groove is a competency object, and an appropriation problem, at once</h4>
+        <p>You noted patterns brought from one context to another. A groove is precisely a pattern that travels and keeps working — which makes it unusually well suited to being a learning object, because its portability is the thing being learned. It is also exactly where your 2019 argument applies: the transfer that makes a groove teachable is the same transfer that makes appropriation a live question. A session built on one groove moving between contexts would carry a capability aim and a <em>Situating</em> aim in the same activity, which is otherwise hard to arrange. Of everything on your list, this is the item most likely to join the two halves.</p>
+      </div>
+      <div class="find">
+        <h4>Tools for the other kinds are collection tools, not instruments</h4>
+        <p>You said tools might still help if appropriated well, and would be different tools. The survey supports that fairly specifically. The aims that instruments serve are the ones already covered by existing frameworks. The absent aims — taste and social group, commodification, diversity, narrowness — are served by <em>corpora</em>: things that let a group gather, compare, annotate and argue about material. Which is your information-architecture instinct pointed at a pedagogical purpose rather than a personal library, and it is a different build from an AUv3 plug-in.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p><strong>Verified.</strong> NCAS processes and components, AEC/Polifonia outcomes, Québec's three competencies, RFCDC's twenty competences, Gold-MSI's five subscales, Green's five principles, and the Mullen critique are taken from the framework documents or publisher pages themselves.</p>
+    <p><strong>Less firmly.</strong> KoMus is reported from abstracts and project pages rather than the German-language papers in full, so the model's internal levels are not represented here. Swanwick's CLASP and Elliott's knowledge dimensions are from secondary summaries and my own reading, not re-checked against the books. Graded-exam and community-music characterisations are general rather than sourced. The coverage verdicts are my judgements about your aims, not findings — the middle column is the most arguable thing on this page, and disagreeing with a row is more useful than accepting it.</p>
+  </div>
+
+</div>

@@ -1,0 +1,4 @@
+references/pdf/*
+!references/pdf/.gitkeep
+.DS_Store
+node_modules/

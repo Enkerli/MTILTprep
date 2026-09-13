@@ -1,0 +1,1031 @@
+[
+  {
+    "id": "nccas2014",
+    "type": "document",
+    "title": "National Core Arts Standards: Music",
+    "author": [
+      {
+        "literal": "National Coalition for Core Arts Standards"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "keyword": "curriculum, standards, USA",
+    "URL": "https://nationalartsstandards.org/",
+    "note": "Four artistic processes: Creating, Performing, Responding, Connecting; eleven anchor standards"
+  },
+  {
+    "id": "meq2001arts",
+    "type": "document",
+    "title": "Programme de formation de l'école québécoise: domaine des arts",
+    "author": [
+      {
+        "literal": "Ministère de l'Éducation du Québec"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2001
+        ]
+      ]
+    },
+    "keyword": "curriculum, Quebec, competences",
+    "URL": "https://www.education.gouv.qc.ca/fileadmin/site_web/documents/PFEQ/chapitre084v2.pdf",
+    "note": "Trois compétences: Inventer, Interpréter, Apprécier. Apprécier porte explicitement une dimension socioculturelle"
+  },
+  {
+    "id": "dfe2021mmc",
+    "type": "document",
+    "title": "Model Music Curriculum: Key Stages 1 to 3",
+    "author": [
+      {
+        "literal": "Department for Education"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "publisher-place": "London",
+    "keyword": "curriculum, England",
+    "note": "Non-statutory; reopened the argument about whose repertoire counts"
+  },
+  {
+    "id": "aecpolifonia",
+    "type": "document",
+    "title": "The AEC/Polifonia Learning Outcomes for the 1st, 2nd and 3rd Cycles in Music",
+    "author": [
+      {
+        "literal": "Association Européenne des Conservatoires"
+      }
+    ],
+    "keyword": "higher education, learning outcomes, Europe",
+    "URL": "https://aec-music.eu/userfiles/File/aec-polifonia-learning-outcomes-en.pdf",
+    "note": "Practical / theoretical / generic. Treats improvisation as both skill and knowledge; 3rd cycle asks graduates to question conventions"
+  },
+  {
+    "id": "mullensiefen2014goldmsi",
+    "type": "article-journal",
+    "title": "The Musicality of Non-Musicians: An Index for Assessing Musical Sophistication in the General Population",
+    "author": [
+      {
+        "family": "Müllensiefen",
+        "given": "Daniel"
+      },
+      {
+        "family": "Gingras",
+        "given": "Bruno"
+      },
+      {
+        "family": "Musil",
+        "given": "Jason"
+      },
+      {
+        "family": "Stewart",
+        "given": "Lauren"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "container-title": "PLoS ONE",
+    "volume": "9",
+    "issue": "2",
+    "page": "e89642",
+    "DOI": "10.1371/journal.pone.0089642",
+    "keyword": "measurement, musicality, critique-flagged",
+    "note": "Five subscales. NB: the construct name ranks people; see README on the sophistication problem"
+  },
+  {
+    "id": "jordan2012komus",
+    "type": "article-journal",
+    "title": "Entwicklung und Validierung eines Kompetenzmodells im Fach Musik: Wahrnehmen und Kontextualisieren von Musik",
+    "author": [
+      {
+        "family": "Jordan",
+        "given": "Anne-Katrin"
+      },
+      {
+        "family": "Knigge",
+        "given": "Jens"
+      },
+      {
+        "family": "Lehmann",
+        "given": "Andreas C."
+      },
+      {
+        "family": "Niessen",
+        "given": "Anne"
+      },
+      {
+        "family": "Lehmann-Wermser",
+        "given": "Andreas"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "container-title": "Zeitschrift für Pädagogik",
+    "keyword": "competence model, Germany, KoMus",
+    "note": "Binds perceiving and contextualising as ONE competence. The closest formal statement of the MTILT position"
+  },
+  {
+    "id": "swanwick1979basis",
+    "type": "book",
+    "title": "A Basis for Music Education",
+    "author": [
+      {
+        "family": "Swanwick",
+        "given": "Keith"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1979
+        ]
+      ]
+    },
+    "publisher": "NFER-Nelson",
+    "publisher-place": "Windsor",
+    "keyword": "theory, music education",
+    "note": "C(L)A(S)P. Composition, Audition and Performance direct; Literature and Skill acquisition supporting"
+  },
+  {
+    "id": "elliott1995matters",
+    "type": "book",
+    "title": "Music Matters: A New Philosophy of Music Education",
+    "author": [
+      {
+        "family": "Elliott",
+        "given": "David J."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1995
+        ]
+      ]
+    },
+    "publisher": "Oxford University Press",
+    "publisher-place": "New York",
+    "keyword": "philosophy, praxial",
+    "note": "Praxial philosophy; musicianship as procedural knowledge; musicing"
+  },
+  {
+    "id": "small1998musicking",
+    "type": "book",
+    "title": "Musicking: The Meanings of Performing and Listening",
+    "author": [
+      {
+        "family": "Small",
+        "given": "Christopher"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    },
+    "publisher": "Wesleyan University Press",
+    "publisher-place": "Middletown, CT",
+    "keyword": "philosophy, musicking",
+    "note": "Cited in Enkerli 2019. Resists competency framing by construction"
+  },
+  {
+    "id": "green2008informal",
+    "type": "book",
+    "title": "Music, Informal Learning and the School: A New Classroom Pedagogy",
+    "author": [
+      {
+        "family": "Green",
+        "given": "Lucy"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "publisher": "Ashgate",
+    "publisher-place": "Aldershot",
+    "keyword": "informal learning, pedagogy",
+    "note": "Five principles: learner-chosen music, learning by ear, peer groups, haphazard progression, integrated skills. Basis of Musical Futures"
+  },
+  {
+    "id": "higgins2012community",
+    "type": "book",
+    "title": "Community Music: In Theory and in Practice",
+    "author": [
+      {
+        "family": "Higgins",
+        "given": "Lee"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "publisher": "Oxford University Press",
+    "publisher-place": "New York",
+    "keyword": "community music",
+    "note": "Hospitality as method; principled refusal to pre-specify outcomes"
+  },
+  {
+    "id": "hase2013heutagogy",
+    "type": "book",
+    "title": "Self-Determined Learning: Heutagogy in Action",
+    "editor": [
+      {
+        "family": "Hase",
+        "given": "Stewart"
+      },
+      {
+        "family": "Kenyon",
+        "given": "Chris"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "publisher": "Bloomsbury",
+    "publisher-place": "London",
+    "keyword": "heutagogy, self-determined learning",
+    "note": "Capability rather than competency; double-loop learning; learner-defined pathways"
+  },
+  {
+    "id": "blum2020ungrading",
+    "type": "book",
+    "title": "Ungrading: Why Rating Students Undermines Learning (and What to Do Instead)",
+    "editor": [
+      {
+        "family": "Blum",
+        "given": "Susan D."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "publisher": "West Virginia University Press",
+    "publisher-place": "Morgantown",
+    "keyword": "ungrading, assessment critique"
+  },
+  {
+    "id": "coe2018rfcdc",
+    "type": "book",
+    "title": "Reference Framework of Competences for Democratic Culture",
+    "author": [
+      {
+        "literal": "Council of Europe"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "publisher": "Council of Europe Publishing",
+    "publisher-place": "Strasbourg",
+    "keyword": "civic competence, intercultural",
+    "note": "20 competences across values, attitudes, skills, knowledge. Includes tolerance of ambiguity and listening/observing. Written for the LEARNER, unlike most cultural competence work"
+  },
+  {
+    "id": "lind2016culturally",
+    "type": "book",
+    "title": "Culturally Responsive Teaching in Music Education: From Understanding to Application",
+    "author": [
+      {
+        "family": "Lind",
+        "given": "Vicki R."
+      },
+      {
+        "family": "McKoy",
+        "given": "Constance L."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "publisher": "Routledge",
+    "publisher-place": "New York",
+    "keyword": "culturally responsive teaching",
+    "note": "Specifies the TEACHER's competence, not the learner's"
+  },
+  {
+    "id": "deardorff2006identification",
+    "type": "article-journal",
+    "title": "Identification and Assessment of Intercultural Competence as a Student Outcome of Internationalization",
+    "author": [
+      {
+        "family": "Deardorff",
+        "given": "Darla K."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2006
+        ]
+      ]
+    },
+    "container-title": "Journal of Studies in International Education",
+    "volume": "10",
+    "issue": "3",
+    "page": "241--266",
+    "DOI": "10.1177/1028315306287002",
+    "keyword": "intercultural competence"
+  },
+  {
+    "id": "amtacompetencies",
+    "type": "document",
+    "title": "AMTA Professional Competencies",
+    "author": [
+      {
+        "literal": "American Music Therapy Association"
+      }
+    ],
+    "keyword": "music therapy, health",
+    "URL": "https://www.musictherapy.org/about/competencies/",
+    "note": "Where \"singing as breathing exercise\" actually lives, framed clinically"
+  },
+  {
+    "id": "mullen2019standards",
+    "type": "article-journal",
+    "title": "Music Education for Some: Music Standards at the Nexus of Neoliberal Reforms and Neoconservative Values",
+    "author": [
+      {
+        "family": "Mullen",
+        "given": "Jennifer"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "container-title": "Action, Criticism, and Theory for Music Education",
+    "volume": "18",
+    "issue": "1",
+    "keyword": "critique, standards, neoliberalism",
+    "URL": "https://act.maydaygroup.org/articles/Mullen18_1.pdf"
+  },
+  {
+    "id": "attali1977bruits",
+    "type": "book",
+    "title": "Bruits: Essai sur l'économie politique de la musique",
+    "author": [
+      {
+        "family": "Attali",
+        "given": "Jacques"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1977
+        ]
+      ]
+    },
+    "publisher": "Presses universitaires de France",
+    "publisher-place": "Paris",
+    "keyword": "political economy, commodification",
+    "note": "Cited in Enkerli 2019. The commodification aim lives here, not in music education"
+  },
+  {
+    "id": "seeger1958prescriptive",
+    "type": "article-journal",
+    "title": "Prescriptive and Descriptive Music-Writing",
+    "author": [
+      {
+        "family": "Seeger",
+        "given": "Charles"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1958
+        ]
+      ]
+    },
+    "container-title": "The Musical Quarterly",
+    "volume": "44",
+    "issue": "2",
+    "page": "184--195",
+    "DOI": "10.1093/mq/XLIV.2.184",
+    "keyword": "notation, representation, ethnomusicology",
+    "note": "The sharpest single cut in the representation literature, and it comes from ethnomusicology"
+  },
+  {
+    "id": "wiggins1993framework",
+    "type": "article-journal",
+    "title": "A Framework for the Evaluation of Music Representation Systems",
+    "author": [
+      {
+        "family": "Wiggins",
+        "given": "Geraint"
+      },
+      {
+        "family": "Miranda",
+        "given": "Eduardo"
+      },
+      {
+        "family": "Smaill",
+        "given": "Alan"
+      },
+      {
+        "family": "Harris",
+        "given": "Mitch"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1993
+        ]
+      ]
+    },
+    "container-title": "Computer Music Journal",
+    "volume": "17",
+    "issue": "3",
+    "keyword": "representation, evaluation",
+    "note": "Expressive completeness vs structural generality. Reissued in Contemporary Music Review as \"Surveying Musical Representation Systems\""
+  },
+  {
+    "id": "selfridgefield1997beyondmidi",
+    "type": "book",
+    "title": "Beyond MIDI: The Handbook of Musical Codes",
+    "editor": [
+      {
+        "family": "Selfridge-Field",
+        "given": "Eleanor"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1997
+        ]
+      ]
+    },
+    "publisher": "MIT Press",
+    "publisher-place": "Cambridge, MA",
+    "keyword": "representation, codes"
+  },
+  {
+    "id": "tenorconference",
+    "type": "document",
+    "title": "TENOR: International Conference on Technologies for Music Notation and Representation",
+    "keyword": "representation, venue",
+    "URL": "https://www.tenor-conference.org/proceedings.html",
+    "note": "Running since 2015. Open proceedings. An entire venue for the representation question"
+  },
+  {
+    "id": "skold2020notation",
+    "type": "paper-conference",
+    "title": "The Notation of Sound for Composition and Transcription",
+    "author": [
+      {
+        "family": "Sköld",
+        "given": "Mattias"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "container-title": "Proceedings of the International Conference on Technologies for Music Notation and Representation (TENOR)",
+    "keyword": "timbre notation, spectromorphology",
+    "URL": "https://www.tenor-conference.org/proceedings/2020/14_Skold_tenor20.pdf"
+  },
+  {
+    "id": "thoresen2007spectromorphological",
+    "type": "article-journal",
+    "title": "Spectromorphological Analysis of Sound Objects: An Adaptation of Pierre Schaeffer's Typomorphology",
+    "author": [
+      {
+        "family": "Thoresen",
+        "given": "Lasse"
+      },
+      {
+        "family": "Hedman",
+        "given": "Andreas"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "container-title": "Organised Sound",
+    "volume": "12",
+    "issue": "2",
+    "page": "129--141",
+    "DOI": "10.1017/S1355771807001793",
+    "keyword": "timbre, sound objects, Aural Sonology",
+    "note": "Schaeffer's ~28 categories reduced to 15 with a working symbol set"
+  },
+  {
+    "id": "schaeffer1966traite",
+    "type": "book",
+    "title": "Traité des objets musicaux",
+    "author": [
+      {
+        "family": "Schaeffer",
+        "given": "Pierre"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1966
+        ]
+      ]
+    },
+    "publisher": "Seuil",
+    "publisher-place": "Paris",
+    "keyword": "sound objects, reduced listening"
+  },
+  {
+    "id": "toussaint2013geometry",
+    "type": "book",
+    "title": "The Geometry of Musical Rhythm",
+    "author": [
+      {
+        "family": "Toussaint",
+        "given": "Godfried T."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "publisher": "CRC Press",
+    "publisher-place": "Boca Raton",
+    "keyword": "rhythm, representation, mathematics",
+    "note": "Rhythm necklaces; Euclidean rhythms. Underpins the ring representations in the suite"
+  },
+  {
+    "id": "weibel2020upic",
+    "type": "book",
+    "title": "From Xenakis's UPIC to Graphic Notation Today",
+    "editor": [
+      {
+        "family": "Weibel",
+        "given": "Peter"
+      },
+      {
+        "family": "Brümmer",
+        "given": "Ludger"
+      },
+      {
+        "family": "Kanach",
+        "given": "Sharon"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "publisher": "Hatje Cantz / ZKM",
+    "keyword": "graphic notation, UPIC",
+    "note": "Open access. UPIC is DrawnQurve's ancestor"
+  },
+  {
+    "id": "saitis2019semantics",
+    "type": "chapter",
+    "title": "The Semantics of Timbre",
+    "author": [
+      {
+        "family": "Saitis",
+        "given": "Charalampos"
+      },
+      {
+        "family": "Weinzierl",
+        "given": "Stefan"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "container-title": "Timbre: Acoustics, Perception, and Cognition",
+    "publisher": "Springer",
+    "keyword": "timbre, descriptors",
+    "URL": "https://comma.eecs.qmul.ac.uk/assets/pdf/Saitis_chap5.pdf",
+    "note": "Three recurring dimensions: brightness (spectral centroid), texture/roughness (AM in critical bands), fullness (fundamental strength, inharmonicity). Cross-linguistically stable"
+  },
+  {
+    "id": "wallmark2019crosstalk",
+    "type": "article-journal",
+    "title": "Semantic Crosstalk in Timbre Perception",
+    "author": [
+      {
+        "family": "Wallmark",
+        "given": "Zachary"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "container-title": "Music & Science",
+    "volume": "2",
+    "DOI": "10.1177/2059204319846617",
+    "keyword": "timbre, semantics"
+  },
+  {
+    "id": "reymore2020timbretrait",
+    "type": "paper-conference",
+    "title": "Timbre Trait Analysis: The Semantics of Instrumentation",
+    "author": [
+      {
+        "family": "Reymore",
+        "given": "Lindsey"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "container-title": "Proceedings of Timbre 2020",
+    "keyword": "timbre, qualia",
+    "URL": "https://timbre2020.mus.auth.gr/assets/papers/8.Reymore.pdf"
+  },
+  {
+    "id": "farnell2010designing",
+    "type": "book",
+    "title": "Designing Sound",
+    "author": [
+      {
+        "family": "Farnell",
+        "given": "Andy"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2010
+        ]
+      ]
+    },
+    "publisher": "MIT Press",
+    "publisher-place": "Cambridge, MA",
+    "keyword": "sound design, procedural audio",
+    "note": "Cited in Enkerli 2019. Source of the scepticism about unstable descriptors"
+  },
+  {
+    "id": "schafer1967earcleaning",
+    "type": "book",
+    "title": "Ear Cleaning: Notes for an Experimental Music Course",
+    "author": [
+      {
+        "family": "Schafer",
+        "given": "R. Murray"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1967
+        ]
+      ]
+    },
+    "publisher": "BMI Canada",
+    "publisher-place": "Toronto",
+    "keyword": "listening, music education"
+  },
+  {
+    "id": "schafer1992soundeducation",
+    "type": "book",
+    "title": "A Sound Education: 100 Exercises in Listening and Sound-Making",
+    "author": [
+      {
+        "family": "Schafer",
+        "given": "R. Murray"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1992
+        ]
+      ]
+    },
+    "publisher": "Arcana Editions",
+    "publisher-place": "Indian River, ON",
+    "keyword": "listening, exercises",
+    "note": "The practical companion. Starts from sounds learners already encounter"
+  },
+  {
+    "id": "oliveros2005deep",
+    "type": "book",
+    "title": "Deep Listening: A Composer's Sound Practice",
+    "author": [
+      {
+        "family": "Oliveros",
+        "given": "Pauline"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2005
+        ]
+      ]
+    },
+    "publisher": "iUniverse",
+    "publisher-place": "New York",
+    "keyword": "deep listening, attention",
+    "note": "\"A way of listening in every possible way to everything possible.\" Hearing is involuntary; listening is voluntary. Candidate remedy for the over-analysis ditch"
+  },
+  {
+    "id": "csikszentmihalyi1990flow",
+    "type": "book",
+    "title": "Flow: The Psychology of Optimal Experience",
+    "author": [
+      {
+        "family": "Csikszentmihalyi",
+        "given": "Mihaly"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1990
+        ]
+      ]
+    },
+    "publisher": "Harper & Row",
+    "publisher-place": "New York",
+    "keyword": "flow, motivation",
+    "note": "Challenge-skill balance: anxiety when challenge exceeds skill, boredom when skill exceeds challenge. The canonical model for the desire/skill gap"
+  },
+  {
+    "id": "enkerli2019son",
+    "type": "article-journal",
+    "title": "Son propre son: bricolage sonore et appropriation technologique",
+    "author": [
+      {
+        "family": "Enkerli",
+        "given": "Alexandre"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "container-title": "Anthropologie et Sociétés",
+    "volume": "43",
+    "issue": "1",
+    "page": "71--93",
+    "DOI": "10.7202/1060871ar",
+    "keyword": "appropriation, bricolage, MTILT",
+    "note": "Appropriation as the operative concept. Applies to frameworks as readily as to technology"
+  },
+  {
+    "id": "huizinga1938homoludens",
+    "type": "book",
+    "title": "Homo Ludens: Proeve eener bepaling van het spel-element der cultuur",
+    "author": [
+      {
+        "family": "Huizinga",
+        "given": "Johan"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1938
+        ]
+      ]
+    },
+    "publisher": "Tjeenk Willink",
+    "publisher-place": "Haarlem",
+    "keyword": "play, culture",
+    "note": "Cited in Enkerli 2019. Play as culture-generating and serious; Caillois wrote partly in response"
+  },
+  {
+    "id": "caillois1958jeux",
+    "type": "book",
+    "title": "Les jeux et les hommes: le masque et le vertige",
+    "author": [
+      {
+        "family": "Caillois",
+        "given": "Roger"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1958
+        ]
+      ]
+    },
+    "publisher": "Gallimard",
+    "publisher-place": "Paris",
+    "keyword": "play, typology, toys-not-games",
+    "note": "Agon, alea, mimicry, ilinx; and the paidia-ludus continuum. Paidia is free improvised play, ludus is play bound by convention and arbitrary difficulty. Gamification imports ludus and loses paidia"
+  },
+  {
+    "id": "oldenburg1989greatgoodplace",
+    "type": "book",
+    "title": "The Great Good Place: Cafes, Coffee Shops, Community Centers, Beauty Parlors, General Stores, Bars, Hangouts, and How They Get You Through the Day",
+    "author": [
+      {
+        "family": "Oldenburg",
+        "given": "Ray"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1989
+        ]
+      ]
+    },
+    "publisher": "Paragon House",
+    "publisher-place": "New York",
+    "keyword": "third place, hackspace, venue",
+    "note": "The third place: neither home nor work, low barrier to entry, conversation as main activity, regulars, playful mood. Close to a definition of \"being a good hang\""
+  },
+  {
+    "id": "neff2011selfcompassion",
+    "type": "book",
+    "title": "Self-Compassion: The Proven Power of Being Kind to Yourself",
+    "author": [
+      {
+        "family": "Neff",
+        "given": "Kristin"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "publisher": "William Morrow",
+    "publisher-place": "New York",
+    "keyword": "self-compassion, the ditches",
+    "note": "Self-kindness, common humanity, mindfulness. Common humanity is the active ingredient for the desire/skill ditch: a difficulty named as shared rather than personal"
+  },
+  {
+    "id": "godoy2010musicalgestures",
+    "type": "book",
+    "title": "Musical Gestures: Sound, Movement, and Meaning",
+    "editor": [
+      {
+        "family": "Godøy",
+        "given": "Rolf Inge"
+      },
+      {
+        "family": "Leman",
+        "given": "Marc"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2010
+        ]
+      ]
+    },
+    "publisher": "Routledge",
+    "publisher-place": "New York",
+    "keyword": "gesture, embodiment, dance",
+    "note": "The embodiment crossing. Connects to DrawnQurve and to the breath material"
+  },
+  {
+    "id": "xenakis1992formalized",
+    "type": "book",
+    "title": "Formalized Music: Thought and Mathematics in Composition",
+    "author": [
+      {
+        "family": "Xenakis",
+        "given": "Iannis"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1992
+        ]
+      ]
+    },
+    "publisher": "Pendragon Press",
+    "publisher-place": "Stuyvesant, NY",
+    "edition": "2",
+    "keyword": "architecture, crossing, UPIC",
+    "note": "Xenakis trained and worked as an architect with Le Corbusier. The Philips Pavilion (Brussels, 1958) and Metastaseis share a generating idea: string glissandi and ruled surfaces are the same geometry, built twice. The cleanest case of a crossing that is one object rather than an illustration"
+  },
+  {
+    "id": "scott2010tamildaa",
+    "type": "document",
+    "title": "Talking About Music Is Like Dancing About Architecture",
+    "author": [
+      {
+        "family": "Scott",
+        "given": "Alan P."
+      }
+    ],
+    "keyword": "TaMilDaA, transmodality, critique",
+    "URL": "http://home.pacifier.com/~ascott/they/tamildaa.htm",
+    "note": "Cited in Enkerli 2019. The catalogue of attributions — Martin Mull, Elvis Costello, Steve Martin, Laurie Anderson, Zappa, Monk — and the source of the TaMilDaA acronym. Unresolved attribution is part of how the put-down works"
+  },
+  {
+    "id": "nime",
+    "type": "document",
+    "title": "NIME: International Conference on New Interfaces for Musical Expression",
+    "keyword": "instrument design, NIME",
+    "URL": "https://www.nime.org/",
+    "note": "Running since 2001, open proceedings. Where instrument design is treated as a research question. Relevant to the law of the instrument: a hex grid is a different hammer, not an absence of one"
+  },
+  {
+    "id": "kaplan1964lawinstrument",
+    "type": "article-journal",
+    "title": "The Conduct of Inquiry: Methodology for Behavioral Science",
+    "author": [
+      {
+        "family": "Kaplan",
+        "given": "Abraham"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1964
+        ]
+      ]
+    },
+    "publisher": "Chandler",
+    "publisher-place": "San Francisco",
+    "keyword": "law of the instrument, epistemology",
+    "note": "The law of the instrument: \"Give a small boy a hammer and he will find that everything he encounters needs pounding.\" Later Maslow 1966. The Golden Hammer anti-pattern"
+  }
+]

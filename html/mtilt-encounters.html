@@ -1,0 +1,927 @@
+<title>MTILT Encounters</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #F1F4F3;
+    --surface: #FBFCFC;
+    --sunk: #E6ECEA;
+    --ink: #14201E;
+    --ink-soft: #4C5A58;
+    --ink-faint: #788784;
+    --accent: #0F5C57;
+    --accent-soft: #D4E4E1;
+    --mark: #A8452B;
+    --mark-soft: #F0DED8;
+    --rule: #CDD8D5;
+
+    --f-display: "Spectral", Georgia, "Times New Roman", serif;
+    --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --f-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0E1514;
+      --surface: #151F1D;
+      --sunk: #1B2725;
+      --ink: #E3EAE8;
+      --ink-soft: #9CADAA;
+      --ink-faint: #74847F;
+      --accent: #63C2B4;
+      --accent-soft: #1C3532;
+      --mark: #E08265;
+      --mark-soft: #3A2119;
+      --rule: #2A3735;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0E1514;
+    --surface: #151F1D;
+    --sunk: #1B2725;
+    --ink: #E3EAE8;
+    --ink-soft: #9CADAA;
+    --ink-faint: #74847F;
+    --accent: #63C2B4;
+    --accent-soft: #1C3532;
+    --mark: #E08265;
+    --mark-soft: #3A2119;
+    --rule: #2A3735;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 56px 88px;
+  }
+
+  .prose { max-width: var(--measure); }
+
+  h1, h2, h3, h4 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+
+  h1 {
+    font-size: clamp(2.1rem, 5.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+  }
+  h2 {
+    font-size: clamp(1.5rem, 3.4vw, 1.95rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.18;
+  }
+  h3 { font-size: 1.24rem; font-weight: 600; line-height: 1.25; }
+  h4 { font-size: 1.02rem; font-weight: 600; }
+
+  p { margin: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  code, .mono { font-family: var(--f-mono); font-size: 0.875em; }
+  code {
+    background: var(--sunk);
+    padding: 0.12em 0.36em;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 18px; }
+  .masthead .lede {
+    font-family: var(--f-display);
+    font-size: clamp(1.1rem, 2.4vw, 1.32rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .masthead .meta {
+    font-family: var(--f-mono);
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+  }
+
+  /* ---------- sections ---------- */
+
+  section { margin-top: 68px; }
+  .sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+  .stack { display: flex; flex-direction: column; gap: 16px; }
+  .stack-tight { display: flex; flex-direction: column; gap: 10px; }
+
+  /* ---------- the four tests ---------- */
+
+  .tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
+  .test { background: var(--surface); padding: 20px 18px; display: flex; flex-direction: column; gap: 7px; }
+  .test .name { font-family: var(--f-display); font-weight: 600; font-size: 1.06rem; }
+  .test .q { font-size: 0.9rem; color: var(--ink-soft); }
+  .test .src { font-family: var(--f-mono); font-size: 0.68rem; color: var(--ink-faint); margin-top: auto; padding-top: 6px; }
+
+  /* ---------- surface table ---------- */
+
+  .table-scroll { overflow-x: auto; margin-top: 22px; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    border-bottom: 1px solid var(--ink-soft);
+  }
+  td.tool { font-family: var(--f-mono); font-size: 0.83rem; white-space: nowrap; }
+  .surf {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .surf.open { background: var(--accent-soft); color: var(--accent); }
+  .surf.rig { background: var(--mark-soft); color: var(--mark); }
+
+  /* ---------- scenario records ---------- */
+
+  .record {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 26px 24px;
+    margin-top: 22px;
+  }
+  .rec-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 6px; }
+  .rec-id { font-family: var(--f-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.06em; }
+  .rec-surface { font-family: var(--f-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-faint); }
+  .rec-title { font-size: 1.34rem; }
+
+  .phenom {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--sunk);
+    border-left: 2px solid var(--mark);
+    font-family: var(--f-display);
+    font-size: 1.04rem;
+    line-height: 1.45;
+  }
+  .phenom .lbl {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 34px; margin-top: 22px; }
+  @media (max-width: 680px) { .fields { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field .lbl {
+    font-family: var(--f-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .field p, .field ul { font-size: 0.925rem; color: var(--ink-soft); }
+  .field ul { margin: 0; padding-left: 17px; display: flex; flex-direction: column; gap: 5px; }
+  .field strong { color: var(--ink); font-weight: 600; }
+  .field.wide { grid-column: 1 / -1; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  .chip {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-soft);
+  }
+  .chip.pass { border-color: var(--accent); color: var(--accent); }
+  .chip.watch { border-color: var(--mark); color: var(--mark); }
+
+  /* ---------- rhythm rings ---------- */
+
+  .rings { margin-top: 20px; max-width: 420px; }
+  .rings svg { width: 100%; height: auto; display: block; }
+  .rings .ring { fill: none; stroke: var(--rule); stroke-width: 1; }
+  .rings .rest { fill: var(--sunk); stroke: var(--rule); stroke-width: 1; }
+  .rings .onset { fill: var(--mark); }
+  .rings .cap { fill: var(--ink-faint); font-family: var(--f-mono); font-size: 9px; }
+  .rings figcaption { font-size: 0.84rem; color: var(--ink-faint); margin-top: 8px; font-family: var(--f-body); }
+
+  /* ---------- schema block ---------- */
+
+  pre {
+    background: var(--sunk);
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin: 22px 0 0;
+    font-family: var(--f-mono);
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  pre .c { color: var(--ink-faint); }
+  pre .k { color: var(--accent); }
+
+  /* ---------- ladder ---------- */
+
+  .ladder { display: flex; flex-wrap: wrap; align-items: stretch; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .rung { background: var(--surface); padding: 14px 16px; flex: 1 1 150px; display: flex; flex-direction: column; gap: 5px; }
+  .rung .n { font-family: var(--f-mono); font-size: 0.74rem; color: var(--accent); font-weight: 500; }
+  .rung .d { font-size: 0.85rem; color: var(--ink-soft); }
+
+  /* ---------- moves ---------- */
+
+  .moves { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .move { background: var(--surface); padding: 20px 22px; display: grid; grid-template-columns: auto 1fr; gap: 4px 18px; align-items: baseline; }
+  @media (max-width: 620px) { .move { grid-template-columns: 1fr; } }
+  .move .num { font-family: var(--f-mono); font-size: 0.72rem; color: var(--mark); letter-spacing: 0.08em; }
+  .move h4 { grid-column: 2; }
+  @media (max-width: 620px) { .move h4 { grid-column: 1; } }
+  .move p { grid-column: 2; font-size: 0.925rem; color: var(--ink-soft); }
+  @media (max-width: 620px) { .move p { grid-column: 1; } }
+
+  /* ---------- provenance ---------- */
+
+  .provenance {
+    margin-top: 68px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+    max-width: var(--measure);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .provenance strong { color: var(--ink-soft); font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">MusicTech: Inclusive Learning &amp; Teaching</span>
+    <h1>Encounters before names</h1>
+    <p class="lede">Seven workshop scenarios built from tools that already exist, each designed so the phenomenon arrives before anyone needs a word for it — and so the session leaves field material behind.</p>
+    <div class="meta">
+      <span>Scenario set v0.1</span>
+      <span>Self-paced · no fixed occasion</span>
+      <span>Grounded in Enkerli 2019, <em>Son propre son</em></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The criterion</span>
+      <h2>What makes a session MTILT-shaped</h2>
+    </div>
+    <div class="prose stack">
+      <p>The distinction you draw — phenomena rather than concepts — becomes operational when you treat it as a property of the <em>setup</em> rather than of the subject matter. A concept is nameable and transferable; a phenomenon is encounterable and describable. A session is MTILT-shaped when it reliably produces an encounter, and when naming what happened afterwards is optional, learner-generated, and never the assessment.</p>
+      <p>Four tests fall out of that, and three of them come straight from your own critique of the Maker sphere's meritocracy. They are cheap to apply and they disqualify things quickly.</p>
+    </div>
+
+    <div class="tests">
+      <div class="test">
+        <span class="name">The mute test</span>
+        <span class="q">Could someone do the whole activity, and notice the thing, without anyone using a technical term?</span>
+        <span class="src">If the activity collapses without the vocabulary, it is a concept lesson in costume.</span>
+      </div>
+      <div class="test">
+        <span class="name">The no-wrong-note test</span>
+        <span class="q">Is there a failure state a newcomer can hit and read as <em>I'm not musical</em>?</span>
+        <span class="src">Meritocracy enters through failure states, not through rhetoric.</span>
+      </div>
+      <div class="test">
+        <span class="name">The description test</span>
+        <span class="q">Does each person leave with something of their own to say about what happened?</span>
+        <span class="src">Learning evidence and ethnographic yield are the same object here.</span>
+      </div>
+      <div class="test">
+        <span class="name">The diversity test</span>
+        <span class="q">Does the setup reproduce the narrow default palette, or let other sound in?</span>
+        <span class="src">The 808 problem: tens of thousands of samples, a few hundred clarinets.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The house form</span>
+      <h2>The answering instrument</h2>
+    </div>
+    <div class="prose stack">
+      <p>You have already run the best version of this. At the Labo symphonique, children played your Alesis keyboard while you answered on the WX-11 — watching which keys they pressed so you could reply in a way that facilitated their own listening. That is not a warm anecdote; it is a reproducible workshop architecture, and it happens to resolve the hardest practical constraint in your current toolkit.</p>
+      <p><strong>Participants act on an open surface. You answer on the instrument.</strong> The learning lives in the call and response, not in an explanation that precedes it. This form passes the mute test structurally — you cannot explain while you are playing — and it converts your AUv3 suite from something participants would need to install into something only you need to run.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Practical constraint</span>
+      <h2>What can actually be in participants' hands</h2>
+    </div>
+    <div class="prose">
+      <p>Sorting the repositories by who can reach them is the most consequential thing in this document. The split is clean, and it is not a deficiency — it is what makes the answering-instrument form the right default rather than a compromise.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Tool</th><th scope="col">Surface</th><th scope="col">What it puts in reach</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="tool">rhythm_pattern_explorer</td><td><span class="surf open">Any browser</span></td><td>Rings, not staves. UPI notation, Euclidean / Barlow / anti-Barlow generators, rotation, accent layers.</td></tr>
+          <tr><td class="tool">pitch-ontology</td><td><span class="surf open">Any browser</span></td><td>Concepts, claims, journeys, sources — pitch vocabulary shown as situated rather than given.</td></tr>
+          <tr><td class="tool">patch-panel</td><td><span class="surf open">Any browser</span></td><td>A cabinet of modular systems with every claim evidence-tagged.</td></tr>
+          <tr><td class="tool">manifold</td><td><span class="surf open">Any browser / YAML</span></td><td>~30 controller profiles; config / discrete / continuous; a stub→verified status ladder.</td></tr>
+          <tr><td class="tool">SwiftVane</td><td><span class="surf rig">Facilitator's rig</span></td><td>A breath-first, MPE-aware wind voice. Blown, not struck.</td></tr>
+          <tr><td class="tool">SwiftDrawnQurve</td><td><span class="surf rig">Facilitator's rig</span></td><td>A drawn curve, looping as CC / pressure / bend.</td></tr>
+          <tr><td class="tool">SwiftPitchFold</td><td><span class="surf rig">Facilitator's rig</span></td><td>Pitch-class-set quantizing — a keyboard where every note belongs.</td></tr>
+          <tr><td class="tool">ProgGenie</td><td><span class="surf rig">Facilitator's rig</span></td><td>Chord progressions generated underneath whatever someone is playing.</td></tr>
+          <tr><td class="tool">SwiftMIDIcurator</td><td><span class="surf rig">Facilitator's rig</span></td><td>A library of clips you can audition, judge, and find again.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Scenarios · MTILT-S</span>
+      <h2>Seven encounters</h2>
+    </div>
+    <div class="prose">
+      <p>Records, not a sequence — the identifiers are catalogue numbers in the same sense Manifold's are, and the set is meant to grow one entry at a time. Each is written to be run as it stands, with the tools in their current state.</p>
+    </div>
+
+    <!-- S-001 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-001</span>
+        <span class="rec-surface">Browser · 20–40 min · 2–20 people</span>
+      </div>
+      <h3 class="rec-title">Same count, different feel</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        Where a cycle starts changes everything about it, while nothing measurable about it has changed.
+      </div>
+
+      <figure class="rings">
+        <svg viewBox="0 0 220 126" role="img" aria-label="Two eight-step rhythm rings. The first has filled onsets at positions 0, 3 and 6. The second has the same three onsets rotated by one step, at positions 1, 4 and 7.">
+          <g class="ring">
+            <circle cx="56" cy="52" r="30"></circle>
+            <circle cx="164" cy="52" r="30"></circle>
+          </g>
+          <g class="rest">
+            <circle cx="77.2" cy="30.8" r="5"></circle>
+            <circle cx="86" cy="52" r="5"></circle>
+            <circle cx="56" cy="82" r="5"></circle>
+            <circle cx="34.8" cy="73.2" r="5"></circle>
+            <circle cx="34.8" cy="30.8" r="5"></circle>
+            <circle cx="164" cy="22" r="5"></circle>
+            <circle cx="194" cy="52" r="5"></circle>
+            <circle cx="185.2" cy="73.2" r="5"></circle>
+            <circle cx="142.8" cy="73.2" r="5"></circle>
+            <circle cx="134" cy="52" r="5"></circle>
+          </g>
+          <g class="onset">
+            <circle cx="56" cy="22" r="5.5"></circle>
+            <circle cx="77.2" cy="73.2" r="5.5"></circle>
+            <circle cx="26" cy="52" r="5.5"></circle>
+            <circle cx="185.2" cy="30.8" r="5.5"></circle>
+            <circle cx="164" cy="82" r="5.5"></circle>
+            <circle cx="142.8" cy="30.8" r="5.5"></circle>
+          </g>
+          <g class="cap" text-anchor="middle">
+            <text x="56" y="108">E(3,8)</text>
+            <text x="164" y="108">E(3,8)@#1</text>
+            <text x="110" y="122">three onsets, eight steps, both times</text>
+          </g>
+        </svg>
+      </figure>
+
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>Everyone opens the rhythm pattern explorer on whatever device they brought. One shared speaker. If devices are scarce, one screen and a keyboard that gets passed.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Everyone types <code>E(3,8)</code>. Same three numbers, same result, everywhere in the room.</li>
+            <li>Rotate it — <code>E(3,8)@#1</code>, then further. Listen after each turn.</li>
+            <li>Each person keeps the rotation they like. Play them in turn; the room claps along with each.</li>
+            <li>Ask only: which ones were easy to clap to, and which ones fought you?</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>Some rotations have an obvious place to come in; others don't.</li>
+            <li>Two people will start the same ring in different places and both be right.</li>
+            <li>The ring has no beginning until someone gives it one.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Mathematics.</strong> Rotations of a necklace are an equivalence class — and here the class is audible, not illustrated. <code>E(3,8)</code> <em>is</em> Euclid's algorithm applied to fair division.</li>
+            <li><strong>Computer science.</strong> <code>10010010</code>, <code>0x94:8</code> and <code>[0,3,6]:8</code> are the same object in three notations. Multiple representation, made hearable.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Access &amp; diversity</span>
+          <p>Works on a phone. No install, no account, no audio skill, no failure state — every string that parses is a pattern. For the diversity test, replace the default click with sounds participants record in the room before you start; the pattern stays, the palette stops being someone else's.</p>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Field prompt</span>
+          <p>Write down the words people reach for when they describe the difference between two rotations. Not their judgements — their <em>terms</em>. This list is a direct contribution to the rhythm side of pitch-ontology.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip watch">diversity — needs the sample swap</span>
+      </div>
+    </article>
+
+    <!-- S-002 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-002</span>
+        <span class="rec-surface">Browser · 25–45 min · 4–20 people</span>
+      </div>
+      <h3 class="rec-title">The pattern that isn't yours</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        The sense that a rhythm is <em>right</em> is produced by something, and that something can be inverted on purpose.
+      </div>
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>Same browser tool. You drive, or everyone follows along. The three generators are already there.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Play <code>E(3,8)</code>, <code>B(3,8)</code> and <code>W(3,8)</code> unlabelled, in a shuffled order, more than once.</li>
+            <li>Ask which one makes sense, which is wrong, which is interesting. Take a show of hands. Note the disagreements.</li>
+            <li>Only then say what they are: one spreads onsets evenly, one maximises metric indispensability, one deliberately inverts it.</li>
+            <li>Play <code>W</code> patterns again, now that they have a reason to exist.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>Near-unanimity on which is "wrong" — followed by discomfort when it turns out to be the deliberate one.</li>
+            <li>Someone will defend the anti-Barlow pattern, and the room will split.</li>
+            <li>Second hearings change verdicts. Nobody's ear was fixed.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Social science.</strong> A norm felt from the inside as nature, then shown to be a weighting function. This is the whole lesson of enculturation in fifteen minutes, with the participants as their own informants.</li>
+            <li><strong>Mathematics.</strong> Indispensability is a ranking over positions. Inverting a ranking is a legible operation.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Why it carries the inclusion work</span>
+          <p>This is the strongest single move available to you, because it converts <em>I'm not musical</em> into <em>my ear was trained on something specific</em> — without dismissing anyone's taste and without asking anyone to perform. It is also honest: you are not telling them their intuition is wrong, you are showing them it has a shape.</p>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Field prompt</span>
+          <p>The vocabulary used for <code>W()</code> patterns is where enculturation becomes visible in language. Record it verbatim, including the dismissive words.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip pass">diversity ✓</span>
+      </div>
+    </article>
+
+    <!-- S-003 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-003</span>
+        <span class="rec-surface">Answering instrument · 30–50 min · 3–12 people</span>
+      </div>
+      <h3 class="rec-title">Draw the shape of a sound</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        A drawn shape and a change in sound are the same object; speed up the loop far enough and the shape stops being a rhythm and becomes a timbre.
+      </div>
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>Paper and markers for everyone. DrawnQurve on your iPad, routed to a voice with an obvious response. You trace each person's drawn curve into the app; if there is a spare device, it gets passed instead.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Ask for a curve that sounds like <em>getting closer</em>. Then <em>hesitating</em>. Then <em>a question</em>.</li>
+            <li>Trace it, loop it, let them hear it. They revise the drawing and you trace again.</li>
+            <li>Take one curve and speed the loop up, steadily, past the point where it stops being a pulse.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>How fast the curve moves matters as much as how far it goes.</li>
+            <li>Two people draw the same idea very differently and both work.</li>
+            <li>The moment the loop stops being countable and becomes a tone — nearly everyone reacts to this.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Mathematics.</strong> The curve is a function of time, drawn by hand. Periodicity, rate of change, and interpolation are all in the room without being named.</li>
+            <li><strong>Physics.</strong> The rhythm-to-pitch crossing is frequency. It is one continuum, and here it is one gesture.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Access &amp; diversity</span>
+          <p>Drawing is the lowest-barrier input in the whole set: people who are certain they can't play will draw. Keep the paper stage — going straight to the tablet reintroduces a device gate for no gain.</p>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Field prompt</span>
+          <p>Collect the metaphors. <em>Hesitating</em>, <em>getting closer</em> — the words participants use for shapes are exactly the situated vocabulary pitch-ontology is trying not to presuppose.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip pass">diversity ✓</span>
+      </div>
+    </article>
+
+    <!-- S-004 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-004</span>
+        <span class="rec-surface">Answering instrument · 20–40 min · 2–8 people</span>
+      </div>
+      <h3 class="rec-title">One breath, no fingering</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        Expression lives in a continuous stream rather than in discrete events, and the body already knows how to shape one, because it knows how to speak.
+      </div>
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>Vane, or a wind controller, on your rig. One instrument, passed. Say nothing about fingering and do not demonstrate a melody first.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Three tasks, in order: make it get louder without getting higher; make it waver; make it stop without stopping blowing.</li>
+            <li>Each person takes a turn. Everyone else listens; nobody comments on skill.</li>
+            <li>Then two people at once, if you have a second controller — one holds, one moves.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>Louder and higher are bound together until you deliberately separate them.</li>
+            <li>The third task is the hard one, and it is where people find the instrument's edge.</li>
+            <li>Sustained breath is physically demanding in a way that reframes what wind players do.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Health and physiology.</strong> Breath control is shared ground with singing, wind playing, meditative practice and speech therapy — a real crossing, not a decorative one, since the object is the same in each.</li>
+            <li><strong>Accessibility.</strong> Breath is available to people for whom a keyboard is not. This is the scenario where the inclusive claim is literal.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Facilitation constraints</span>
+          <p>Mouthpiece hygiene is a real logistical requirement, not a footnote — plan for disposable or per-person mouthpieces, and say so up front so nobody has to ask. Some participants will find sustained blowing tiring or uncomfortable; make sitting out unremarkable by building a listening role into the activity rather than offering an exemption.</p>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Field prompt</span>
+          <p>This is where <em>son propre son</em> becomes literal. Note what changes in someone's posture between their first and third turn.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip watch">diversity — one instrument limits the palette</span>
+      </div>
+    </article>
+
+    <!-- S-005 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-005</span>
+        <span class="rec-surface">Answering instrument + browser · 40–60 min · 3–12 people</span>
+      </div>
+      <h3 class="rec-title">The mood changed and I didn't do it</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        Harmony as an environment you are inside rather than an object you build — felt fully, and named afterwards in the participant's own words.
+      </div>
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>PitchFold on your rig, quantizing a keyboard to a pitch-class set, so that no note a participant plays can be wrong. ProgGenie underneath if you want motion. The pitch-ontology site open for the second half.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Hand someone the keyboard. Tell them only that every note belongs. Let them play until they stop being careful.</li>
+            <li>While they keep playing, change the set underneath them. Say nothing.</li>
+            <li>They will hear it. Wait for them to say so.</li>
+            <li>Second half: ask the room to name what changed. Write every word on the wall. Then open pitch-ontology's journeys and show that traditions disagree about these names too.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>Something changed and it wasn't me — which is the harmonic phenomenon, arrived at without a single chord name.</li>
+            <li>Playing carelessly produces something good, which contradicts a lot of prior instruction.</li>
+            <li>The room's words for the change won't agree, and the disagreement is interesting rather than a problem to resolve.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Mathematics.</strong> Pitch-class sets are sets under modular arithmetic. Changing the set is changing the membership rule.</li>
+            <li><strong>Anthropology and linguistics.</strong> Collecting the room's words is folk taxonomy in miniature — and showing that <em>minor</em> is as situated as whatever they invented is the whole argument of pitch-ontology, demonstrated instead of asserted.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Why this one ties the project together</span>
+          <p>It closes a loop that runs through your own work, from the Mandinka praise-song naming study to a repository built to avoid unmarked defaults in pitch vocabulary. It is also the clearest case of a workshop feeding a repository: the word-list produced in the room is a contribution to pitch-ontology, with the session as its source. The participants are not learning about the project; they are adding to it.</p>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Field prompt</span>
+          <p>Keep the wall list photographed and dated, with the group's composition noted. Over several sessions this becomes comparative data rather than anecdote.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip pass">diversity ✓</span>
+      </div>
+    </article>
+
+    <!-- S-006 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-006</span>
+        <span class="rec-surface">Browser + whatever's in the room · 45–90 min · 2–10 people</span>
+      </div>
+      <h3 class="rec-title">What does this thing actually send?</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        Documentation is made by people, and a claim has a status that someone earns by testing it.
+      </div>
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>Manifold open. Any controllers anyone brought, plus a MIDI monitor. A text editor for YAML.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Pick a controller. Before connecting it, everyone guesses what it sends when you do a given thing.</li>
+            <li>Connect it and look. Compare against the manufacturer's description.</li>
+            <li>Sort what you found into config, discrete and continuous. Write the profile stub.</li>
+            <li>Find an existing stub in Manifold, test it against the hardware in the room, and move it up the ladder.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>The marketing description and the actual behaviour differ, reliably.</li>
+            <li>The three-way split isn't obvious until you try to place a real parameter in it — and the hard cases are the interesting ones.</li>
+            <li>"Verified" is not a property of the data; it is a record of what somebody did.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Research methods.</strong> Claim, evidence, provenance, status — the same epistemics patch-panel's evidence tagging runs on, learned by doing one.</li>
+            <li><strong>Computer science.</strong> Protocols, schemas, and a first contribution to a public repository that isn't code.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Why it matters for inclusion</span>
+          <p>Contributing a verified profile is a real, attributed contribution requiring neither musical skill nor programming. That is an on-ramp into the Maker sphere that bypasses exactly the gate your article describes — the one where you have to have done your homework before you are allowed to ask.</p>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Field prompt</span>
+          <p>Note who volunteers to type and who volunteers to test. The division of labour that emerges here is worth watching across sessions.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip pass">diversity ✓</span>
+      </div>
+    </article>
+
+    <!-- S-007 -->
+    <article class="record">
+      <div class="rec-top">
+        <span class="rec-id">MTILT-S-007</span>
+        <span class="rec-surface">Browser · 15–25 min · 4+ people · works as an opener</span>
+      </div>
+      <h3 class="rec-title">Nobody's counting for us</h3>
+      <div class="phenom">
+        <span class="lbl">Phenomenon</span>
+        Independent cycles drift, meet, and drift again — and people correct toward each other without being asked to.
+      </div>
+      <div class="fields">
+        <div class="field">
+          <span class="lbl">Setup</span>
+          <p>Four or more devices, each running the rhythm explorer with no shared clock. Different patterns, or the same one started at different moments.</p>
+        </div>
+        <div class="field">
+          <span class="lbl">Sequence</span>
+          <ul>
+            <li>Everyone starts whenever. No conductor, no count-in, no instruction to stay together.</li>
+            <li>Let it run long enough to drift — several minutes, longer than feels comfortable.</li>
+            <li>Then ask people to get back together, still without a conductor, and watch how they do it.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Likely noticings</span>
+          <ul>
+            <li>Moments of alignment arrive and pass without anyone producing them.</li>
+            <li>Some people cannot resist correcting; others enjoy the drift. Both reactions are data.</li>
+            <li>Getting back together requires someone to become a reference, and the group picks one without discussing it.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="lbl">Crossings</span>
+          <ul>
+            <li><strong>Mathematics and physics.</strong> Phasing, least common multiples, coupled oscillators. When two independent cycles realign is a calculable moment that the room can also just wait for.</li>
+            <li><strong>Social science.</strong> Entrainment and coordination without a designated leader — visible, brief, and discussable immediately afterwards.</li>
+          </ul>
+        </div>
+        <div class="field wide">
+          <span class="lbl">Note</span>
+          <p>This one works best as an opener, before anyone has been told what the session is about. It requires no skill whatsoever and it gives the room something shared to refer back to for the rest of the day.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip pass">mute ✓</span>
+        <span class="chip pass">no-wrong-note ✓</span>
+        <span class="chip pass">description ✓</span>
+        <span class="chip pass">diversity ✓</span>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Guard rail</span>
+      <h2>When a crossing is real</h2>
+    </div>
+    <div class="prose stack">
+      <p>The usual failure mode for music-and-mathematics work is that music becomes a delivery vehicle — a pleasant wrapper around a lesson that was going to happen anyway. You would spot that immediately in someone else's workshop, so it is worth writing the test down.</p>
+      <p><strong>A crossing is real when the musical activity and the other domain are looking at the same object, not when one illustrates the other.</strong> Rotating <code>E(3,8)</code> does not resemble an equivalence class; it is one. Breath control is not a metaphor for respiratory physiology; it is respiratory physiology. Writing a Manifold profile is not like doing research methods; it is doing them, on a small scale, with a real artefact at the end.</p>
+      <p>Where that test fails, the honest move is to drop the crossing rather than weaken it. A rhythm session that is only about rhythm is not a lesser session.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Format</span>
+      <h2>A schema, so the set can grow one entry at a time</h2>
+    </div>
+    <div class="prose">
+      <p>This is the part that addresses the vague-deliverables problem directly. You already have two working answers to it — Manifold and patch-panel both stay useful at every stage because a record has a status and the collection never has to be finished. A scenario collection in the same idiom inherits that property: CC0 data, MIT tooling, evidence-tagged, always in a valid state.</p>
+    </div>
+    <pre><span class="c"># scenarios/s-001-same-count-different-feel.yaml</span>
+<span class="k">id</span>: MTILT-S-001
+<span class="k">title</span>: Same count, different feel
+<span class="k">phenomenon</span>: &gt;
+  Where a cycle starts changes everything about it, while nothing
+  measurable about it has changed.
+<span class="k">surface</span>: browser          <span class="c"># browser | answering-instrument | hardware | mixed</span>
+<span class="k">tools</span>: [rhythm_pattern_explorer]
+<span class="k">duration_min</span>: [20, 40]
+<span class="k">group_size</span>: [2, 20]
+<span class="k">setup</span>: &gt;
+  One device per person or one shared screen; a single speaker.
+<span class="k">sequence</span>:
+  - Everyone enters E(3,8).
+  - Rotate and listen after each turn.
+  - Each keeps a favourite; the room claps along with each in turn.
+<span class="k">noticings</span>:
+  - Some rotations offer an obvious entry point; others do not.
+  - Two people start the same ring in different places, both correct.
+<span class="k">crossings</span>:
+  - <span class="k">domain</span>: mathematics
+    <span class="k">object</span>: Rotational equivalence classes; Euclid's algorithm as fair division.
+    <span class="k">shared_object</span>: true      <span class="c"># false means it illustrates rather than crosses</span>
+  - <span class="k">domain</span>: computer-science
+    <span class="k">object</span>: One pattern in binary, hex and onset-array notation.
+    <span class="k">shared_object</span>: true
+<span class="k">access_notes</span>: &gt;
+  Phone-capable. No install, account, audio skill, or failure state.
+<span class="k">tests</span>:
+  <span class="k">mute</span>: pass
+  <span class="k">no_wrong_note</span>: pass
+  <span class="k">description</span>: pass
+  <span class="k">diversity</span>: partial       <span class="c"># requires swapping the default sample set</span>
+<span class="k">field_prompts</span>:
+  - Record participants' terms for the difference between rotations.
+<span class="k">status</span>: sketch             <span class="c"># sketch | drafted | run | documented | refined</span>
+<span class="k">sessions</span>: []              <span class="c"># links to dated session notes; evidence for every claim above</span>
+</pre>
+
+    <div class="ladder">
+      <div class="rung"><span class="n">sketch</span><span class="d">Written down, never run. Still a valid entry.</span></div>
+      <div class="rung"><span class="n">drafted</span><span class="d">Materials prepared, setup tested alone.</span></div>
+      <div class="rung"><span class="n">run</span><span class="d">Done once with real participants; session note attached.</span></div>
+      <div class="rung"><span class="n">documented</span><span class="d">Run more than once; noticings are observed, not predicted.</span></div>
+      <div class="rung"><span class="n">refined</span><span class="d">Revised on the basis of what the sessions showed.</span></div>
+    </div>
+    <div class="prose" style="margin-top:20px">
+      <p>The important detail is the one Manifold already gets right: the <code>noticings</code> field starts as prediction and becomes observation, and the <code>status</code> field is what tells you which it currently is. Everything in the seven records above is at <code>sketch</code>. That is an honest starting state, not a placeholder.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Next moves</span>
+      <h2>Three things that fit in an hour</h2>
+    </div>
+    <div class="moves">
+      <div class="move">
+        <span class="num">01</span>
+        <h4>Retro-document the Labo symphonique</h4>
+        <p>The passage is already written, in the 2019 article. Converting it into the first scenario record costs no new fieldwork, tests the schema against an event that actually happened, and gives the collection an entry at <code>documented</code> rather than <code>sketch</code> from the start. It will also tell you quickly which fields are wrong.</p>
+      </div>
+      <div class="move">
+        <span class="num">02</span>
+        <h4>Run S-001 on two people at a kitchen table</h4>
+        <p>The lowest-setup scenario in the set, at the smallest scale that still counts as a session. The goal is not to validate the activity — it is to find out whether the field prompt is answerable, because a prompt that produces nothing usable is the most likely defect in this whole design.</p>
+      </div>
+      <div class="move">
+        <span class="num">03</span>
+        <h4>Put <code>scenarios/</code> inside an existing repo, not a new one</h4>
+        <p>patch-panel earned its own repository by accumulating first. Let this do the same: start it wherever it is least ceremonious, and promote it once there are five entries and at least one at <code>run</code>. Deciding the housing later is consistent with how the rest of your work has gone, and it keeps the first entry from having to justify a repository.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="provenance">
+    <p><strong>What's verified here.</strong> The rhythm pattern explorer runs in a browser at <code>enkerli.github.io/rhythm_pattern_explorer</code>, with UPI notation covering <code>E()</code>, <code>B()</code>, <code>W()</code>, rotation and accent layers. The pitch-ontology site is live with concepts, claims, journeys and sources. Manifold's config / discrete / continuous split, its ~30 profiles and its stub→verified ladder are as described in its README, CC0 data with MIT tooling. The Swift plug-ins are AUv3, which is what puts them on the facilitator's side of the split.</p>
+    <p><strong>What isn't.</strong> Funkstrum's current state could not be checked — its README wasn't reachable — so it is left out of the scenarios rather than guessed at; its gesture-and-harmony separation would suit S-005 well if the tool is still where you left it. The <code>noticings</code> in every record are predictions, and the durations and group sizes are estimates. Both are exactly the fields the status ladder exists to correct.</p>
+  </div>
+
+</div>

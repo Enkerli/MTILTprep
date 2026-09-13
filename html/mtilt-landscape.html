@@ -1,0 +1,334 @@
+<title>Maps We Won't Follow</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,600;1,400&family=Mulish:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+  :root {
+    --ground: #E9EBE6;
+    --surface: #F5F7F3;
+    --sunk: #DCE0D8;
+    --ink: #161A16;
+    --ink-soft: #4A5148;
+    --ink-faint: #7A8177;
+    --accent: #24506E;
+    --accent-soft: #D6E1EA;
+    --warn: #9C5A22;
+    --warn-soft: #EFE1CF;
+    --rule: #CBD0C6;
+
+    --f-display: "Bitter", Georgia, serif;
+    --f-body: "Mulish", "Helvetica Neue", Arial, sans-serif;
+    --f-mono: "Courier Prime", "Courier New", monospace;
+    --measure: 68ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101310; --surface: #181C18; --sunk: #212620;
+      --ink: #E3E7E0; --ink-soft: #9CA599; --ink-faint: #767E73;
+      --accent: #85B6DA; --accent-soft: #172936;
+      --warn: #DB9E62; --warn-soft: #332511; --rule: #2B312B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101310; --surface: #181C18; --sunk: #212620;
+    --ink: #E3E7E0; --ink-soft: #9CA599; --ink-faint: #767E73;
+    --accent: #85B6DA; --accent-soft: #172936;
+    --warn: #DB9E62; --warn-soft: #332511; --rule: #2B312B;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--ground); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 960px; margin: 0 auto; padding-inline: 20px; padding-block: 54px 92px; }
+  .prose { max-width: var(--measure); }
+
+  h1,h2,h3,h4 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(2rem, 5.4vw, 2.9rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.4rem, 3.2vw, 1.85rem); font-weight: 600; line-height: 1.18; }
+  h3 { font-size: 1.14rem; font-weight: 600; }
+  h4 { font-size: 1rem; font-weight: 600; }
+  p { margin: 0; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  code, .mono { font-family: var(--f-mono); font-size: 0.88em; }
+
+  .eyebrow { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+
+  .masthead { display: flex; flex-direction: column; gap: 15px; }
+  .masthead .lede { font-family: var(--f-display); font-size: clamp(1.05rem,2.3vw,1.28rem); line-height: 1.5; color: var(--ink-soft); max-width: 58ch; }
+  .masthead .meta { font-family: var(--f-mono); font-size: 0.74rem; color: var(--ink-faint); border-top: 1px solid var(--rule); padding-top: 12px; display:flex; flex-wrap:wrap; gap:6px 20px; }
+
+  section { margin-top: 62px; }
+  .sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .stack { display: flex; flex-direction: column; gap: 15px; }
+
+  /* terrain figure */
+  figure.terrain { margin: 26px 0 0; border: 1px solid var(--rule); background: var(--surface); padding: 20px 16px 14px; }
+  figure.terrain svg { width: 100%; height: auto; display: block; }
+  .t-fill { fill: var(--accent-soft); }
+  .t-line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+  .t-base { stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 2 4; }
+  .t-tick { stroke: var(--ink-faint); stroke-width: 1; }
+  .t-lab { fill: var(--ink); font-family: "Courier Prime", monospace; font-size: 11px; }
+  .t-lab.dip { fill: var(--warn); }
+  .t-sub { fill: var(--ink-faint); font-family: "Courier Prime", monospace; font-size: 9.5px; }
+  figure.terrain figcaption { margin-top: 12px; font-size: 0.86rem; color: var(--ink-faint); max-width: 64ch; }
+
+  /* value strip */
+  .values { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
+  .v { font-family: var(--f-mono); font-size: 0.78rem; padding: 4px 10px; background: var(--surface); border: 1px solid var(--rule); color: var(--ink-soft); }
+  .v.hot { border-color: var(--accent); color: var(--accent); }
+
+  /* modes */
+  .modes { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .mode { background: var(--surface); padding: 22px; display: grid; grid-template-columns: 150px 1fr; gap: 6px 26px; }
+  @media (max-width: 720px) { .mode { grid-template-columns: 1fr; } }
+  .mode .nm { font-family: var(--f-display); font-size: 1.3rem; font-weight: 600; color: var(--accent); }
+  .mode .nm span { display: block; font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 4px; font-weight: 400; }
+  .mode .bd { display: flex; flex-direction: column; gap: 11px; }
+  .mode .bd p { font-size: 0.93rem; color: var(--ink-soft); max-width: var(--measure); }
+  .mode .bd .line { font-size: 0.87rem; }
+  .mode .bd .line b { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; display: block; margin-bottom: 2px; }
+  .mode .bd .risk { color: var(--warn); }
+
+  /* feature cards */
+  .feats { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .feat { background: var(--surface); padding: 22px; display: flex; flex-direction: column; gap: 9px; }
+  .feat.ditch { border-left: 3px solid var(--warn); }
+  .feat.peak { border-left: 3px solid var(--accent); }
+  .feat h4 { font-size: 1.1rem; font-family: var(--f-display); }
+  .feat .kind { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+  .feat p { font-size: 0.92rem; color: var(--ink-soft); max-width: var(--measure); }
+  .feat .bridge { background: var(--sunk); padding: 12px 15px; border-left: 2px solid var(--accent); font-size: 0.89rem; color: var(--ink); }
+  .feat .bridge b { font-family: var(--f-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; display: block; margin-bottom: 3px; }
+
+  /* provenance columns */
+  .prov { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 22px; }
+  .pv { background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 7px; }
+  .pv .h { font-family: var(--f-display); font-size: 1.05rem; font-weight: 600; }
+  .pv .q { font-size: 0.88rem; color: var(--ink-soft); }
+  .pv .test { font-size: 0.84rem; color: var(--ink); border-top: 1px dotted var(--rule); padding-top: 8px; }
+  .pv .test b { font-family: var(--f-mono); font-size: 0.63rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; display: block; margin-bottom: 2px; }
+
+  .callout { border: 1px solid var(--accent); background: var(--accent-soft); padding: 20px 22px; margin-top: 24px; display: flex; flex-direction: column; gap: 9px; }
+  .callout h4 { font-family: var(--f-display); font-size: 1.1rem; }
+  .callout p { font-size: 0.92rem; color: var(--ink-soft); max-width: var(--measure); }
+  .callout .chord { font-family: var(--f-mono); font-size: 0.95rem; color: var(--ink); background: var(--surface); padding: 10px 14px; border: 1px solid var(--rule); }
+
+  .closing { margin-top: 62px; padding-top: 22px; border-top: 1px solid var(--rule); max-width: var(--measure); display:flex; flex-direction:column; gap:13px; }
+  .closing p { font-size: 0.92rem; color: var(--ink-soft); }
+  .closing strong { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">MTILT · landscape sketch v0.1</span>
+    <h1>Maps We Won't Follow</h1>
+    <p class="lede">Competency frameworks as surveys of territory rather than as routes to walk — and the terrain they describe, including the two ditches nobody puts on a map.</p>
+    <div class="meta">
+      <span>Scouting · Decolonizing · Enquiring · Playing</span>
+      <span>Companion to the reference package</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The stance</span>
+      <h2>There is no contradiction, and heutagogy has the word for it</h2>
+    </div>
+    <div class="prose stack">
+      <p>Referring to competency frameworks while pursuing something open-ended only looks dissonant if you assume frameworks must be obeyed. Appropriation is the operative move here — the same one your 2019 article describes for technology. A framework is <em>matériel</em>: subvert it, curate it, connect it to another, critique it, build an alternative from its parts. Bricolage does not ask permission of the manufacturer.</p>
+      <p>The self-determined learning literature supplies a sharper term for the actual difference. <strong>Competency is performance in known contexts; capability is what a person does in unfamiliar ones.</strong> Frameworks specify the first because it can be evidenced. MTILT is after the second, which is why it keeps sliding out of their grasp — and heutagogy's whole point is that capability can be pursued deliberately without pre-specifying where the learner will end up. That is not a gap in your thinking. It is a named position with a literature behind it.</p>
+    </div>
+    <div class="values">
+      <span class="v hot">playfulness</span><span class="v hot">exploration</span><span class="v">undirected learning</span><span class="v">peer learning</span><span class="v">informality</span><span class="v">casualness</span><span class="v hot">judgment-free</span><span class="v">ungrading</span><span class="v hot">heutagogy</span><span class="v">critical thinking</span><span class="v">innovation</span><span class="v hot">fun</span><span class="v">jamming</span><span class="v">being a good hang</span><span class="v hot">no guilty pleasures</span><span class="v">curiosity</span><span class="v">discovery</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The terrain</span>
+      <h2>An elevation profile</h2>
+    </div>
+    <figure class="terrain">
+      <svg viewBox="0 0 900 300" role="img" aria-label="An elevation profile of the MTILT landscape: a well-trodden flat path, a ditch labelled disenchantment, a rise labelled a groove that travels, a peak labelled an improviser's language, a second ditch labelled desire outruns skill, a plateau labelled a good hang, and open ground labelled unmapped.">
+        <path class="t-fill" d="M0,190 L90,188 L130,188 L175,238 L220,186 L280,150 L340,160 L430,72 L500,150 L560,245 L620,175 L700,168 L790,170 L900,142 L900,285 L0,285 Z"></path>
+        <line class="t-base" x1="0" y1="190" x2="900" y2="190"></line>
+        <path class="t-line" d="M0,190 L90,188 L130,188 L175,238 L220,186 L280,150 L340,160 L430,72 L500,150 L560,245 L620,175 L700,168 L790,170 L900,142"></path>
+
+        <line class="t-tick" x1="70" y1="188" x2="70" y2="166"></line>
+        <text class="t-lab" x="62" y="159">well-trodden path</text>
+        <text class="t-sub" x="62" y="148">staff · piano · 12TET · the target patch</text>
+
+        <line class="t-tick" x1="175" y1="238" x2="175" y2="256"></line>
+        <text class="t-lab dip" x="146" y="270">disenchantment</text>
+
+        <line class="t-tick" x1="283" y1="150" x2="283" y2="132"></line>
+        <text class="t-lab" x="252" y="124">a groove that travels</text>
+
+        <line class="t-tick" x1="430" y1="72" x2="430" y2="54"></line>
+        <text class="t-lab" x="374" y="46">an improviser's language</text>
+        <text class="t-sub" x="374" y="35">a real climb; say so</text>
+
+        <line class="t-tick" x1="560" y1="245" x2="560" y2="263"></line>
+        <text class="t-lab dip" x="512" y="277">desire outruns skill</text>
+
+        <line class="t-tick" x1="700" y1="168" x2="700" y2="150"></line>
+        <text class="t-lab" x="672" y="142">a good hang</text>
+
+        <text class="t-lab" x="806" y="128">unmapped</text>
+        <text class="t-sub" x="0" y="205">where most people are told to start</text>
+      </svg>
+      <figcaption>The frameworks survey the flat stretch on the left rather well. They do not mark either ditch, because a ditch is not an outcome. The peak they describe as a syllabus.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Four ways of moving</span>
+      <h2>Your verbs, as modes of travel</h2>
+    </div>
+    <div class="prose"><p>Not competencies — a competency says what you should be able to do on arrival. These say how you are moving while you are still out there.</p></div>
+    <div class="modes">
+      <div class="mode">
+        <div class="nm">Scouting<span>reconnaissance</span></div>
+        <div class="bd">
+          <p>Going ahead to see what is there, with no obligation to bring anything back. Knowing what's out there is itself the aim — which is the honest reason to read framework documents at all, and the reason the reference package exists.</p>
+          <div class="line"><b>In a session</b> Nobody is assessed on what they found. The report is "here's what I ran into", not "here's what I learned".</div>
+          <div class="line risk"><b>Risk</b> Scouting can become collecting. A survey that never turns into a walk is a library, not a journey.</div>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="nm">Decolonizing<span>un-defaulting</span></div>
+        <div class="bd">
+          <p>Finding the unmarked defaults and marking them. The staff, the keyboard, 12TET, the target patch, the word "sophistication" — none forbidden, all demoted from <em>the</em> way to <em>a</em> way. This is where pitch-ontology's refusal of unmarked defaults becomes a mode of travel rather than a data policy.</p>
+          <div class="line"><b>In a session</b> Show the default doing its work, then swap it and let people feel what changed. The swap teaches more than the critique.</div>
+          <div class="line risk"><b>Risk</b> Substituting one default for another. A ring is not more neutral than a grid — it hides different things.</div>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="nm">Enquiring<span>asking properly</span></div>
+        <div class="bd">
+          <p>Treating a musical question as answerable by investigation rather than by authority. Where does this "rule" come from, who does it serve, what happens if we break it, what did somebody actually measure? The ethnographic mode, applied to music's own claims about itself.</p>
+          <div class="line"><b>In a session</b> The facilitator does not know the answer either, and that is visible rather than concealed.</div>
+          <div class="line risk"><b>Risk</b> This is the mode that digs the first ditch. Enquiry is exactly what can disenchant.</div>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="nm">Playing<span>the point</span></div>
+        <div class="bd">
+          <p>Both senses at once, deliberately: playing music and playing around. Jamming, being a good hang, no guilty pleasures. The mode that makes the other three survivable, and the one most likely to be quietly dropped when a session starts feeling like a course.</p>
+          <div class="line"><b>In a session</b> If nobody laughed and nothing was pointless, it was a class.</div>
+          <div class="line risk"><b>Risk</b> Play is the first thing sacrificed to legitimacy when an institution asks what the outcomes were.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The two ditches</span>
+      <h2>What the maps don't mark</h2>
+    </div>
+    <div class="feats">
+      <div class="feat ditch">
+        <span class="kind">Ditch · studied little, felt often</span>
+        <h4>Disenchantment — learning too much about what you love</h4>
+        <p>The realisation that arrives after analysis and cannot be un-had. The song turns out to be four chords you now recognise everywhere; the production trick you admired is a preset. And the listening itself changes — training installs an attention that is <em>selective and hierarchising</em>, always sorting foreground from background, always naming.</p>
+        <p>Your question was whether Deep Listening is a remedy. Probably yes, and for a specific reason rather than a spiritual one. Oliveros separates hearing, which is involuntary, from listening, which is voluntary — and then defines her practice as listening "in every possible way to everything possible." That is <em>inclusive</em> attention, the opposite mode from the selective kind that analysis trains. It does not un-learn anything. It adds a second gear, and the gear is deliberately not the analytical one.</p>
+        <div class="bridge"><b>The bridge</b> Name the ditch out loud before anyone falls in — it is a normal feature of the terrain, not a sign that someone ruined music for themselves. Then pair every analytical session with a non-analytical one, not as a reward but as the other half of the practice. Schafer's exercises and Oliveros's sonic meditations are both built for this and neither requires equipment.</div>
+      </div>
+      <div class="feat ditch">
+        <span class="kind">Ditch · studied a great deal</span>
+        <h4>When desire outruns skill</h4>
+        <p>You said this one has been studied, and it has — most usefully as flow's challenge–skill balance. Above the diagonal, where what you want exceeds what you can do, the state is anxiety; below it, boredom. The popular version is the gap between your taste and your output, which is the same geometry felt from inside.</p>
+        <p>Your instruction was not to design around it but to take it on. That is the right call, because designing around it means lowering ambition, and lowering someone's ambition to keep them comfortable is its own insult.</p>
+        <div class="bridge"><b>The bridge</b> Lower the challenge without lowering the taste. This is the one place your tools do real pastoral work: PitchFold removes wrong notes while leaving judgement entirely intact, so a person's ear stays ahead of their hands without their hands producing something they'd wince at. The gap stays open — it is supposed to — but the ditch stops being a place you sit in.</div>
+      </div>
+      <div class="feat peak">
+        <span class="kind">Peak · genuinely hard, and worth saying so</span>
+        <h4>The climbs that are actually climbs</h4>
+        <p>Expanding an improviser's language. Memorising specific songs. These take sustained, unglamorous work, and a landscape that pretends everything is a gentle slope is condescending in a way people detect immediately. Informality is not the claim that nothing is difficult.</p>
+        <div class="bridge"><b>The bridge</b> Mark the elevation honestly and let people choose the climb. Heutagogy handles this without contradiction: a self-determined learner can absolutely commit to something arduous. What they will not accept is being marched up it.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Border country</span>
+      <h2>Translation, and the profile that isn't a profile</h2>
+    </div>
+    <div class="feats">
+      <div class="feat">
+        <h4>Speaking the territory's language before leaving it</h4>
+        <p>The change-leadership half. People who have occupied formal music education for decades will read an alternative as ignorance unless it demonstrates that it knows what it is departing from. The reference package is the instrument for this: being able to say "Québec's <em>Apprécier</em> already carries the sociocultural dimension, and KoMus binds perceiving to contextualising — here is where I go further" is a different conversation from "school music is narrow."</p>
+        <p>Deviation reads as informed or as uninformed, and the only thing that settles which is whether you can state the other position accurately first.</p>
+      </div>
+      <div class="feat">
+        <h4>A trail log, not a learner profile</h4>
+        <p>You're right that the before-and-after shouldn't be overstated, and right to bristle at "sophistication." The Gold-MSI widened the <em>range</em> of what counts as a musical life — genuinely valuable, and rare — while keeping the <em>ranking</em>. Worse, one of its subscales measures time and money spent on music, which is cultural capital operationalised as expenditure. A scale that ranks people by what they spent is measuring distinction and calling it sophistication.</p>
+        <p>The landscape version is a log rather than a level: where you came from, where you went, what you ran into, what you're curious about next. Two people's logs can be compared without either being further along, because they are not on the same path. Goals still get set — and deviating from your own goal is information, which is exactly what a score cannot record.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">A pattern in your two "minor" points</span>
+      <h2>Systems adopted, then quietly abandoned</h2>
+    </div>
+    <div class="prose stack">
+      <p>You filed the acoustics observation under critique and called it minor. It may be less minor than that, because it and the enharmonic complaint are the same bug seen twice.</p>
+      <p>Music theory invokes the overtone series to ground scales and consonance, and then everything reverts to 12TET without the approximation ever being examined. The connection is made and left. Not wrong — but presented as a foundation when it is an analogy that was dropped partway.</p>
+    </div>
+    <div class="callout">
+      <h4>And the same move, one octave down</h4>
+      <div class="chord">C♯∆  =  C♯ · E♯ · G♯      not      C♯ · F · G♯</div>
+      <p>Letter-name spelling is a functional system: a triad is a stack of thirds, and the spelling is what makes that visible. Respelling E♯ as F buys a moment's ease and costs the chord its readability — C♯ to F is a diminished fourth on the page, so the chord stops looking like what it is, and every voice-leading or functional reading downstream gets harder. The guitaristic habit names what is under the finger; the confusion arrives later and compounds.</p>
+      <p>Same shape as the overtone case: adopt a system for its explanatory power, break it silently where it charges a fee. Which suggests a critical thread running under MTILT that is more specific than "music theory is narrow" — <strong>incomplete systems presented as complete</strong>, and the pedagogical damage of never saying where the seam is. Offered as a reading of your two examples; reject it if it over-fits.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Where the building fits</span>
+      <h2>Three provenances, and byproducts</h2>
+    </div>
+    <div class="prose"><p>You named the reason the aims look disparate: they come from three different places. They are not one list that fails to cohere — they are three lists that overlap, and each answers to a different test.</p></div>
+    <div class="prov">
+      <div class="pv">
+        <span class="h">What you'd help learners develop</span>
+        <span class="q">If they want to. The aims that are genuinely about somebody else.</span>
+        <span class="test"><b>Test</b> Did a learner want it once you offered it?</span>
+      </div>
+      <div class="pv">
+        <span class="h">Your own desires as a musicker</span>
+        <span class="q">The tools you vibecode because you want them. Legitimate and not to be laundered into pedagogy.</span>
+        <span class="test"><b>Test</b> Do you still use it in a month?</span>
+      </div>
+      <div class="pv">
+        <span class="h">What teaching taught you</span>
+        <span class="q">Things you know from the room — including what goes wrong.</span>
+        <span class="test"><b>Test</b> Does it survive contact with a different group?</span>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat">
+        <h4>Byproducts, and why that framing holds up</h4>
+        <p>Interactive modules — Building-Blocks-style JavaScript, H5P, small standalone tools — made <em>together</em> rather than delivered. Calling them byproducts rather than products is not modesty; it is the only framing consistent with everything above. A product implies a specification, an audience and a finish line. A byproduct is evidence that something happened, and it can be abandoned without anybody having failed.</p>
+        <p>It also resolves the sustainability question that usually kills open-ended projects: byproducts accumulate whether or not the project ever declares itself finished, which is the same property that makes Manifold and patch-panel useful at every stage.</p>
+      </div>
+      <div class="feat">
+        <h4>Inputs for models — the enharmonic case is a good one</h4>
+        <p>The spellings that language models default to are a live example of a corpus deciding a pedagogy. If the weight of available text leans guitaristic, the model leans guitaristic, and learners meet "F" in a C♯ chord as though it were the normal answer. Material that demonstrates other approaches — and, more usefully, material that <em>contextualises</em> why each spelling exists and what it costs — is a small, real intervention. Not the goal. Part of the deal, as you put it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p><strong>Sourced.</strong> Oliveros's hearing/listening distinction and her definition of the practice are from the Center for Deep Listening. Challenge–skill balance is Csikszentmihalyi. The capability/competency distinction is heutagogy's, from the self-determined learning literature. Framework details are as in the reference package.</p>
+    <p><strong>Mine, not yours.</strong> The four modes as modes-of-travel, the elevation profile, the trail-log idea, and the "incomplete systems presented as complete" reading are constructions on top of what you wrote. Your values list and your four verbs are quoted. The Gold-MSI criticism is my articulation of an objection you said you already had — if the reason you find it offputting is a different one, that is the more interesting answer.</p>
+  </div>
+
+</div>
