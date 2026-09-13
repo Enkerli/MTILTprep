@@ -570,6 +570,20 @@ citation count, so the top of each list is what the field picked up.
 - **2024** · Sound-producing actions in guitar performance of groove-based microrhythm — *Empirical Musicology Review* · 1 cites · [OA](https://emusicology.org/index.php/EMR/article/download/9124/8057)
 - **2023** · Sound-producing actions in guitar performance of groove-based microrhythm — *?* · 1 cites · [OA](https://osf.io/cdwjr/download)
 
+## Abstraction and Activity in Computer-Mediated Music Production
+
+`10.1162/comj_a_00023` — 17 citations total, **4 since 2022**
+
+- **2022** · Spatial Design Considerations for Interactive Audio in Virtual Reality — *Human-computer interaction series* · 6 cites · [OA](https://link.springer.com/content/pdf/10.1007/978-3-031-04021-4_6.pdf)
+- **2022** · “It’s cleaner, definitely”: Collaborative Process in Audio Production — *Computer Supported Cooperative Work (CSCW)* · 3 cites · [OA](https://link.springer.com/content/pdf/10.1007/s10606-022-09448-1.pdf)
+- **2026** · Exploring Gestural and Vocal Interactions for an Intuitive and Embodied Human-AI Music Co-production Process — *?* · 0 cites · [OA](https://doi.org/10.1145/3731459.3773330)
+- **2022** · Notes — *The MIT Press eBooks* · 0 cites · [OA](https://direct.mit.edu/books/oa-monograph/chapter-pdf/2085929/c011700_9780262372633.pdf)
+
+## FORŪD (1)
+
+`10.1163/2330-4804_eiro_com_1679` — 0 citations total, **0 since 2022**
+
+
 ## Music of the Ottoman Court
 
 `10.1163/9789004531260` — 8 citations total, **5 since 2022**

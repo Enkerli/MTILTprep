@@ -198,3 +198,15 @@ OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
   repeated: it sent a browser user agent, and emusicology.org's Anubis wall
   answers anything claiming to be Mozilla with a proof-of-work page. The script
   now identifies itself honestly. Bot walls are not worked around.
+- **Escaped URLs, fixed.** The cause was `esc()` in
+  `tools/import-pitch-ontology.py`, applied to every field including `url` and
+  `doi`. It had also escaped two **DOIs** (`10.1162/comj\_a\_00023`,
+  `10.1163/2330-4804\_eiro\_com\_1679`), so both were queried wrongly in every
+  run above. The importer now writes those fields verbatim; ten fields in
+  `works-pitch-ontology.bib` and five URLs in `fetch-pdfs.sh` are corrected, and
+  the bib's 84 URLs and 72 DOIs now match the CSL-JSON, which was never escaped.
+- The escapes were only part of the story above. After the fix, the PLOS archive
+  succeeds; MIMO still fails (the site returns 500 for everything) and the Qatar
+  Digital Library page still fails (403). Both DOIs now resolve in OpenAlex: comj
+  is closed, eiro is a landing page Unpaywall cannot improve. The citation report
+  is regenerated: 80 sources, 986 entries.

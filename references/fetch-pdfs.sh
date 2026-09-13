@@ -158,7 +158,7 @@ arc "po-contrechamps-afrique-centrale.html" \
 arc "po-empirical-musicology-review.html" \
   "https://emusicology.org/index.php/EMR/"
 arc "po-furniss-1993-systeme-pentatonique.html" \
-  "https://www.persee.fr/doc/jafr\_0399-0346\_1993\_num\_63\_2\_2389\_t1\_0133\_0000\_1"
+  "https://www.persee.fr/doc/jafr_0399-0346_1993_num_63_2_2389_t1_0133_0000_1"
 get "po-knight-hornbostel-sachs-2015.pdf" \
   "https://www2.oberlin.edu/faculty/rknight/Organology/KnightRev2015.pdf"
 arc "po-lhomme-2004-experimenter-ethnomusicologie.html" \
@@ -170,21 +170,21 @@ arc "po-mcbride-passmore-tlusty-2023.html" \
 arc "po-mimo.html" \
   "http://www.mimo-international.com/"
 get "po-mimo-hornbostel-sachs-2011.pdf" \
-  "http://www.mimo-international.com/documents/hornbostel\%20sachs.pdf"
+  "http://www.mimo-international.com/documents/hornbostel%20sachs.pdf"
 arc "po-papaioannou-2026-cross-cultural-similarity.html" \
   "https://transactions.ismir.net/articles/10.5334/tismir.341"
 arc "po-plos-2017-outliers-world-music.html" \
-  "https://journals.plos.org/plosone/article?id=10.1371\%2Fjournal.pone.0189399"
+  "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0189399"
 arc "po-polak-2010-rhythmic-feel-as-meter.html" \
   "https://mtosmt.org/issues/mto.10.16.4/mto.10.16.4.polak.html"
 arc "po-polak-london-2014-timing-meter-mande.html" \
   "https://mtosmt.org/issues/mto.14.20.1/mto.14.20.1.polak-london.html"
 arc "po-qdl-cairo-congress-microtones.html" \
-  "https://www.qdl.qa/en/microtones-piano-and-muhammad-al-qubanshi-\%E2\%80\%93-first-congress-arabic-music-and-early-recordings-iraq"
+  "https://www.qdl.qa/en/microtones-piano-and-muhammad-al-qubanshi-%E2%80%93-first-congress-arabic-music-and-early-recordings-iraq"
 arc "po-saraga-datasets.html" \
   "https://repositori.upf.edu/items/d4721c01-e38d-490b-b2d1-889f6dcd211d"
 arc "po-scala-scl-format.html" \
-  "https://www.huygens-fokker.org/scala/scl\_format.html"
+  "https://www.huygens-fokker.org/scala/scl_format.html"
 arc "po-temperley-ren-duan-2017-blue-notes-rock.html" \
   "https://mtosmt.org/issues/mto.17.23.1/mto.17.23.1.temperley.html"
 arc "po-tismir-2023-carnatic-vocal-pitch.html" \

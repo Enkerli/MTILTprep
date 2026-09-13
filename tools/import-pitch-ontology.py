@@ -33,7 +33,8 @@ for w in works:
     if w.get('venue'):   f.append(('journal' if typ=='article' else 'booktitle', esc(w['venue'])))
     for a,b in (('volume','volume'),('issue','number'),('pages','pages'),
                 ('doi','doi'),('url','url'),('language','language')):
-        if w.get(a): f.append((b, esc(w[a])))
+        # url and doi are verbatim fields: LaTeX escapes there break the address.
+        if w.get(a): f.append((b, str(w[a]) if b in ('url','doi') else esc(w[a])))
     notes = []
     if w.get('note'):   notes.append(str(w['note']).replace('\n',' '))
     if w.get('access'): notes.append(f"access: {w['access']}")
