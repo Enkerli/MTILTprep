@@ -66,6 +66,12 @@ from RÉCIT's summary, and how much weight the PFEQ itself puts on it is exactly
 the thing worth checking before leaning on it in a conversation with a Québec
 music educator.
 
+*Later, 2026-09-13:* `chapitre084v2.pdf` no longer resolves; the programme moved
+to `cdn-contenu.quebec.ca`, split by discipline. The primary music file,
+`PFEQ-musique-primaire.pdf` (chapter 8, 19 pages: the domain presentation plus
+music), is now fetched, along with the secondary Cycle One music programme. Not
+yet read, so the level stays `landing`.
+
 ### `dfe2021mmc` — Department for Education (2021), *Model Music Curriculum*
 **Level:** `background`.
 

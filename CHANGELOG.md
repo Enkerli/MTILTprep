@@ -239,3 +239,13 @@ OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
   "Cross-cultural" is split into framing (46 works) and named traditions (104),
   39 of the latter also MIR. The hand-made table is left in place, with a
   pointer.
+- **PFEQ fetched at last.** The two `PFEQ-*.pdf` files in `references/pdf/` were
+  still TYPO3 HTML from before `get()` checked content type, and the skip-if-present
+  check meant no rerun would replace them. Deleted and refetched. The real problem
+  was that both `education.gouv.qc.ca` URLs now redirect to the quebec.ca
+  Education home page. The programmes moved to `cdn-contenu.quebec.ca`, split by
+  discipline. `fetch-pdfs.sh` now fetches `PFEQ-musique-primaire.pdf` (chapter 8,
+  domain presentation plus music; *Inventer*, *Interpréter*, *Apprécier*, with the
+  sociocultural dimension present) and `PFEQ-musique-premier-cycle-secondaire.pdf`.
+  `meq2001arts` carries the new URL in the bib and CSL-JSON. Its level stays
+  `landing` until it is read.

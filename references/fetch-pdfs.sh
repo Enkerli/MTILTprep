@@ -39,10 +39,13 @@ get "NCAS-music-processes.pdf" \
   "https://nationalartsstandards.org/sites/default/files/Music_resources/Definitions,%20EUs%20and%20EQs%20-%20Music%20Standards%20Final.pdf"
 get "NCAS-music-at-a-glance.pdf" \
   "https://nationalartsstandards.org/sites/default/files/Music%20at%20a%20Glance%20rev%2010-2-14.pdf"
-get "PFEQ-domaine-des-arts-ch8.pdf" \
-  "https://www.education.gouv.qc.ca/fileadmin/site_web/documents/PFEQ/chapitre084v2.pdf"
-get "PFEQ-musique.pdf" \
-  "https://www.education.gouv.qc.ca/fileadmin/site_web/documents/dpse/formation_jeunes/8e-pfeq_musique.pdf"
+# The education.gouv.qc.ca URLs (chapitre084v2.pdf, 8e-pfeq_musique.pdf) now
+# redirect to the quebec.ca Education home page; the programmes moved to a CDN,
+# split by discipline. Primary: chapter 8's domain presentation plus music.
+get "PFEQ-musique-primaire.pdf" \
+  "https://cdn-contenu.quebec.ca/cdn-contenu/education/pfeq/primaire/programmes/PFEQ-musique-primaire.pdf"
+get "PFEQ-musique-premier-cycle-secondaire.pdf" \
+  "https://cdn-contenu.quebec.ca/cdn-contenu/education/pfeq/secondaire/programmes/PFEQ-musique-premier-cycle-secondaire.pdf"
 
 # ── Professional / higher education ──────────────────────────────────────
 get "AEC-Polifonia-learning-outcomes.pdf" \

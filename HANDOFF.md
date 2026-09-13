@@ -13,7 +13,8 @@ detail, from "The handoff, from a terminal" onwards.
 - **All three fetchers run**, plus a new second pass,
   `tools/unpaywall-landing.sh`. OpenAlex: 2 PDFs, 40 closed, 18 landing pages
   left of 81 DOIs. Unpaywall recovered 11 of the original 28 landing pages.
-  13 new PDFs in all.
+  13 new PDFs in all, and 15 counting the two PFEQ programmes fetched
+  afterwards.
 - **Forward citations re-swept from the terminal**:
   `references/citations/REPORT.md`, 80 sources, 986 rows, up to 25 per source.
 - **Bugs fixed.** `tools/import-pitch-ontology.py` was LaTeX-escaping `url` and
@@ -28,9 +29,8 @@ detail, from "The handoff, from a terminal" onwards.
 ### Local state — gitignored, on the user's machine only
 
 - `references/pdf/`: 64 files, plus `OA-REPORT.md` and `UNPAYWALL-REPORT.md`.
-  Still includes the six Git LFS stubs from an unrelated project, and **two
-  `PFEQ-*.pdf` files that are TYPO3 HTML** saved before `get()` checked content
-  type.
+  Still includes the six Git LFS stubs from an unrelated project. (The two
+  `PFEQ-*.pdf` files that were TYPO3 HTML have been deleted and replaced.)
 - `references/citations/*.json`: the 80 raw OpenAlex pages behind `REPORT.md`.
   `tag-citation-themes.py` needs them to count works rather than rows. Rerunning
   `openalex-citations.sh` regenerates both, but the numbers will drift.
@@ -43,8 +43,10 @@ detail, from "The handoff, from a terminal" onwards.
    (`OA-REPORT.md`). `unpaywall-landing.sh --closed` has not been tried on the
    closed ones.
 2. **By hand.**
-   - The two PFEQ documents: delete the HTML files first, because `get()` skips
-     any non-empty file and will never replace them.
+   - ~~The two PFEQ documents.~~ Done: the old URLs redirect to the quebec.ca
+     home page, and the programmes are now on `cdn-contenu.quebec.ca`.
+     `fetch-pdfs.sh` points there, the stale HTML files are deleted, and both
+     PDFs are fetched.
    - Wallmark 2019: SAGE refuses scripts, and Unpaywall has no OA copy.
    - The Qatar Digital Library page: 403.
    - MIMO: the whole site returned 500; retry later.
