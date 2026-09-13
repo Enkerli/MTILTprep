@@ -412,41 +412,110 @@ otherwise have.
 
 # I. Representation and notation
 
-### `seeger1958prescriptive` — Charles Seeger (1958), *Prescriptive and Descriptive Music-Writing*, MQ XLIV(2)
-**Level:** `landing` — the Oxford abstract page. An open scan exists (Amherst) and is in the fetch script; it was not read here.
+### `seeger1958prescriptive` — Charles Seeger (1958), *Prescriptive and Descriptive Music-Writing*, *The Musical Quarterly* XLIV(2)
+**Level:** `read` — the full article. The JSTOR scan carries a shifted font encoding; the text was recovered by applying a uniform +29 offset before reading.
 
-**What it is.** Six pages that reframe the whole representation problem. A
-music-writing is **prescriptive** when it is a set of instructions to somebody who
-already knows the tradition, and **descriptive** when it is a report of what
-actually sounded. Staff notation is prescriptive and is routinely mistaken for
-descriptive.
+**What it actually says.** The paper opens not with the famous distinction but
+with **three hazards inherent in our practices of writing music**, and the
+distinction is only the third:
 
-**Why it matters most.** That mistake is what made early comparative musicology
-transcribe other people's music into an apparatus that could not hold it. And it
-gives the deep version of the pianocentrism complaint: the piano keyboard is an
-instruction set for one instrument, presented as the shape of pitch itself.
+1. **The assumption that the full auditory parameter of music is, or can be,
+   represented by a partial visual parameter** — "one with only two dimensions
+   upon a flat surface."
+2. **Ignoring the historical lag of music-writing behind speech-writing**, and the
+   consequent traditional interposition of the art of speech in the matching of
+   auditory and visual signals in music writing.
+3. **Failing to distinguish prescriptive from descriptive uses of music writing** —
+   "between a blueprint of how a specific piece of music shall be made to sound
+   and a report of how a specific performance of it actually did sound."
 
-**For MTILT.** The sharpest single analytic in the bibliography, and it comes from
-Alex's own discipline rather than from computer music. Read it first.
+**The first hazard is the one MTILT had been under-using.** It is the whole
+representation argument in a sentence, from 1958: a two-dimensional visual surface
+is being asked to stand for the full auditory parameter, and the asking is
+invisible. Everything in `docs/02` about what each channel makes disappear is a
+worked-out version of this.
 
-### `wiggins1993framework` — Wiggins, Miranda, Smaill & Harris (1993), *A Framework for the Evaluation of Music Representation Systems*, CMJ
-**Level:** `background`. **Flagged — see below.**
+**The question he poses.** Whether speech conceptions of melody correspond to our
+*music* conceptions of it — and "to what extent does the visual representation of
+melody condition both conceptions of it?" That is the pianocentrism complaint and
+the staff complaint stated as a research question rather than as a grievance, and
+Seeger takes it seriously enough to treat speech-conceptions of melody as having
+shaped not only notation but composition and performance themselves.
 
-**What it is.** A proposal for comparing music representation systems against
-each other rather than ranking them, from the computer-music side.
+**Scope, worth knowing before citing.** The article deals with "only the simplest
+kind of music: unaccompanied melody." The argument generalises, but Seeger did not
+generalise it here.
 
-**An integrity note, deliberately kept.** Elsewhere in this repo the framework's
-axes are given as *expressive completeness* and *structural generality*. Those
-terms came from my own search query, and the results confirmed that the paper
-exists without confirming that those are its axes. **I have not verified them.**
-They may well be right — the phrasing is familiar — but nothing here should be
-cited on that basis. A reissue appears in *Contemporary Music Review* as
-"Surveying Musical Representation Systems"; either version settles it.
+**For MTILT.** Still the first thing to read, and now for a better reason than the
+prescriptive/descriptive slogan. Hazard one is the project's own thesis with
+sixty-eight years of seniority.
 
-This entry is the reason the evidence levels exist.
+### `wiggins1993framework` — Wiggins, Miranda, Smaill & Harris (1993), *A Framework for the Evaluation of Music Representation Systems*, *Computer Music Journal* 17(3), pp. 31–42
+**Level:** `read` — the full article. **Previously flagged; now verified.**
+
+**The flag, resolved.** This entry used to record that the axes attributed to this
+paper elsewhere in the repo came from my own search query and were unverified. The
+PDF is now in hand and **they are the paper's own terms**, defined on its second
+page:
+
+> We consider the relative merits of different systems along two orthogonal
+> dimensions: **expressive completeness** and **structural generality**. Expressive
+> completeness refers to the range of raw musical data that can be represented, and
+> structural generality refers to the range of high-level structures that can be
+> represented and manipulated.
+
+The wrong-until-checked note is kept above rather than deleted, per the GAPS.md
+convention: the correction is worth less than the record of how it happened.
+
+**What it is.** A two-axis scheme for placing representation systems relative to
+each other rather than ranking them, oriented to three task types — **recording**
+(accuracy is the concern), **analysis** (finding and exploiting structure), and
+**generation/composition** (manipulability and flexibility). Systems are plotted
+in a single figure against the two axes.
+
+**The worked examples that matter here.**
+
+- **Waveform** — maximal expressive completeness, minimal structural generality:
+  captures any particular performance at the cost of abstract musical content, so
+  "a very similar performance of the same piece may look very different."
+- **MIDI** — potentially high on completeness in *time* (as close to what was
+  played as the clock ticks allow) but low overall, because pitch is approximated
+  to piano keys. And the line worth quoting at length: *"No explicit assumption is
+  made about tuning systems; equal or just temperament use the same note
+  representation in a MIDI file, but the representation does not encompass both;
+  it acknowledges neither, simply ignoring the issue."* Structurally, MIDI "scores
+  badly" — no allowance for structural annotation below the level of a whole file.
+- **Traditional score notation** — more structural generality than MIDI (it gives
+  tonal and metric information) but "restricted in expressive completeness to
+  traditional Western tonal music."
+- **DARMS** — occupies *exactly the same place in the figure as the score itself*,
+  because it encodes scores as uninterpreted graphic symbols: a curved line
+  "denotes neither a phrase nor a slur."
+- **UPIC** — scores well on expressive completeness thanks to the granularity and
+  flexibility of its basic event, but is "hardly hierarchical at all" at the level
+  of notes: pages are stored separately and manipulated like images in a simple
+  WYSIWYG program.
+
+**For MTILT.** Three payoffs. The MIDI tuning passage is pitch-ontology's thesis —
+that MIDI is a representational technology rather than a neutral primitive —
+stated in 1993 by computer musicians, and it is a ready citation for the tuning
+work. The UPIC analysis places DrawnQurve's ancestor precisely and names its
+weakness (flat structure), which is a design note for any drawn-gesture tool. And
+the framework itself is orthogonal to Seeger's: Seeger asks *what is a notation
+for*, Wiggins et al. ask *what can it hold*. Together they are a usable pair of
+questions for any representation in `docs/02`.
+
+**Caveat.** The paper restricts itself to systems working "on the level of notes
+and more abstract structures." Signal-level and morphological representations are
+outside its scope by design, so it cannot adjudicate the timbre question.
 
 ### `selfridgefield1997beyondmidi` — Eleanor Selfridge-Field, ed. (1997), *Beyond MIDI: The Handbook of Musical Codes*
-**Level:** `background`, plus the MIT Press page.
+**Level:** `landing` — front matter and table of contents only (the local PDF is ten pages of prelims, not the book).
+
+**What the contents page shows.** Part 1 is "Describing Musical Information",
+opening with §1.1 *What Is Musical Representation?* and §1.2 *Parameters of
+Musical Information* — so the book begins with the same question `docs/02` asks,
+before descending into the code-by-code survey.
 
 **What it is.** A code-by-code handbook of symbolic music representations, each
 described by somebody who worked with it. Pre-dates most of the web and remains
@@ -820,3 +889,92 @@ If the point is to move MTILT rather than to complete the library:
 
 And the one to verify rather than read: **Wiggins et al. 1993**, for the reason
 given in its entry.
+
+---
+
+# N. Added from the local library, 2026-09-13
+
+Three sources found in `references/pdf/` that were not in the bibliography. All
+three are now in `mtilt.bib`. They share a theme, which is why they are grouped:
+**each one is a case of the unmarked default being marked.**
+
+### `gomez2013computational` — Gómez, Herrera & Gómez-Martin (2013), *Computational Ethnomusicology: perspectives and challenges*, *Journal of New Music Research* 42(2), 111–112
+**Level:** `read` — it is a two-page editorial introducing a special issue.
+
+**What it says, in its first sentence.** "Since the beginning of Music Information
+Retrieval (MIR) as a field, most of its models and technologies have been
+developed for mainstream popular music in the so-called 'Western' tradition." The
+editorial proposes Computational Ethnomusicology as "a new mental framework that
+helps to restructure problems" rather than as a new application area.
+
+**For MTILT — this is the answer to a question asked earlier in the session.** The
+MIR rundown question ("maybe there's a MIR rundown which encompasses many of
+these") had two parts, and this is the second: not *what does MIR know about
+representation*, but *whose music was MIR built on*. The field names its own
+default here, from inside.
+
+It is also the entry point to the "music labs around the world" note. A special
+issue is a list of who is doing this work and where, and two pages of editorial is
+a cheap way to get that list.
+
+### `weisser2013qenet` — Weisser & Falceto (2013), *Investigating qəñət in Amhara secular music: an acoustic and historical study*, *Annales d'Ethiopie* 28, 299–322
+**Level:** `landing` — abstract and front matter. Open access via Persée.
+
+**What it is.** An acoustic and historical study of *qəñət*, the modal system of
+Amhara secular music. Its abstract opens by naming what it is arguing against:
+"Since the 1960's, a kind of musicological gospel claims that Amhara secular
+music…" — a received account that the paper tests against measurement.
+
+**Why it belongs here.** It is a worked instance of everything pitch-ontology is
+for: a non-Western modal system, a claim that circulated as settled for fifty
+years, and an acoustic study that treats the claim as checkable. Not "here is
+another tuning system" but "here is how a musicological consensus about one gets
+audited."
+
+**For MTILT.** The most concrete `Situating` material in the whole library, and
+in French and English both. Worth reading properly before the pitch-ontology work
+goes further — it is a model for what a claim record with real evidence looks
+like.
+
+### `kubik2010theory` — Gerhard Kubik (2010), *Theory of African Music*, Volume II, University of Chicago Press
+**Level:** `landing` — front matter and series information. 368 pages, unread.
+
+**What it is.** The second volume of Kubik's theory of African music, in the
+Chicago Studies in Ethnomusicology series (Bohlman, Nettl and Radano). Volume I
+appeared in 1994 from F. Noetzel. Kubik is a cultural anthropologist,
+ethnomusicologist and psychoanalyst, at Vienna and Klagenfurt, affiliated with the
+Oral Literature Research Programme in Chileka, Malaŵi.
+
+**Why it matters for this project specifically.** The rhythm material in `docs/01`
+and `docs/02` leans on TUBS — a transcription grid devised *for* West African
+drumming by outsiders — and on Toussaint's geometry, which is a mathematician's
+account. Kubik is the theory from inside the scholarship of the music itself, at
+length. If the rhythm-ring and TUBS material is going to be used with participants,
+this is the source that can say where those tools distort.
+
+**Unread, and the priority is high for that reason.** Two volumes of theory is the
+kind of source that changes what you think a workshop on "the same eight steps"
+is doing.
+
+---
+
+## Local library status, 2026-09-13
+
+`fetch-pdfs.sh` ran. Notes on what is actually in `references/pdf/`:
+
+- **The two PFEQ files are not PDFs.** Both are TYPO3 HTML pages — the Québec
+  government site served a page rather than the document, and the script's
+  `get()` did not check content type. Fixed in the script; the Québec chapter
+  still needs fetching by hand.
+- **Six files are Git LFS pointer stubs**, 132–133 bytes each, dated January 2026:
+  Stewart's *Calculus*, Anderson's *Computational Fluid Dynamics*, Kreyszig's
+  *Functional Analysis*, a PDE textbook, a thesis, and an SDM manual. They are
+  from some other project and contain no content — `version
+  https://git-lfs.github.com/spec/v1` and a hash. Nothing to do with MTILT; left
+  in place rather than deleted.
+- **Six duplicate pairs** — the script's names alongside earlier manual
+  downloads: Mullen, Sköld, Thoresen, AEC Polifonia, NCAS processes, PFEQ. Byte
+  identical, harmless, gitignored either way.
+- Everything else fetched correctly, including two large books not in the fetch
+  list (Farnell, 689pp; Kubik, 368pp) and the two JSTOR scans that resolved the
+  Wiggins flag and upgraded Seeger.

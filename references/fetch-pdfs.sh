@@ -15,7 +15,14 @@ get() {
   local out="pdf/$1"; shift
   if [ -s "$out" ]; then printf 'skip  %s\n' "$out"; return; fi
   if curl -fsSL --max-time 120 -o "$out" "$1"; then
-    printf 'ok    %s\n' "$out"
+    # some sites answer a consent/landing page with HTTP 200 — check we got a PDF
+    if [ "$(file -b --mime-type "$out")" = "application/pdf" ]; then
+      printf 'ok    %s\n' "$out"
+    else
+      printf 'NOT A PDF  %s  (got %s) — fetch by hand:\n           %s\n' \
+        "$out" "$(file -b --mime-type "$out")" "$1"
+      rm -f "$out"
+    fi
   else
     printf 'FAIL  %s\n      %s\n' "$out" "$1"; rm -f "$out"
   fi

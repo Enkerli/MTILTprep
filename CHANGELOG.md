@@ -71,3 +71,37 @@ not about finding the unmarked instrument; it is about never having only one.
 generality* — came from a search query rather than from the paper, and are
 unverified. Left visible rather than quietly corrected, per the GAPS.md
 convention in `docs/06`.
+
+### Analysis from the local library, same day
+
+The fetch script was run and further documents added by hand. Working from the
+actual PDFs rather than from search results changed three entries and added three.
+
+- **`wiggins1993framework` — the flagged claim is verified.** *Expressive
+  completeness* and *structural generality* are the paper's own terms, defined on
+  its second page. The wrong-until-checked note is kept above the correction
+  rather than deleted. The paper also turns out to contain the MIDI tuning
+  passage ("it acknowledges neither, simply ignoring the issue") — a 1993 citation
+  for pitch-ontology's thesis — and an analysis of UPIC that names DrawnQurve's
+  ancestor's weakness.
+- **`seeger1958prescriptive` — upgraded to `read`, and it is not what the slogan
+  suggests.** The paper opens with *three* hazards; the prescriptive/descriptive
+  distinction is the third. The first — that a two-dimensional visual parameter is
+  assumed to stand for the full auditory one — is MTILT's own thesis, stated in
+  1958. Scope caveat now recorded: the article deals only with unaccompanied
+  melody.
+- **`selfridgefield1997beyondmidi`** — corrected. The local PDF is ten pages of
+  front matter, not the book.
+- **Three sources added to the bibliography** from the local library: Gómez,
+  Herrera & Gómez-Martin on computational ethnomusicology (which names MIR's
+  Western default in its first sentence); Weisser & Falceto on qəñət in Amhara
+  secular music (a fifty-year musicological consensus audited acoustically); and
+  Kubik's *Theory of African Music* Vol. II — the theory from inside, against
+  which TUBS and Toussaint are outsiders' instruments. 49 entries; CSL-JSON
+  regenerated.
+- **`fetch-pdfs.sh` bug fixed.** `get()` did not check content type, so the Québec
+  PFEQ URLs saved TYPO3 HTML pages under `.pdf` names. It now verifies
+  `application/pdf` and reports the URL for manual fetching instead.
+- Local library notes appended to `SYNTHESES.md`: the PFEQ HTML problem, six Git
+  LFS pointer stubs from an unrelated project sitting in `references/pdf/`, and
+  six byte-identical duplicate pairs.
