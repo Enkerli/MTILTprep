@@ -24,8 +24,9 @@ reaching preestablished standards.
 ## Layout
 
 ```
-docs/         the session's five documents, in reading order
-references/   46 sources as BibTeX + CSL-JSON, plus a fetch script
+docs/         the session's six documents, in reading order
+references/   46 sources as BibTeX + CSL-JSON, a synthesis of each,
+              and a fetch script. The documents themselves are gitignored
 notes/        raw notes, dated, kept verbatim
 html/         the published versions of the docs (design intact)
 ```
@@ -46,9 +47,19 @@ conversions replace diagrams with descriptions.
 
 ### references/
 
-`./fetch-pdfs.sh` pulls 19 open-access PDFs into `references/pdf/`. They are not
-committed. See `references/README.md` for why the folder ships empty and what is
-paywalled.
+`./fetch-pdfs.sh` pulls 22 open-access PDFs into `references/pdf/` and 8 web
+pages into `references/archive/`. **Neither is committed** — `.gitignore` excludes
+both folders plus `*.pdf`, `*.epub`, `*.webarchive`, `*.warc`, `*.mhtml` and
+Zotero artefacts anywhere in the tree. The documents live in Zotero; the repo
+carries metadata and syntheses.
+
+[`SYNTHESES.md`](references/SYNTHESES.md) is one entry per source — what it is,
+what it argues, what it is for here — and every entry is marked with **how much
+of it was actually consulted**: `read`, `extracted`, `landing`, `secondary`, or
+`background` (not consulted; general knowledge, unverified). About half are
+`background`, which is the honest state of a bibliography assembled in one
+session. One entry, `wiggins1993framework`, records a specific unverified claim
+made elsewhere in this repo.
 
 ## Conventions
 

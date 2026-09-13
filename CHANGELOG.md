@@ -47,3 +47,27 @@ not about finding the unmarked instrument; it is about never having only one.
   work. Finding: most of MTILT's positions are already implemented in code, years
   before being articulated as pedagogy.
 - `notes/2026-09-13-exercise-notes.md` — third batch appended.
+
+### Reference handling, same day
+
+- `.gitignore` — widened. `references/pdf/` and `references/archive/` are both
+  excluded, along with `*.pdf`, `*.epub`, `*.djvu`, `*.webarchive`, `*.warc`,
+  `*.mhtml`, `*.maff` and Zotero artefacts anywhere in the tree. Articles and
+  archives live in Zotero; the repo carries metadata and syntheses only.
+- `references/fetch-pdfs.sh` — three open-access items added after an audit
+  against the bibliography (Gold-MSI in PLoS ONE, Wallmark in Music & Science,
+  the 2019 article from Érudit), plus an `arc()` section that saves eight web
+  pages into `references/archive/`. 22 PDFs, 8 archives. Zotero's own snapshots
+  are the better capture and the script says so.
+- `references/SYNTHESES.md` — new. One entry per source: what it is, what it
+  argues, what it is for here. Every entry carries an evidence level recording
+  how much of it was actually consulted. Twenty-six are `background` — not
+  consulted, general knowledge, unverified.
+
+### One flagged claim
+
+`references/SYNTHESES.md` records that the axes attributed to Wiggins et al.
+(1993) elsewhere in this repo — *expressive completeness* and *structural
+generality* — came from a search query rather than from the paper, and are
+unverified. Left visible rather than quietly corrected, per the GAPS.md
+convention in `docs/06`.

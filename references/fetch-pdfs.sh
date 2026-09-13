@@ -73,6 +73,14 @@ get "Blaschke-heutagogy-lifelong-learning.pdf" \
 get "Hase-Kenyon-heutagogy-since-2000.pdf" \
   "https://www.sit.ac.nz/Portals/0/upload/documents/sitjar/Heutagogy%20-%20One.pdf"
 
+# ── Open access found in the 2026-09-13 audit ────────────────────────────
+get "Mullensiefen-2014-GoldMSI.pdf" \
+  "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0089642&type=printable"
+get "Wallmark-2019-semantic-crosstalk.pdf" \
+  "https://journals.sagepub.com/doi/pdf/10.1177/2059204319846617"
+get "Enkerli-2019-son-propre-son.pdf" \
+  "https://www.erudit.org/en/journals/as/2019-v43-n1-as04933/1060871ar.pdf"
+
 # ── Soundscape ───────────────────────────────────────────────────────────
 get "Schafer-the-soundscape-excerpt.pdf" \
   "https://history2014.doingdh.org/wp-content/uploads/sites/2/2014/07/schafer_the_soundscape.pdf"
@@ -84,3 +92,27 @@ echo "  Swanwick 1979 · Small 1998 · Oliveros 2005 · Farnell 2010 · Attali 1
 echo "  Schafer 1967/1992 · Lind & McKoy 2016 · Blum 2020 · Toussaint 2013"
 echo
 echo "Your own article is already local:  https://doi.org/10.7202/1060871ar"
+
+# ── Web pages worth archiving ────────────────────────────────────────────
+# These are pages, not documents. curl gets the HTML but not the assets.
+# For real single-file captures use Zotero's own snapshot (it does this well
+# and keeps them beside the item) or `monolith` / SingleFile if you prefer
+# files on disk. Left here as a floor, not a recommendation.
+mkdir -p archive
+arc() {
+  local out="archive/$1"; shift
+  if [ -s "$out" ]; then printf 'skip  %s\n' "$out"; return; fi
+  curl -fsSL --max-time 60 -o "$out" "$1" && printf 'ok    %s\n' "$out" \
+    || { printf 'FAIL  %s\n' "$out"; rm -f "$out"; }
+}
+arc "scott-tamildaa.html"        "http://home.pacifier.com/~ascott/they/tamildaa.htm"
+arc "amta-competencies.html"     "https://www.musictherapy.org/about/competencies/"
+arc "deep-listening-rpi.html"    "https://www.deeplistening.rpi.edu/deep-listening/"
+arc "nime.html"                  "https://www.nime.org/"
+arc "tenor-proceedings.html"     "https://www.tenor-conference.org/proceedings.html"
+arc "gold-msi-goldsmiths.html"   "https://www.gold.ac.uk/music-mind-brain/gold-msi/"
+arc "komus-bremen.html"          "https://www.uni-bremen.de/institut-fuer-musikwissenschaft-und-musikpaedagogik/forschung/musikpaedagogik/abgeschlossene-forschungsprojekte/komus-kompetenzmodell-im-fach-musik"
+arc "recit-arts-musique.html"    "https://recitarts.ca/fr/musique/competences/"
+
+echo
+echo "Archives in archive/ — gitignored, like pdf/."

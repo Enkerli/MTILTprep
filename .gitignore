@@ -1,4 +1,30 @@
+# ── Reference documents: never committed ──────────────────────────────
+# Articles, chapters, scans and web archives are fetched locally and live
+# in Zotero. The repo carries the metadata and the syntheses, not the files.
 references/pdf/*
 !references/pdf/.gitkeep
+references/archive/*
+!references/archive/.gitkeep
+*.pdf
+*.epub
+*.djvu
+*.webarchive
+*.warc
+*.warc.gz
+*.mhtml
+*.maff
+# Zotero artefacts, in case any land here
+storage/
+*.sqlite
+*.sqlite-journal
+zotero/
+
+# ── OS / editor / tooling ─────────────────────────────────────────────
 .DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
 node_modules/
+.venv/
+__pycache__/
