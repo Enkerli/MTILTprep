@@ -89,6 +89,9 @@ second pass for what the first leaves on a landing page.
   open-access links, and copies the whole thing out as Markdown.
   The list is built from the CSL-JSON by `tools/build-citations-dois.py`; rerun
   it when either bibliography changes.
+- **`tools/tag-citation-themes.py`** — tags each citing title in a report by
+  theme and counts rows and distinct works. The recorded method behind the theme
+  table in `docs/08`.
 - **`tools/openalex-citations.sh`** — the same job from a terminal.
 
 Neither could be run from the assistant side: OpenAlex is refused at this

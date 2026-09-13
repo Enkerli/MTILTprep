@@ -150,7 +150,8 @@ places:
   Science* 15, *Journal of Mathematics and Music* 13, TISMIR 12, *Organised Sound*
   11.
 - **The theme table has not been redone.** How titles were tagged was not
-  recorded, so it cannot be repeated exactly. What can be said: the repeated
+  recorded, so it cannot be repeated exactly. *(Later: redone with a recorded
+  method, in the next section but one.)* What can be said: the repeated
   section was computational-ethnomusicology work, so the rows it inflated are
   mostly MIR and cross-cultural, by up to 21, and timing and groove are, if
   anything, a slightly *larger* share than a quarter. The next point pulls the other way.
@@ -184,6 +185,68 @@ So the counts in "The shape of it" measure *rows*, and a quarter of rows is not 
 quarter of works. The direction of the finding survives. The individual items that
 carry it are journal articles, not book fragments, and the new rows add more of
 them. The size of the finding is less certain than the table makes it look.
+
+### The theme table, redone
+
+*Method: `tools/tag-citation-themes.py`. Regular expressions over citing titles;
+a title can carry several themes; one run of the script reproduces the table.
+The rules were written by reading every title in the terminal harvest, the misses
+as well as the hits, and tightened once. The script's header records what
+"works" means: one citing work counts once however many of our sources it cites,
+preprint and published versions count once, and a book's chapters count as the
+book.*
+
+Terminal run, 986 rows, 669 works:
+
+| theme | works | share of works | rows |
+|---|---:|---:|---:|
+| timing, metre, entrainment | 137 | 20% | 253 |
+| groove | 26 | 4% | 52 |
+| cross-cultural, universals, anti-colonial | 46 | 7% | 116 |
+| a named tradition outside the Western canon | 104 | 16% | 134 |
+| pedagogy | 66 | 10% | 70 |
+| representation, notation, transcription | 38 | 6% | 41 |
+| MIR and generation | 108 | 16% | 125 |
+| timbre | 25 | 4% | 28 |
+| untagged | 235 | 35% | 332 |
+| *timing or groove* | *154* | *23%* | *283* |
+
+The original single "cross-cultural and anti-colonial" row is split. A title
+that names a tradition (a raga classifier) is not making the same claim as one
+that frames a comparison or a critique (*Anti-Colonial Strategies*), and one row
+hid the difference. Only 8 works do both.
+
+**The first table's numbers should not be quoted.** The same rules applied to the
+browser run's 815 rows give timing 229 (not 137), groove 50 (not 72), pedagogy 49
+(not 73), representation 35 (not 49), MIR 116 (not 42), timbre 27 (not 25), and
+91 framing plus 122 named-tradition rows against a single 74. The hand tagging
+drew different boundaries, and there is no record of where.
+
+What the recorded method shows:
+
+- **The quarter holds, counted by works: 23%.** By rows it is 29%, and rows
+  overstate it. Rhythm is where this bibliography has many sources that overlap,
+  so one citing paper is listed several times. *Bins, Spans, and Tolerance*,
+  *Shaping rhythm* and the 15-country priors study each appear under seven of
+  our sources. Timing and groove run about two rows per work; pedagogy,
+  representation, MIR and timbre run close to one.
+- **MIR is a sixth of the harvest (108 works), not the smallest music row.** 39
+  of those works are also about a named tradition, mostly Carnatic, Hindustani
+  and Turkish makam classification and tonic identification. That concentration
+  is what *Beyond Diverse Datasets* is about, and here it is visible in our own
+  citation graph.
+- **Named traditions outnumber cross-cultural framing two to one** (104 works
+  to 46). Most of the harvest that touches other musics does so by studying one,
+  not by comparing or critiquing.
+- **Pedagogy is 66 works, but 20 are Deardorff's.** About 46 are music
+  education.
+- **Timbre stays rare: 25 works, 4%.** This agrees with the correction recorded
+  at the start of this repo: timbre representation is rare *in musical learning*
+  specifically.
+- **A third of works are untagged.** They are music neuroscience, health,
+  evolution, production studies, the reception of ancient music, and titles in
+  languages the rules barely cover. The seven themes were chosen for this
+  bibliography, not for its citers, so a large remainder is expected.
 
 ### The bridge problem, twice
 

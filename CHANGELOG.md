@@ -228,3 +228,14 @@ OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
   entry each, three marked as belonging to both bibliographies so the source
   filter still finds them. Checked in a browser: the `mtilt.bib` filter runs clean
   (11 of 12 with citing work since 2022), and the `comj` DOI resolves in OpenAlex.
+- **`docs/08` theme table redone, with the method recorded** in
+  `tools/tag-citation-themes.py`. The rules are regular expressions over citing
+  titles, written by reading every title in the terminal harvest and tightened
+  once. Counts are rows and distinct works, with one citing work, its versions,
+  and a book's chapters each counted once. The first table's numbers do not
+  survive: under the same rules the browser run gives timing 229 not 137, MIR 116
+  not 42, groove 50 not 72. The finding survives when counted by works: timing
+  or groove is 23% of 669 works (29% of rows, because rhythm sources overlap).
+  "Cross-cultural" is split into framing (46 works) and named traditions (104),
+  39 of the latter also MIR. The hand-made table is left in place, with a
+  pointer.
