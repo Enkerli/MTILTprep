@@ -24,7 +24,7 @@ reaching preestablished standards.
 ## Layout
 
 ```
-docs/         the session's seven documents, in reading order
+docs/         the session's nine documents, in reading order
 references/   53 sources as BibTeX + CSL-JSON, a synthesis of each,
               plus pitch-ontology's own 104 works, and scripts.
               The documents themselves are gitignored
@@ -44,6 +44,8 @@ html/         the published versions of the docs (design intact)
 | `05-landscape.md` | The terrain sketch. Four modes of travel, the two ditches, the trail log, the "incomplete systems presented as complete" reading. |
 | `06-repo-insights.md` | Read across all 52 repositories as one body of work. Curation-in-passes, evidence over claim, keeping reversed decisions, and what is absent everywhere — including any multi-user feature at all. |
 | `07-forward-citations.md` | What has happened since. The grid assumption measured and refuted (Polak & London), timbre notation without a symbol set (Casey 2026), MIR's own geography audited, and Green's critical companion. |
+| `08-citation-harvest.md` | Reading the 836 citing works. Timing and groove are a quarter of the harvest — not what the bibliography was built for. |
+| `09-participatory-discrepancies.md` | Keil 1987, and the threads that turn out to be one thread. Includes the contested empirical evidence, and why two claims about uneven timing must not be run together. |
 
 The `html/` copies are the source of record for anything with a figure — the markdown
 conversions replace diagrams with descriptions.
@@ -113,6 +115,9 @@ Everything here is v0.1 and none of it has met a learner. The provenance of the
 material is mixed by design — some of it is what Alex would help people develop if
 they want to, some is his own appetite as a musicker who builds tools, some comes
 from teaching. Those answer to different tests and shouldn't be collapsed.
+
+See also [`HANDOFF.md`](HANDOFF.md) — what needs a terminal with
+credentials, and what this repo's conventions require of anyone editing it.
 
 ## Not yet done
 

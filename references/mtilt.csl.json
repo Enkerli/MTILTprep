@@ -1185,5 +1185,183 @@
     "DOI": "10.1080/14613808.2022.2074383",
     "keyword": "informal learning, critique",
     "note": "The critical companion the green2008informal entry said was missing. Read before adopting the model's posture"
+  },
+  {
+    "id": "keil1987participatory",
+    "type": "article-journal",
+    "title": "Participatory Discrepancies and the Power of Music",
+    "author": [
+      {
+        "family": "Keil",
+        "given": "Charles"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1987
+        ]
+      ]
+    },
+    "container-title": "Cultural Anthropology",
+    "volume": "2",
+    "issue": "3",
+    "DOI": "10.1525/can.1987.2.3.02a00010",
+    "keyword": "groove, timing, timbre, blending, ethnomusicology",
+    "note": "\"The power of music is in its participatory discrepancies, and these are basically of two kinds: processual and textural.\" Processual is timing; textural is pitch and timbre, including paired instruments producing blended harmonics. They work outside conscious rational analysis; notation preserves only a \"petrified skeleton\""
+  },
+  {
+    "id": "keil1994grooves",
+    "type": "book",
+    "title": "Music Grooves: Essays and Dialogues",
+    "author": [
+      {
+        "family": "Keil",
+        "given": "Charles"
+      },
+      {
+        "family": "Feld",
+        "given": "Steven"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1994
+        ]
+      ]
+    },
+    "publisher": "University of Chicago Press",
+    "publisher-place": "Chicago",
+    "keyword": "groove, ethnomusicology",
+    "note": "Already cited in Enkerli 2019 for the Feld half. The Keil half is where participatory discrepancies get developed at length"
+  },
+  {
+    "id": "nachmanovitch1990freeplay",
+    "type": "book",
+    "title": "Free Play: Improvisation in Life and Art",
+    "author": [
+      {
+        "family": "Nachmanovitch",
+        "given": "Stephen"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1990
+        ]
+      ]
+    },
+    "publisher": "Jeremy P. Tarcher",
+    "publisher-place": "Los Angeles",
+    "keyword": "improvisation, play, disposition",
+    "note": "The disposition underneath discrepancy: someone has to be willing not to be exact"
+  },
+  {
+    "id": "dolan2018improvisational",
+    "type": "article-journal",
+    "title": "The Improvisational State of Mind: A Multidisciplinary Study of an Improvisatory Approach to Classical Music Repertoire Performance",
+    "author": [
+      {
+        "family": "Dolan",
+        "given": "David"
+      },
+      {
+        "family": "Jensen",
+        "given": "Henrik Jeldtoft"
+      },
+      {
+        "family": "Mediano",
+        "given": "Pedro A. M."
+      },
+      {
+        "family": "Molina-Solána",
+        "given": "Miguel"
+      },
+      {
+        "family": "Rajpal",
+        "given": "Hardik"
+      },
+      {
+        "family": "Rosas",
+        "given": "Fernando"
+      },
+      {
+        "family": "Sloboda",
+        "given": "John A."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "container-title": "Frontiers in Psychology",
+    "volume": "9",
+    "DOI": "10.3389/fpsyg.2018.01341",
+    "keyword": "improvisation, classical, pedagogy"
+  },
+  {
+    "id": "classical-improv-hegemony-2021",
+    "type": "article-journal",
+    "title": "Are Classical Musicians Excluded from Improvisation? Cultural Hegemony and the Effects of Ideology on Musicians' Attitudes Towards Improvisation",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "container-title": "Contemporary Music Review",
+    "DOI": "10.1080/07494467.2021.2001945",
+    "keyword": "improvisation, classical, critique",
+    "note": "The ideology half of why the training removes permission"
+  },
+  {
+    "id": "lascabettes-rhythm-circle",
+    "type": "document",
+    "title": "Rhythm Circle / Mathémusique",
+    "author": [
+      {
+        "family": "Lascabettes",
+        "given": "Paul"
+      }
+    ],
+    "keyword": "rhythm, geometry, tools, outreach",
+    "URL": "https://www.paullascabettes.com/",
+    "note": "Postdoc, Université de Strasbourg; PhD Ircam/Sorbonne; editorial board, Journal of Mathematics and Music. Geometry of musical rhythms, with an outreach channel and the interactive rhythm-circle.com. A working public tool closest to the suite's ring representations — and the clearest case of a representation that cannot show a participatory discrepancy"
+  },
+  {
+    "id": "jacoby2024rhythmpriors",
+    "type": "article-journal",
+    "title": "Commonality and Variation in Mental Representations of Music Revealed by a Cross-Cultural Comparison of Rhythm Priors in 15 Countries",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "container-title": "Nature Human Behaviour",
+    "keyword": "rhythm, cross-cultural, enculturation",
+    "note": "Fifteen countries. The empirical version of the question the Barlow / anti-Barlow scenario asks in a room"
+  },
+  {
+    "id": "anticolonial-music-science-2023",
+    "type": "article-journal",
+    "title": "Anti-Colonial Strategies in Cross-cultural Music Science Research",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "container-title": "Music Perception",
+    "keyword": "decolonizing, method",
+    "note": "Strategies rather than critique. Pairs with the ISMIR bibliometrics for the \"music labs around the world\" thread"
   }
 ]

@@ -11,6 +11,9 @@
 set -u
 cd "$(dirname "$0")"
 mkdir -p pdf
+LOG="FETCH-LOG.md"
+{ echo "# Fetch log"; echo; echo "Run $(date -u +'%Y-%m-%d %H:%M UTC'). Failures and"
+  echo "wrong-content-type results are listed here so \"what didn't work\" is answerable."; echo; } > "$LOG"
 get() {
   local out="pdf/$1"; shift
   if [ -s "$out" ]; then printf 'skip  %s\n' "$out"; return; fi
@@ -21,10 +24,13 @@ get() {
     else
       printf 'NOT A PDF  %s  (got %s) — fetch by hand:\n           %s\n' \
         "$out" "$(file -b --mime-type "$out")" "$1"
+      echo "- **not a PDF** (\`$(file -b --mime-type "$out")\`) \`$out\` — <$1>" >> "$LOG"
       rm -f "$out"
     fi
   else
-    printf 'FAIL  %s\n      %s\n' "$out" "$1"; rm -f "$out"
+    printf 'FAIL  %s\n      %s\n' "$out" "$1"
+    echo "- **download failed** \`$out\` — <$1>" >> "$LOG"
+    rm -f "$out"
   fi
 }
 
@@ -109,8 +115,13 @@ mkdir -p archive
 arc() {
   local out="archive/$1"; shift
   if [ -s "$out" ]; then printf 'skip  %s\n' "$out"; return; fi
-  curl -fsSL --max-time 60 -o "$out" "$1" && printf 'ok    %s\n' "$out" \
-    || { printf 'FAIL  %s\n' "$out"; rm -f "$out"; }
+  if curl -fsSL --max-time 60 -o "$out" "$1"; then
+    printf 'ok    %s\n' "$out"
+  else
+    printf 'FAIL  %s\n' "$out"
+    echo "- **archive failed** \`$out\` — <$1>" >> "$LOG"
+    rm -f "$out"
+  fi
 }
 arc "scott-tamildaa.html"        "http://home.pacifier.com/~ascott/they/tamildaa.htm"
 arc "amta-competencies.html"     "https://www.musictherapy.org/about/competencies/"
@@ -182,3 +193,7 @@ arc "po-transposition-journal.html" \
   "https://journals.openedition.org/transposition/"
 arc "po-unesco-ich-convention-2003.html" \
   "https://ich.unesco.org/en/convention"
+
+echo
+echo "Failures logged in references/FETCH-LOG.md"
+grep -c '^- ' "$LOG" 2>/dev/null | xargs -I{} echo "{} problems recorded"

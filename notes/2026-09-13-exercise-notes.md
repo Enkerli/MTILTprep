@@ -300,3 +300,74 @@ positions are already implemented in the repos, years before they were
 articulated as a pedagogy. Curation-in-passes is the anti-ranking machinery,
 already built. The absences are consistent across all 52 — and **no multi-user
 anything anywhere**, which confirms the note above from a different direction.
+
+---
+
+# Fourth batch — from a family event
+
+## As written
+
+- TaMilDaA aside, discussed a few common concepts at a family event today:
+  participatory discrepancies; Lascabettes's Mathémusique use of geometry to
+  explain rhythmic and other concepts; polyrhythms in Angine de poitrine (some
+  people from Saguenay–Lac-Saint-Jean were at the event and AdP come from
+  Saint-Fulgence, it sounds like).
+- Also, the concept of "blending" and attention to certain sounds while playing.
+- Free Play (Nachmanovitch?).
+- Improvisation for classical musicians.
+- Sungazer's Adam Neely & Shawn Crowder playing with timing.
+- Let's explore more. With curiosity. Descriptive approaches, as research makes
+  prominent.
+
+## Threads — Claude's annotations, not Alex's notes
+
+Followed in full in `docs/09-participatory-discrepancies.md`. Short version:
+
+**These are one thread, and Keil tied it in 1987.** *Participatory Discrepancies
+and the Power of Music*, Cultural Anthropology 2(3): "the power of music is in its
+participatory discrepancies, and these are basically of two kinds: processual and
+textural." Processual is timing — swing, push, the drummer's delay. **Textural is
+pitch and timbre, and Keil's own example is paired instruments producing blended
+harmonics.** That is the "blending" from the conversation, named, and put in the
+same frame as the timing.
+
+Keil's mechanism is the part that matters for MTILT: discrepancies work *outside
+conscious rational analysis*, their meanings stay "various and ambiguous", and the
+ambiguity is what gives them "active participatory power". And his line on
+notation — that it preserves only a **"petrified skeleton"** — lands beside
+Seeger's first hazard.
+
+**The collaboration nut, re-read.** If the power is in the discrepancies, then
+networked music tools have been solving the wrong half: they quantise, snap, align
+and sync, which removes the thing. A better hypothesis than latency, and testable.
+
+**And the complication is the best part.** Keil's claim is contested by controlled
+studies — Frühauf/Kopiez/Platz, Davies/Madison/Silva/Gouyon, Senn et al. 2016,
+Datseris et al. 2019 — which repeatedly fail to find that microtiming deviations
+raise groove ratings, and sometimes find quantised versions rated higher. Câmara
+et al. 2023 and a *Revisiting Charles Keil* commentary in Empirical Musicology
+Review keep the argument live.
+
+**Two claims must not be run together.** Keil's is about *expressive deviation
+from a norm*. Polak & London's is that Mande subdivision is *categorically
+non-isochronous* — 41:31:28 — with Long/Short as discrete metrical categories.
+The lab studies test the first and do not touch the second. Quantising an uneven
+meter does not remove feel; it changes the meter.
+
+**Lascabettes** is a postdoc at Strasbourg (PhD IRCAM/Sorbonne, editorial board of
+the Journal of Mathematics and Music) working on the geometry of musical rhythms,
+with the Mathémusique outreach channel and an interactive site, **rhythm-circle.com**.
+Belongs in the tool curation — and is the clearest possible illustration of
+`docs/02`'s argument, since a ring places onsets at exact angles and therefore
+cannot show a participatory discrepancy at all.
+
+**Improvisation for classical musicians** turns out to have a sharp literature:
+Dolan et al., "The Improvisational State of Mind" (Frontiers 2018); "Are Classical
+Musicians Excluded from Improvisation? Cultural Hegemony and the Effects of
+Ideology" (Contemporary Music Review 2021); and "Challenging score-centered norms
+in Western classical higher music education." That last is this project's position
+appearing inside conservatoire research — useful for the translation work.
+
+**Angine de Poitrine** — Saguenay band, from Saint-Fulgence, two volumes, covered
+by Radio-Canada, Le Devoir and Urbania, on Bandcamp. Listening material with a
+local connection, which matters for the "known sounds" principle.

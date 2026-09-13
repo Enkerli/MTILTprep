@@ -145,3 +145,31 @@ actual PDFs rather than from search results changed three entries and added thre
   so the session's egress restrictions do not apply. Ranks citing works by their
   own citation counts, surfaces open-access links, exports Markdown. No external
   assets — it works from `file://` and offline apart from the API calls.
+
+### The scripts ran; following what came back
+
+- `references/OpenAlexFwdCite.md` — the user's `tools/citations.html` run,
+  committed as the record. 64 sources with citing work since 2022, 836 citing
+  works, 608 distinct.
+- `docs/08-citation-harvest.md` — a reading of it. **Timing and groove are a
+  quarter of the harvest**, which is not what this bibliography was assembled
+  around. Also one finding about the bibliography itself: all 17 rows of
+  intercultural-competence-in-higher-education noise come from a single entry,
+  `deardorff2006identification`.
+- `docs/09-participatory-discrepancies.md` — the family-event threads turn out to
+  be one thread, named by Keil in 1987. Blending is his *textural* discrepancy,
+  explicitly. Includes the honest complication: controlled studies repeatedly fail
+  to find that microtiming deviations raise groove ratings. And the distinction
+  that matters — Keil's claim (expressive deviation from a norm) is not Polak &
+  London's (categorically non-isochronous subdivision); the lab studies test the
+  first and do not touch the second.
+- Eight sources added: Keil 1987 and Keil & Feld, Nachmanovitch, Dolan et al.,
+  the classical-improvisation hegemony paper, Lascabettes / rhythm-circle, the
+  15-country rhythm priors study, and anti-colonial strategies in music science.
+  `mtilt.bib` now 61.
+- `references/fetch-pdfs.sh` now writes `references/FETCH-LOG.md` recording every
+  failure and wrong-content-type result, so "what didn't work" is answerable. The
+  answer for the last run was already in `references/pdf/OA-REPORT.md`: 10
+  downloaded, 41 closed, 28 landing-page-only, of 79 DOIs.
+- `HANDOFF.md` — for a coding agent with a terminal: pushing, fetching what is
+  still missing, and the three conventions not to break.
