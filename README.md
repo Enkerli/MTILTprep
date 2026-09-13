@@ -53,6 +53,11 @@ paywalled.
 ## Conventions
 
 Following `manifold` and `patch-panel`: **CC0 for data and text, MIT for tooling.**
+Everything currently in this repo is dedicated to the public domain under
+[CC0 1.0](LICENSE) — the documents, the notes, the bibliography. The only code
+here is `references/fetch-pdfs.sh`, which CC0 covers fine; if tooling grows
+enough to matter, it moves to MIT in a second `LICENSE-MIT` alongside this one,
+as in the sibling repos.
 Status ladders over completion — a document at `sketch` is a valid document. Claims
 carry their evidence; where something is asserted rather than verified, it says so
 at the bottom of the file.
