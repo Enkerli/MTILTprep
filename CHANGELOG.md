@@ -173,3 +173,28 @@ actual PDFs rather than from search results changed three entries and added thre
   downloaded, 41 closed, 28 landing-page-only, of 79 DOIs.
 - `HANDOFF.md` — for a coding agent with a terminal: pushing, fetching what is
   still missing, and the three conventions not to break.
+
+### The handoff, from a terminal
+
+A Claude Code session on the user's machine, where `gh` is authenticated and
+OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
+
+- All three fetchers run. `fetch-pdfs.sh`: 7 failures in `FETCH-LOG.md`, three of
+  them pitch-ontology URLs that still carry BibTeX escapes (`\%20`, `\%2F`) and
+  so cannot resolve — a generator bug, not closed access. `fetch-open-access.sh`:
+  2 more downloaded, 41 closed, 28 landing-page-only, of 81 DOIs.
+- `references/citations/REPORT.md` — the terminal sweep, committed beside the
+  browser run rather than over it. 78 sources, 982 citing entries since 2022,
+  against the browser run's 64 and 836. `docs/08` reads the browser run and has
+  not been redone against this one.
+- **`tools/unpaywall-landing.sh`** — new. The second pass the handoff described:
+  every Unpaywall OA location for each landing-page DOI, following
+  `citation_pdf_url` when a location answers with HTML; arXiv DOIs go straight
+  to arxiv.org, since Unpaywall does not index DataCite. **11 of the 28
+  recovered**, 17 left for Zotero. Several recoveries are repository copies
+  (IYTE, KTH DiVA, UPF, KU ScholarWorks) and may be accepted manuscripts rather
+  than the published version.
+- First run of that script recovered **0 of 28**, recorded here so it is not
+  repeated: it sent a browser user agent, and emusicology.org's Anubis wall
+  answers anything claiming to be Mozilla with a proof-of-work page. The script
+  now identifies itself honestly. Bot walls are not worked around.

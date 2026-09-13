@@ -1,5 +1,10 @@
 # Handoff — for a coding agent with a terminal
 
+> **Status, 2026-09-13, later:** §1 done (pushed). §2 done: all three scripts
+> run, plus the landing-page pass as `tools/unpaywall-landing.sh` (11 of 28
+> recovered). What is left is Zotero's job. Details in `CHANGELOG.md`, under
+> "The handoff, from a terminal". The text below is kept as written.
+
 This repo was built from a Cowork session whose shell runs in a sandbox on the
 user's machine. That sandbox has **no GitHub credentials** (`gh` is not installed,
 no `GITHUB_TOKEN`, no credential helper, `api.github.com/user` → 401) and its

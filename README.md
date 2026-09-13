@@ -67,7 +67,8 @@ in `keywords`.
 
 ### Getting the documents
 
-Two fetchers, because the two bibliographies need different treatment.
+Three fetchers: two because the bibliographies need different treatment, and a
+second pass for what the first leaves on a landing page.
 
 - **`references/fetch-pdfs.sh`** — a hand-curated list of direct URLs, now
   including pitch-ontology's items that have one. 57 targets. Needs nothing but
@@ -76,6 +77,9 @@ Two fetchers, because the two bibliographies need different treatment.
   through OpenAlex and downloads the best open-access copy. This is what covers
   the pitch-ontology set, most of whose URLs are `doi.org` links rather than
   PDFs. Writes `references/pdf/OA-REPORT.md` listing what is closed. Needs `jq`.
+- **`tools/unpaywall-landing.sh`** — retries OA-REPORT's landing-page items
+  through every Unpaywall location, following `citation_pdf_url` meta tags.
+  Recovered 11 of 28 on its first real run. Needs `jq` and `MAILTO`.
 
 ### Forward citations
 
@@ -88,6 +92,8 @@ Two fetchers, because the two bibliographies need different treatment.
 Neither could be run from the assistant side: OpenAlex is refused at this
 session's egress proxy (403) and rate-limits the cloud fetcher (429). `docs/07`
 is a search sample and says so.
+Both scripts have since run from a terminal; `references/citations/REPORT.md` is
+the terminal sweep, `references/OpenAlexFwdCite.md` the browser one.
 
 [`SYNTHESES.md`](references/SYNTHESES.md) is one entry per source — what it is,
 what it argues, what it is for here — and every entry is marked with **how much
