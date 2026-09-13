@@ -1111,5 +1111,79 @@
     "publisher-place": "Chicago",
     "keyword": "African music, rhythm, theory, TUBS",
     "note": "Volume I first published 1994 by F. Noetzel. The theory from inside the scholarship of the music, against which TUBS and Toussaint's geometry are outsiders' instruments"
+  },
+  {
+    "id": "polak2014timing",
+    "type": "article-journal",
+    "title": "Timing and Meter in Mande Drumming from Mali",
+    "author": [
+      {
+        "family": "Polak",
+        "given": "Rainer"
+      },
+      {
+        "family": "London",
+        "given": "Justin"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "container-title": "Music Theory Online",
+    "volume": "20",
+    "issue": "1",
+    "keyword": "rhythm, microtiming, TUBS-critique, transcription",
+    "URL": "https://mtosmt.org/issues/mto.14.20.1/mto.14.20.1.polak-london.html",
+    "note": "Over 20,000 stroke onsets. The beat is near-perfectly isochronous; the subdivision is not — kengebu averages 41:31:28, Bire's bell 59:41. Categorical Long/Short distinctions are discrete metrical categories, not deviations. Grid-based transcription imposes artificial regularity"
+  },
+  {
+    "id": "casey2026indexical",
+    "type": "article-journal",
+    "title": "Beyond Symbols: Indexical Notation for Sound Morphology",
+    "author": [
+      {
+        "family": "Casey",
+        "given": "Rob"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": "Organised Sound",
+    "keyword": "timbre, notation, spectromorphology, representation",
+    "note": "Peircean indexical notation: causal relation between performer and visual response, without iconic resemblance. The score Undersong responds in real time to spectral flux and noise content. A timbre notation with no symbol set to learn — which answers the objection recorded against Thoresen and Skold"
+  },
+  {
+    "id": "ismir25years",
+    "type": "article-journal",
+    "title": "Beyond a Western Center of Music Information Retrieval: A Bibliometric Analysis of the First 25 Years of ISMIR Authorship",
+    "container-title": "Transactions of the International Society for Music Information Retrieval",
+    "keyword": "MIR, decolonizing, bibliometrics",
+    "URL": "https://transactions.ismir.net/articles/10.5334/tismir.265",
+    "note": "The map of who does MIR and where, over 25 years. Effectively the \"music labs around the world\" list, already assembled"
+  },
+  {
+    "id": "green-tensions-2022",
+    "type": "article-journal",
+    "title": "Tensions, Issues and Strengths of Professor Lucy Green's Model of Informal Learning",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "container-title": "Music Education Research",
+    "DOI": "10.1080/14613808.2022.2074383",
+    "keyword": "informal learning, critique",
+    "note": "The critical companion the green2008informal entry said was missing. Read before adopting the model's posture"
   }
 ]

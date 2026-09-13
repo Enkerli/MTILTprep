@@ -105,3 +105,26 @@ actual PDFs rather than from search results changed three entries and added thre
 - Local library notes appended to `SYNTHESES.md`: the PFEQ HTML problem, six Git
   LFS pointer stubs from an unrelated project sitting in `references/pdf/`, and
   six byte-identical duplicate pairs.
+
+### Forward citations and the pitch-ontology import, same day
+
+- `docs/07-forward-citations.md` — new. A targeted search sample, not a graph
+  sweep: OpenAlex is refused at the egress proxy (403) and rate-limits the cloud
+  fetcher (429); Semantic Scholar is refused too.
+- **Two findings change existing documents rather than adding to them.**
+  Polak & London measured over 20,000 Mande drum onsets: the beat is near-perfectly
+  isochronous, the *subdivision* is not (41:31:28; 59:41), and Long/Short are
+  discrete categories rather than deviations. The micro-timing caveat `docs/02`
+  attached to TUBS is now a measurement, and the rhythm material in `docs/01`
+  assumes a substrate that real grooves do not sit on. And Casey (2026) proposes an
+  *indexical* timbre notation — causal, responsive, no symbol set — which answers
+  the objection recorded against Thoresen and Sköld in `docs/03`.
+- Also found: MIR's 25-year authorship bibliometrics (the "music labs around the
+  world" list, already assembled); crossmodal timbre semantics, which backs the
+  music-and-drawing note; and the critical companion to Green that `SYNTHESES.md`
+  had flagged as missing. Four added to `mtilt.bib`, now 53.
+- `references/works-pitch-ontology.bib` / `.csl.json` — pitch-ontology's 104
+  curated works imported, via `tools/import-pitch-ontology.py`. Kept separate:
+  different provenance, different curation. 72 DOIs, 93 verified.
+- `tools/openalex-citations.sh` — the full sweep, for a terminal that can reach
+  OpenAlex. Writes a ranked `references/citations/REPORT.md`; raw JSON gitignored.

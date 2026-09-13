@@ -5,6 +5,7 @@ references/pdf/*
 !references/pdf/.gitkeep
 references/archive/*
 !references/archive/.gitkeep
+references/citations/*.json
 *.pdf
 *.epub
 *.djvu

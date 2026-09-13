@@ -24,9 +24,11 @@ reaching preestablished standards.
 ## Layout
 
 ```
-docs/         the session's six documents, in reading order
-references/   46 sources as BibTeX + CSL-JSON, a synthesis of each,
-              and a fetch script. The documents themselves are gitignored
+docs/         the session's seven documents, in reading order
+references/   53 sources as BibTeX + CSL-JSON, a synthesis of each,
+              plus pitch-ontology's own 104 works, and scripts.
+              The documents themselves are gitignored
+tools/        import and citation-sweep scripts
 notes/        raw notes, dated, kept verbatim
 html/         the published versions of the docs (design intact)
 ```
@@ -41,6 +43,7 @@ html/         the published versions of the docs (design intact)
 | `04-competency-frameworks.md` | Review across seven literatures, with a coverage verdict per aim. Tally: 4 strong, 6 partial, 6 absent. |
 | `05-landscape.md` | The terrain sketch. Four modes of travel, the two ditches, the trail log, the "incomplete systems presented as complete" reading. |
 | `06-repo-insights.md` | Read across all 52 repositories as one body of work. Curation-in-passes, evidence over claim, keeping reversed decisions, and what is absent everywhere — including any multi-user feature at all. |
+| `07-forward-citations.md` | What has happened since. The grid assumption measured and refuted (Polak & London), timbre notation without a symbol set (Casey 2026), MIR's own geography audited, and Green's critical companion. |
 
 The `html/` copies are the source of record for anything with a figure — the markdown
 conversions replace diagrams with descriptions.
@@ -52,6 +55,18 @@ pages into `references/archive/`. **Neither is committed** — `.gitignore` excl
 both folders plus `*.pdf`, `*.epub`, `*.webarchive`, `*.warc`, `*.mhtml` and
 Zotero artefacts anywhere in the tree. The documents live in Zotero; the repo
 carries metadata and syntheses.
+
+`works-pitch-ontology.bib` / `.csl.json` are the 104 works curated for
+[pitch-ontology](https://github.com/Enkerli/pitch-ontology), imported with
+`tools/import-pitch-ontology.py` — kept separate from `mtilt.bib` because the
+provenance and the curation differ. 72 carry DOIs, 93 are verified against
+Crossref or a publisher record, and the ontology's own domain taxonomy survives
+in `keywords`.
+
+`tools/openalex-citations.sh` runs the full forward-citation sweep. It could not
+be run from the assistant side — OpenAlex is refused at this session's egress
+proxy and rate-limits the cloud fetcher — so `docs/07` is a search sample and
+this script is the real job, for your own terminal.
 
 [`SYNTHESES.md`](references/SYNTHESES.md) is one entry per source — what it is,
 what it argues, what it is for here — and every entry is marked with **how much
