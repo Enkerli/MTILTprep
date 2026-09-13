@@ -87,6 +87,8 @@ second pass for what the first leaves on a landing page.
   API key. All 81 DOIs from both bibliographies are embedded; it queries OpenAlex
   from the page, ranks citing works by their own citation counts, shows
   open-access links, and copies the whole thing out as Markdown.
+  The list is built from the CSL-JSON by `tools/build-citations-dois.py`; rerun
+  it when either bibliography changes.
 - **`tools/openalex-citations.sh`** — the same job from a terminal.
 
 Neither could be run from the assistant side: OpenAlex is refused at this

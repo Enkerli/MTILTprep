@@ -221,3 +221,10 @@ OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
   `The Improvisational State of Mind` is a second Deardorff-style bridge,
   psychedelics and consciousness research at the top of its list. The theme table
   is not redone, because the tagging method was never recorded.
+- `tools/citations.html` — its embedded DOI list was pasted in by hand and had
+  drifted: the escaped `comj` DOI, two DOIs listed twice (the cause of the double
+  count in `docs/08`), and neither source added after it was built. Now generated
+  by **`tools/build-citations-dois.py`** from both CSL-JSON files: 81 DOIs, one
+  entry each, three marked as belonging to both bibliographies so the source
+  filter still finds them. Checked in a browser: the `mtilt.bib` filter runs clean
+  (11 of 12 with citing work since 2022), and the `comj` DOI resolves in OpenAlex.
