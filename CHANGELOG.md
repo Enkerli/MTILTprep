@@ -210,3 +210,14 @@ OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
   Digital Library page still fails (403). Both DOIs now resolve in OpenAlex: comj
   is closed, eiro is a landing page Unpaywall cannot improve. The citation report
   is regenerated: 80 sources, 986 entries.
+- `docs/08` rechecked against the terminal run, in a new closing section; the
+  original reading is left as written, with a note under its header. The terminal
+  run contains the browser run entirely. Three corrections: the browser run
+  **counted two sources twice** (in both bibliographies, and `citations.html` does
+  not deduplicate), so 62 sources and 815 rows, not 64 and 836, and TISMIR is 12
+  rows, not 16. **Rows are not works**: OpenAlex splits a book into chapters that
+  each carry the book's whole reference list: about 87 extra rows from nine books.
+  18 of the 21 rows under *Swing Rhythm in Classic Drum Breaks* are one book. And
+  `The Improvisational State of Mind` is a second Deardorff-style bridge,
+  psychedelics and consciousness research at the top of its list. The theme table
+  is not redone, because the tagging method was never recorded.
