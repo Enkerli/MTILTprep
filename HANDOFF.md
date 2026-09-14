@@ -13,8 +13,8 @@ detail, from "The handoff, from a terminal" onwards.
 - **All three fetchers run**, plus a new second pass,
   `tools/unpaywall-landing.sh`. OpenAlex: 2 PDFs, 40 closed, 18 landing pages
   left of 81 DOIs. Unpaywall recovered 11 of the original 28 landing pages.
-  13 new PDFs in all, and 15 counting the two PFEQ programmes fetched
-  afterwards.
+  13 new PDFs in all, and 16 counting what was fetched afterwards: the two
+  PFEQ programmes and Polak 2010.
 - **Forward citations re-swept from the terminal**:
   `references/citations/REPORT.md`, 80 sources, 986 rows, up to 25 per source.
 - **Bugs fixed.** `tools/import-pitch-ontology.py` was LaTeX-escaping `url` and
@@ -39,9 +39,11 @@ detail, from "The handoff, from a terminal" onwards.
 
 ### Still open
 
-1. **Zotero.** 18 landing pages (`UNPAYWALL-REPORT.md`) and 40 closed items
-   (`OA-REPORT.md`). `unpaywall-landing.sh --closed` has not been tried on the
-   closed ones.
+1. **Zotero.** 17 landing pages and 40 closed items; `UNPAYWALL-REPORT.md` lists
+   all of them. `unpaywall-landing.sh --closed` has now been tried and recovered
+   nothing: Unpaywall knows no location for the closed ones, and the landing
+   pages' hosts do not hand a script a PDF. Polak 2010 (MTO) was the exception,
+   found by hand and added to `fetch-pdfs.sh`.
 2. **By hand.**
    - ~~The two PFEQ documents.~~ Done: the old URLs redirect to the quebec.ca
      home page, and the programmes are now on `cdn-contenu.quebec.ca`.

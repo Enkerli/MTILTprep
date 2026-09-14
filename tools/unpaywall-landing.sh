@@ -25,7 +25,7 @@ IN=references/pdf/OA-REPORT.md
 # Identify honestly. A browser user agent was tried first and made things worse:
 # sites behind Anubis (emusicology.org) serve a proof-of-work page to anything
 # claiming to be Mozilla, and mtosmt.org served nothing. Bot walls are left alone.
-UA="MTILTprep-fetch/0.1 (+https://github.com/Enkerli/MTILTprep; mailto:$MAILTO)"
+UA="MTILTprep-fetch/0.1 (+https://github.com/Enkerli/MTILTprep)"
 
 pattern='landing page only'
 [ "${1:-}" = "--closed" ] && pattern='landing page only|closed'

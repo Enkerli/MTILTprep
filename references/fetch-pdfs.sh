@@ -180,6 +180,11 @@ arc "po-plos-2017-outliers-world-music.html" \
   "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0189399"
 arc "po-polak-2010-rhythmic-feel-as-meter.html" \
   "https://mtosmt.org/issues/mto.10.16.4/mto.10.16.4.polak.html"
+# The DOI resolves to the HTML article, which exposes no citation_pdf_url, so
+# neither DOI-based script finds the PDF sitting beside it. Saved under the DOI
+# slug so fetch-open-access.sh and unpaywall-landing.sh skip it from now on.
+get "10-30535-mto-16-4-4.pdf" \
+  "https://mtosmt.org/issues/mto.10.16.4/mto.10.16.4.polak.pdf"
 arc "po-polak-london-2014-timing-meter-mande.html" \
   "https://mtosmt.org/issues/mto.14.20.1/mto.14.20.1.polak-london.html"
 arc "po-qdl-cairo-congress-microtones.html" \

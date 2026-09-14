@@ -249,3 +249,13 @@ OpenAlex answers. `main` pushed (four commits, `c91fe28`..`5f9c976`).
   sociocultural dimension present) and `PFEQ-musique-premier-cycle-secondaire.pdf`.
   `meq2001arts` carries the new URL in the bib and CSL-JSON. Its level stays
   `landing` until it is read.
+- **`unpaywall-landing.sh --closed`, run on all 58 remaining DOIs: 0 recovered.**
+  For the 40 closed items this is the honest answer, since Unpaywall has no
+  location for 41 of the 58. The other 17 have locations, but none hands a
+  script a PDF. One exception found by hand: Polak's *Rhythmic Feel as Meter*
+  (MTO, 2010). Its DOI opens the HTML article, which has no `citation_pdf_url`,
+  but the PDF sits at the same path. It is added to `fetch-pdfs.sh` under its DOI
+  slug, so the DOI-based scripts skip it from now on.
+- `unpaywall-landing.sh` no longer puts the Unpaywall email in its user-agent.
+  Earlier runs sent it to every host the script downloaded from; only
+  Unpaywall's API, which requires it, receives it now.
