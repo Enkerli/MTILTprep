@@ -115,28 +115,44 @@ MAILTO=you@example.org ./tools/fetch-open-access.sh      # DOI → OA, needs jq
 MAILTO=you@example.org ./tools/openalex-citations.sh     # forward citations
 ```
 
-**Known state after the user's last run:** 10 downloaded / 41 closed of 79 DOIs,
-28 resolving to landing pages rather than files. Two known problems:
+**Known state, after the 2026-09-13 terminal session.** 63 PDFs and 31 archives
+are on disk. Re-running the scripts adds nothing: `fetch-open-access.sh` reports
+0 downloaded / 40 closed of 81 DOIs, everything it can reach having already been
+fetched, and `unpaywall-landing.sh --closed` recovered **0 of 58** on a full
+retry. Unpaywall has no location for the 40 closed items, and the 17 landing
+pages that do have one sit behind hosts that will not hand a PDF to a script.
 
-- The Québec **PFEQ** URLs return TYPO3 HTML, not PDFs. `get()` now detects this
-  and reports instead of saving. Those documents need fetching by hand from
-  `education.gouv.qc.ca`.
+Resolved since the first handoff, so do not redo them:
+
+- **PFEQ.** The `education.gouv.qc.ca` URLs now redirect to the quebec.ca
+  Education home page; the programmes moved to `cdn-contenu.quebec.ca`, split by
+  discipline. `fetch-pdfs.sh` fetches the primary and secondary music programmes
+  from the new home and both arrive as PDFs. (`get()` skips any non-empty file,
+  so the old HTML had to be deleted before the fix took effect — worth knowing if
+  a stale file ever looks like a failing fetch.)
+- **Escaped URLs and DOIs.** `import-pitch-ontology.py` was LaTeX-escaping every
+  field, including `url` and `doi`. Fixed.
+
+Still open:
+
 - Six **Git LFS pointer stubs** (132 bytes each — Stewart's *Calculus*, Anderson's
   CFD, Kreyszig, a PDE text, a thesis, an SDM manual) sit in `references/pdf/`
   from an unrelated project. Harmless, gitignored, not ours. Leave or remove.
+- **MIMO returns 500 and the Qatar Digital Library 403**, both persistently.
 
-Failures are logged to `references/FETCH-LOG.md` (gitignored) and closed-access
-items to `references/pdf/OA-REPORT.md`.
+Failures are logged to `references/FETCH-LOG.md` (gitignored); closed-access
+items to `references/pdf/OA-REPORT.md` and `UNPAYWALL-REPORT.md`.
 
 ### Where more could be retrieved
 
-The 28 "landing page only" entries in `OA-REPORT.md` mostly have a reachable PDF
-one hop further in — Project MUSE, JSTOR, publisher pages. A pass that follows
-`citation_pdf_url` meta tags or Unpaywall's `best_oa_location` would pick up a
-good share. **Zotero's browser connector handles these better than any script**,
-since it resolves through institutional access; the user intends to import into
-Zotero anyway, so the honest advice is: run the scripts for the easy ones and let
-Zotero do the awkward ones.
+Scripted retrieval is exhausted — that is the finding, not a gap in the tooling.
+The remaining 40 closed and 17 unreachable items need either a library or
+**Zotero's browser connector**, which resolves through institutional access and
+handles publisher pages that refuse scripts. The user intends to import into
+Zotero anyway, so the honest advice stands: the scripts got the easy ones, Zotero
+gets the rest. One item was recovered by hand this way — Polak's *Rhythmic Feel
+as Meter*, whose DOI opens the HTML article while the PDF sits at the same path;
+that pattern is worth trying on other publisher landing pages.
 
 ## 3. Do not
 
