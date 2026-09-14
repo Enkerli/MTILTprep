@@ -28,7 +28,7 @@ detail, from "The handoff, from a terminal" onwards.
 
 ### Local state — gitignored, on the user's machine only
 
-- `references/pdf/`: 64 files, plus `OA-REPORT.md` and `UNPAYWALL-REPORT.md`.
+- `references/pdf/`: 63 PDFs, plus `OA-REPORT.md` and `UNPAYWALL-REPORT.md`.
   Still includes the six Git LFS stubs from an unrelated project. (The two
   `PFEQ-*.pdf` files that were TYPO3 HTML have been deleted and replaced.)
 - `references/citations/*.json`: the 80 raw OpenAlex pages behind `REPORT.md`.
